@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 // AUTHENTICATION ROUTES
-Route::post('/register', [AuthController::class, 'register'])->name('api.user.create');
+Route::post('/signup', [AuthController::class, 'signup'])->name('api.user.create');
 Route::post('/login', [AuthController::class, 'login'])->name('api.user.login');
 
 
