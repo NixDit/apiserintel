@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\Sales\SalesController;
 use App\Http\Controllers\API\Client\ClientController;
 use App\Http\Controllers\API\General\ProductsController;
 
@@ -39,4 +40,9 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     //BEGIN:: Client routes
     Route::get('/client/{code}', [ClientController::class, 'getClient'])->name('api.client.get');
     //END:: Client routes
+
+
+    //BEGIN:: Sale routes
+    Route::post('/sale', [SalesController::class, 'store'])->name('api.sales.store');
+    //END:: Sale routes
 });
