@@ -22,7 +22,7 @@ class AuthController extends Controller
         ]);
 
         //CHECK IF EMAIL IS REGISTERED IN DB
-        $user = User::where('email', $fields['email'])->first();
+        $user = User::where('email', $fields['email'])->with('roles')->first();
 
         if( !$user || !Hash::check( $fields['password'], $user->password ) ) {
 
@@ -33,7 +33,10 @@ class AuthController extends Controller
 
         }
 
+        $user->devices()->firstOrCreate(['token' => $request->token]);
+
         $token = $user->createToken('authtoken')->plainTextToken;
+        
         //Hide Unnecesary Fields in Role
         $user->roles->makeHidden(['guard_name', 'created_at', 'updated_at', 'pivot']);
         //Hide unnecesary user fields
@@ -71,9 +74,9 @@ class AuthController extends Controller
 
         $user->assignRole('guest');
 
-        $token = $user->createToken('authtoken')->plainTextToken;
+        $user->devices()->firstOrCreate(['token' => $request->token]);
 
-        
+        $token = $user->createToken('authtoken')->plainTextToken;
 
         //Hide Unnecesary Fields in Role
         $user->roles->makeHidden(['guard_name', 'created_at', 'updated_at', 'pivot']);
@@ -89,10 +92,59 @@ class AuthController extends Controller
 
     }
     // END: Signup function
+
+    // BEGIN:: Update function
+    public function update( Request $request ) {
+
+
+        $fields = $request->validate([
+            'id'            => 'required',
+            'name'          => 'required|string',
+            'last_name'     => 'required|string',
+        ]);
+
+        $user = User::find( $request->id );
+
+        $user->name = $fields['name'];
+        $user->last_name = $fields['last_name'];
+
+        $user->save();
+        
+        if( $request->new_password != null && $request->password != null) {
+            if( Hash::check( $request['password'], $user->password ) ) {
+                $user->password = Hash::make($request->new_password);
+                $user->save();
+            } else {
+                return response()->json([
+                    'ok'        => false,
+                    'message'   => 'No pudimos actualizar tu contraseña debido que a la contraña actual no coincide con la que proporcionaste',
+                ], 401);
+            }
+        }
+
+        $user->refresh();
+
+        //Hide Unnecesary Fields in Role
+        $user->roles->makeHidden(['guard_name', 'created_at', 'updated_at', 'pivot']);
+        //Hide unnecesary user fields
+        $user->makeHidden(['deleted_at', 'created_at', 'updated_at', 'email_verified_at']);
+
+        return response()->json([
+            'ok'        => true,
+            'message'   => 'Datos actualizados correctamente ',
+            'user'      => $user,
+            'token'     => 'none',
+        ], 201);
+
+    }
+    // END: Update function
+
     public function tokenRenew() {
 
 
         $user = Auth::user();
+        $user->load('roles:id,name');
+        $user->roles->makeHidden(['pivot']);
 
         $token = $user->createToken('authtoken')->plainTextToken;
 
@@ -104,5 +156,16 @@ class AuthController extends Controller
         ], 200);
 
 
+    }
+
+
+    public function prueba( Request $request ) {
+
+        $user = User::find( 1 );
+
+        $tokens = $user->devices()->pluck('token');
+
+        dd( $tokens );
+        // $token = $user->devices()->firstOrCreate(['token' => $request->token] );
     }
 }

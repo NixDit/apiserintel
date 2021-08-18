@@ -2,9 +2,8 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 
-class CreateClientInformationTable extends Migration
+class CreateRouteUserPivotTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +12,12 @@ class CreateClientInformationTable extends Migration
      */
     public function up()
     {
-        Schema::create('client_information', function (Blueprint $table) {
-            $table->id();
+        Schema::create('route_user', function (Blueprint $table) {
+            $table->unsignedBigInteger('route_id')->index();
+            $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade');
             $table->unsignedBigInteger('user_id')->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('business_name');
-            $table->string('code');
-            $table->string('phone');
-            $table->text('address');
-            $table->timestamps();
+            $table->primary(['route_id', 'user_id']);
         });
     }
 
@@ -32,6 +28,6 @@ class CreateClientInformationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('client_information');
+        Schema::dropIfExists('route_user');
     }
 }

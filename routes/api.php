@@ -35,14 +35,19 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
 
     //BEGIN:: General routes
     Route::get('/token-renew', [AuthController::class, 'tokenRenew'])->name('api.token.renew');
+    Route::post('/user/update', [AuthController::class, 'update'])->name('api.user.update');
     //END:: General routes
 
     //BEGIN:: Client routes
-    Route::get('/client/{code}', [ClientController::class, 'getClient'])->name('api.client.get');
+    Route::post('/client', [ClientController::class, 'getClient'])->name('api.client.get');
     //END:: Client routes
 
 
     //BEGIN:: Sale routes
     Route::post('/sale', [SalesController::class, 'store'])->name('api.sales.store');
+    Route::post('/send-fcm', [SalesController::class, 'sendFCM'])->name('api.sales.message');
+
+    Route::get('/get-route', [SalesController::class, 'getRoute'])->name('api.sales.routes.get');
+
     //END:: Sale routes
 });

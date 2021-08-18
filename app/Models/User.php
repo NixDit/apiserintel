@@ -33,9 +33,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'pivot'
     ];
 
-    protected $with = ['roles'];
+    // protected $with = ['roles'];
 
     /**
      * The attributes that should be cast to native types.
@@ -50,4 +51,19 @@ class User extends Authenticatable
     public function clientInformation() {
         return $this->hasOne('App\Models\ClientInformation');
     }
+
+    public function devices() {
+        return $this->hasMany('App\Models\Device');
+    }
+
+    public function fullName() {
+        return ucfirst($this->name) . ' ' . ucfirst($this->last_name);
+    }
+
+
+    //ROUTES THAT BELONGS THIS CLIENT
+    public function routes() {
+        return $this->belongsToMany('App\Models\Route')->using('App\Models\RouteClient');
+    }
+
 }

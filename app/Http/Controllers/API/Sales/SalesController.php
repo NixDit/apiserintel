@@ -2,12 +2,20 @@
 
 namespace App\Http\Controllers\API\Sales;
 
+use Carbon\Carbon;
 use App\Models\Sale;
+use App\Models\User;
+use App\Models\Route;
+use App\Models\ScanLog;
 use App\Models\ProductSale;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Notification;
+use Kutia\Larafirebase\Facades\Larafirebase;
+use App\Notifications\NewPurchaseNotification;
 
 class SalesController extends Controller
 {
@@ -45,7 +53,12 @@ class SalesController extends Controller
 
                 }
 
+                $this->notificateAdmins( $sale );
+
             });
+
+                
+            
 
             return response()->json([
                 'ok'            => true,
@@ -64,6 +77,50 @@ class SalesController extends Controller
         
 
         
+
+    }
+
+    public function getRoute() {
+
+        $dayOfTheWeek = Carbon::now('America/Monterrey')->dayOfWeek;
+
+        $route = Route::where('day', $dayOfTheWeek )
+                    ->where('employee_id', Auth::id() )
+                    ->with(['clients:id,name,last_name,email,created_at', 'clients.clientInformation'])
+                    ->first();                 
+
+        if( $route ) {
+
+
+            $logs = ScanLog::where('route_id', $route->id )
+                    ->whereDate('created_at', Carbon::today())
+                    ->with('client.clientInformation')
+                    ->get()
+                    ->pluck('client.clientInformation.code');
+                    
+            $route->logs = $logs;
+            
+            return response()->json([
+                'ok'        => true,
+                'route'     => $route,
+                'message'   => 'Ruta encontrada'
+            ]);
+        }else {
+            return response()->json([
+                'ok'        => false,
+                'route'     => [],
+                'message'   => 'No hay una ruta designada para el dia de hoy'
+            ], 400 );
+        }
+
+    }
+
+
+    public function notificateAdmins( $sale ) {
+
+        $users = User::role('superadmin')->get();
+
+        Notification::send($users, new NewPurchaseNotification($sale));
 
     }
 

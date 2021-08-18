@@ -55,7 +55,8 @@ class UserSeeder extends Seeder
             'business_name' => 'Josmii & Glass Videogames',
             'code'          => "Serintel-{$client->id}-{$random_number}",
             'phone'         => '2381473627',
-            'adress'        => 'Calle Hidalgo 434 Altepexi, Puebla.'
+            'address'       => 'Calle Hidalgo 434 Altepexi, Puebla.',
+            'latlng'        => '18.3655904,-97.3017397'
         ]);
         //END:: Create a client
 
@@ -76,8 +77,33 @@ class UserSeeder extends Seeder
             'business_name' => 'NIX Desarrollo, Innovacion y Tecnologia',
             'code'          => "Serintel-{$second_client->id}-{$random_number}",
             'phone'         => '2361201744',
-            'adress'        => 'Andador C 80 Ajalpan, Puebla'
+            'address'       => 'Andador C 80 Ajalpan, Puebla',
+            'latlng'        => '18.376444,-97.275152'
         ]);
         //END:: Create a client
+
+         //BEGIN:: Create a client
+         $third_client = User::create([
+            'name'      => 'Adan',
+            'last_name' => 'Marroquin Mendez',
+            'email'     => 'adan_marroquin@gmail.com',
+            'password'  => Hash::make('Marroquin@2021'),
+        ]);
+        
+        $third_client->assignRole('client');
+
+        $digits = 5;
+        $random_number = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
+
+        $third_client->clientInformation()->create([
+            'business_name' => 'GYM Kajoma',
+            'code'          => "Serintel-{$third_client->id}-{$random_number}",
+            'phone'         => '2361201743',
+            'address'       => 'Calle Insurgentes 619 Altepexi, Puebla',
+            'latlng'        => '18.3683379,-97.302974'
+        ]);
+        //END:: Create a client
+
+        
     }
 }

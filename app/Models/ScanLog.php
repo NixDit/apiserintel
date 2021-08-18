@@ -5,29 +5,31 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Sale extends Model
+class ScanLog extends Model
 {
     use HasFactory;
 
+    protected $table = 'scan_logs';
+
     protected $fillable = [
-        'id',
+        'latlng',
         'client_id',
         'employee_id',
-        'subtotal',
-        'total',
-        'folio'
+        'route_id',
     ];
 
-
-    public function costumer() {
+    public function client() {
         return $this->belongsTo('App\Models\User', 'client_id', 'id');
     }
-    public function seller() {
+
+    public function employee() {
         return $this->belongsTo('App\Models\User', 'employee_id', 'id');
     }
 
-    public function products() {
-        return $this->belongsToMany('App\Models\Products')->using('App\Models\ProductSale');
+    public function route() {
+        return $this->belongsTo('App\Models\Route');
     }
+
+
 
 }

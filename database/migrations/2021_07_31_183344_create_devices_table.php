@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateClientInformationTable extends Migration
+class CreateDevicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateClientInformationTable extends Migration
      */
     public function up()
     {
-        Schema::create('client_information', function (Blueprint $table) {
+        Schema::create('devices', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->index();
+            $table->unsignedBigInteger('user_id')->index()->comment('User that belongs device');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('business_name');
-            $table->string('code');
-            $table->string('phone');
-            $table->text('address');
+            $table->text('token')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ class CreateClientInformationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('client_information');
+        Schema::dropIfExists('devices');
     }
 }
