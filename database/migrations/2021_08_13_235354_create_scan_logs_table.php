@@ -22,7 +22,7 @@ class CreateScanLogsTable extends Migration
             $table->foreign('employee_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('route_id')->index();
             $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade');
-            $table->unique(['client_id', 'employee_id', 'route_id']);
+            $table->unique(['client_id', 'employee_id', 'route_id', 'created_at']);
             $table->timestamps();
         });
     }

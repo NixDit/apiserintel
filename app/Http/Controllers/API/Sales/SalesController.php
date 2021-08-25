@@ -57,9 +57,6 @@ class SalesController extends Controller
 
             });
 
-                
-            
-
             return response()->json([
                 'ok'            => true,
                 'message'       => 'Venta realizada correctamente',
@@ -73,10 +70,6 @@ class SalesController extends Controller
             ], 400);
 
         }
-
-        
-
-        
 
     }
 

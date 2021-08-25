@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API\General;
 
+use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -30,6 +31,30 @@ class ProductsController extends Controller
                 'ok'        => false,
                 'categories'  => [],
                 'message'   => 'No hay productos registrados en el sistema'
+            ]);
+        }
+
+    }
+
+    public function getCategoriesAndBrands() {
+        
+        try {
+            
+            $categories = Category::select(['id', 'name'])->get();
+            $brands     = Brand::all();
+            $brands->makeHidden('image');
+
+            return response()->json([
+                'ok' => true,
+                'categories'    => $categories,
+                'brands'        => $brands,
+                'message'       => 'Categorias y marcas encontradas'
+            ]);
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                'ok'        => false,
+                'message'   => "Ocurrio un error durante el proceso\n{$th->getMessage()}"
             ]);
         }
 

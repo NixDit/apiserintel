@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\API\Client;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\ScanLog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,7 +36,8 @@ class ClientController extends Controller
                 $log = ScanLog::updateOrCreate([
                     'client_id'     => $client->id,
                     'employee_id'   => Auth::id(),
-                    'route_id'      => $request->route
+                    'route_id'      => $request->route,
+                    'created_at'    => ScanLog::where('created_at', '>', DB::raw('CURDATE()'))->first()->created_at ?? null
                 ],[
                     'latlng'        => $request->latlng,
                 ]

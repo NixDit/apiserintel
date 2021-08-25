@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     //BEGIN:: General routes
     Route::get('/token-renew', [AuthController::class, 'tokenRenew'])->name('api.token.renew');
     Route::post('/user/update', [AuthController::class, 'update'])->name('api.user.update');
+    Route::get('/categories-and-brands/get', [ProductsController::class, 'getCategoriesAndBrands'])->name('api.categories.update');
     //END:: General routes
 
     //BEGIN:: Client routes
