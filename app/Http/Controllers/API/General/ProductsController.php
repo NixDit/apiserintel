@@ -11,6 +11,36 @@ use App\Http\Controllers\Controller;
 class ProductsController extends Controller
 {
     
+    public function store( Request $request ) {
+
+        try {
+            
+            $newProduct = Product::create( $request->all() );
+
+            if( $newProduct ) {
+
+                return response()->json([
+                    'ok'        => true,
+                    'message'   => 'El producto ha sido guardado correctamente'
+                ], 201 );
+
+            } else {
+                return response()->json([
+                    'ok'        => false,
+                    'message'   => 'Ocurrio un error durante el proceso, intentelo nuevamente'
+                ], 400 );
+            }
+
+        } catch (\Throwable $th) {
+
+            return response()->json([
+                'ok'        => false,
+                'message'   => "Ocurrio un error durante el proceso\nError: {$th->getMessage()}"
+            ], 400 );
+
+        }
+
+    }
 
     public function getProducts() {
 

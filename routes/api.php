@@ -36,8 +36,13 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     //BEGIN:: General routes
     Route::get('/token-renew', [AuthController::class, 'tokenRenew'])->name('api.token.renew');
     Route::post('/user/update', [AuthController::class, 'update'])->name('api.user.update');
-    Route::get('/categories-and-brands/get', [ProductsController::class, 'getCategoriesAndBrands'])->name('api.categories.update');
     //END:: General routes
+
+    //BEGIN:: Product Routes
+    Route::get('/categories-and-brands/get', [ProductsController::class, 'getCategoriesAndBrands'])->name('api.categories.update');
+    Route::post('/product/store', [ProductsController::class, 'store'])->name('api.product.store');
+    //END:: Product routes
+
 
     //BEGIN:: Client routes
     Route::post('/client', [ClientController::class, 'getClient'])->name('api.client.get');
@@ -47,8 +52,7 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     //BEGIN:: Sale routes
     Route::post('/sale', [SalesController::class, 'store'])->name('api.sales.store');
     Route::post('/send-fcm', [SalesController::class, 'sendFCM'])->name('api.sales.message');
-
+    Route::get('/get-sales', [SalesController::class, 'getSales'])->name('api.sales.get');
     Route::get('/get-route', [SalesController::class, 'getRoute'])->name('api.sales.routes.get');
-
     //END:: Sale routes
 });

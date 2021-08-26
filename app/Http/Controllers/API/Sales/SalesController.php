@@ -108,6 +108,23 @@ class SalesController extends Controller
 
     }
 
+    public function getSales() {
+
+        // $sales = Auth::user()->with('sales', function( $query ) {
+        //     $query->where('created_at', Carbon::today() );
+        // });
+
+        $user = Auth::user();
+        $sales = $user->sales()->whereDate('created_at', Carbon::today() )->get();
+
+        return response()->json([
+            'ok'        => true,
+            'sales'     => $sales,
+            'message'   => 'Ventas encontradas'
+        ]);
+        
+    }
+
 
     public function notificateAdmins( $sale ) {
 

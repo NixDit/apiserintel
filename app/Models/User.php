@@ -60,7 +60,9 @@ class User extends Authenticatable
         return ucfirst($this->name) . ' ' . ucfirst($this->last_name);
     }
 
-
+    public function sales() {
+        return $this->hasMany('App\Models\Sale', 'employee_id', 'id');
+    }
     //ROUTES THAT BELONGS THIS CLIENT
     public function routes() {
         return $this->belongsToMany('App\Models\Route')->using('App\Models\RouteClient');

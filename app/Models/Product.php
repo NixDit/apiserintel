@@ -16,7 +16,8 @@ class Product extends Model
         'description',
         'retail_price',
         'wholesale_price',
-        'brand_id'
+        'brand_id',
+        'category_id',
     ];
 
     protected $with = ['brand'];
