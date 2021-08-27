@@ -18,6 +18,10 @@ class Sale extends Model
         'folio'
     ];
 
+    protected $casts = [
+        'created_at'
+    ];
+
 
     public function costumer() {
         return $this->belongsTo('App\Models\User', 'client_id', 'id');

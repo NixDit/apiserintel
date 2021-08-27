@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\SaleCollection;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Notification;
 use Kutia\Larafirebase\Facades\Larafirebase;
@@ -108,20 +109,27 @@ class SalesController extends Controller
 
     }
 
-    public function getSales() {
-
-        // $sales = Auth::user()->with('sales', function( $query ) {
-        //     $query->where('created_at', Carbon::today() );
-        // });
+    public function getSales( Request $request ) {
 
         $user = Auth::user();
-        $sales = $user->sales()->whereDate('created_at', Carbon::today() )->get();
+        
+        if( $request->from_date == null && $request->to_date == null ) {
+            $sales = $user->sales()->whereDate('created_at', Carbon::today() )->get();
+        } else {
+
+            $from = Carbon::createFromFormat('d/m/Y', $request->from_date);
+            $to = Carbon::createFromFormat('d/m/Y', $request->to_date);
+
+            $sales = $user->sales()->whereBetween('created_at',[$from->format('Y-m-d 0:0:0'), $to->format('Y-m-d 23:59:59')] )->get();
+        }
+
+        $data = SaleCollection::collection( $sales );
 
         return response()->json([
             'ok'        => true,
-            'sales'     => $sales,
+            'sales'     => $data,
             'message'   => 'Ventas encontradas'
-        ]);
+        ], 200 );
         
     }
 
