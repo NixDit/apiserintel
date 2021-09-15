@@ -12,11 +12,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Resources\SaleCollection;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Notification;
 use Kutia\Larafirebase\Facades\Larafirebase;
 use App\Notifications\NewPurchaseNotification;
+use App\Exports\EmployeeSalesReportExportSheet;
 
 class SalesController extends Controller
 {
@@ -131,6 +133,33 @@ class SalesController extends Controller
             'message'   => 'Ventas encontradas'
         ], 200 );
         
+    }
+
+    public function downloadExcelFromDates( ) {
+
+        $user = Auth::user();
+
+        if( request()->from_date == null && request()->to_date == null ) {
+            $today = Carbon::today();
+            $today_format = $today->format('d-m-Y');
+            $sales = $user->sales()->whereDate('created_at', $today )->get();
+            $excel_name = "VENTAS_REALIZADAS_POR_{$user->name}_{$today_format}.xlsx";
+        } else {
+
+            $from = Carbon::createFromFormat('d/m/Y', request()->from_date);
+            $to = Carbon::createFromFormat('d/m/Y', request()->to_date);
+
+            $from_format    = $from->format('d-m-Y');
+            $to_format      = $to->format('d-m-Y');
+
+            $sales = $user->sales()->whereBetween('created_at',[$from->format('Y-m-d 0:0:0'), $to->format('Y-m-d 23:59:59')] )->get();
+            $excel_name = "VENTAS_REALIZADAS_POR_{$user->name}_{$from_format}_A_{$to_format}.xlsx";
+        }
+
+
+
+        return Excel::download(new EmployeeSalesReportExportSheet($sales->chunk(50)), $excel_name );
+
     }
 
 

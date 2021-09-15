@@ -12,12 +12,17 @@ class Product extends Model
 
     protected $fillable = [
         'name',
+        'supplier_code',
         'code',
         'description',
+        'cost',
         'retail_price',
         'wholesale_price',
+        'special_price',
+        'super_special_price',
         'brand_id',
         'category_id',
+        'line_id',
     ];
 
     protected $with = ['brand'];
@@ -40,5 +45,9 @@ class Product extends Model
 
     public function brand() {
         return $this->belongsTo('App\Models\Brand');
+    }
+
+    public function line() {
+        return $this->belongsTo('App\Models\Line');
     }
 }

@@ -48,12 +48,11 @@ class UserSeeder extends Seeder
         
         $client->assignRole('client');
 
-        $digits = 5;
-        $random_number = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
+        $client_code = 'S-' . (str_pad( $client->id, 10, '0', STR_PAD_LEFT));
 
         $client->clientInformation()->create([
             'business_name' => 'Josmii & Glass Videogames',
-            'code'          => "Serintel-{$client->id}-{$random_number}",
+            'code'          => $client_code,
             'phone'         => '2381473627',
             'address'       => 'Calle Hidalgo 434 Altepexi, Puebla.',
             'latlng'        => '18.3655904,-97.3017397'
@@ -70,12 +69,11 @@ class UserSeeder extends Seeder
         
         $second_client->assignRole('client');
 
-        $digits = 5;
-        $random_number = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
+        $second_client_code = 'S-' . (str_pad( $second_client->id, 10, '0', STR_PAD_LEFT));
 
         $second_client->clientInformation()->create([
             'business_name' => 'NIX Desarrollo, Innovacion y Tecnologia',
-            'code'          => "Serintel-{$second_client->id}-{$random_number}",
+            'code'          => $second_client_code,
             'phone'         => '2361201744',
             'address'       => 'Andador C 80 Ajalpan, Puebla',
             'latlng'        => '18.376444,-97.275152'
@@ -92,12 +90,11 @@ class UserSeeder extends Seeder
         
         $third_client->assignRole('client');
 
-        $digits = 5;
-        $random_number = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
+        $second_client_code = 'S-' . (str_pad( $third_client->id, 10, '0', STR_PAD_LEFT));
 
         $third_client->clientInformation()->create([
             'business_name' => 'GYM Kajoma',
-            'code'          => "Serintel-{$third_client->id}-{$random_number}",
+            'code'          => $second_client_code,
             'phone'         => '2361201743',
             'address'       => 'Calle Insurgentes 619 Altepexi, Puebla',
             'latlng'        => '18.3683379,-97.302974'

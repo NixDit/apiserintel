@@ -18,7 +18,7 @@ class ClientController extends Controller
 
     public function getClient( Request $request ) {
 
-        $code = $request->code;
+        $code = !$request->isManual ? $request->code : 'S-' . (str_pad( $request->code, 10, '0', STR_PAD_LEFT));
 
         try {
 

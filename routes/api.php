@@ -53,6 +53,8 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::post('/sale', [SalesController::class, 'store'])->name('api.sales.store');
     Route::post('/send-fcm', [SalesController::class, 'sendFCM'])->name('api.sales.message');
     Route::post('/get-sales', [SalesController::class, 'getSales'])->name('api.sales.get');
+    Route::get('/sales/download-report',[SalesController::class,'downloadExcelFromDates'])->name('api.sales.download');
     Route::get('/get-route', [SalesController::class, 'getRoute'])->name('api.sales.routes.get');
+
     //END:: Sale routes
 });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API\General;
 
+use App\Models\Line;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
@@ -72,13 +73,16 @@ class ProductsController extends Controller
             
             $categories = Category::select(['id', 'name'])->get();
             $brands     = Brand::all();
+            $lines      = Line::select('id','name')->get();
+
             $brands->makeHidden('image');
 
             return response()->json([
                 'ok' => true,
                 'categories'    => $categories,
                 'brands'        => $brands,
-                'message'       => 'Categorias y marcas encontradas'
+                'lines'         => $lines,
+                'message'       => 'Lineas, Categorias y Marcas encontradas'
             ]);
 
         } catch (\Throwable $th) {
