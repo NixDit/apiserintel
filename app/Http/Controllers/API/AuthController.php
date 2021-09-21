@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\User;
+use App\Models\Device;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -158,14 +159,23 @@ class AuthController extends Controller
 
     }
 
+    public function deleteDevice( Request $request ) {
 
-    public function prueba( Request $request ) {
+        try {
+            
+            $token = Device::where( 'user_id' , Auth::user()->id )->where( 'token', $request->token )->delete();
 
-        $user = User::find( 1 );
+            return response()->json([
+                'ok'        => true,
+                'message'   => 'Token eliminado correctamente',
+            ], 200);
 
-        $tokens = $user->devices()->pluck('token');
+        } catch (\Throwable $th) {
+            return response()->json([
+                'ok'        => true,
+                'message'   => "Ocurrio un error: " . $th->getMessage(),
+            ], 401);
+        }
 
-        dd( $tokens );
-        // $token = $user->devices()->firstOrCreate(['token' => $request->token] );
     }
 }

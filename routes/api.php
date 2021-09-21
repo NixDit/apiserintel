@@ -34,8 +34,9 @@ Route::get('/get-products', [ProductsController::class, 'getProducts'])->name('a
 Route::group(['middleware' => 'auth:sanctum'], function() {
 
     //BEGIN:: General routes
-    Route::get('/token-renew', [AuthController::class, 'tokenRenew'])->name('api.token.renew');
     Route::post('/user/update', [AuthController::class, 'update'])->name('api.user.update');
+    Route::get('/token-renew', [AuthController::class, 'tokenRenew'])->name('api.token.renew');
+    Route::post('/token/delete', [AuthController::class, 'deleteDevice'])->name('api.token.destroy');
     //END:: General routes
 
     //BEGIN:: Product Routes

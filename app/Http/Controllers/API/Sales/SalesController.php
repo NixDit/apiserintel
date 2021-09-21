@@ -47,7 +47,7 @@ class SalesController extends Controller
                 foreach ($products as $key => $product) {
 
                     $product_for_sale = ProductSale::create([
-                        'product_id'    => $product["product"]["id"],
+                        'product_id'    => isset( $product["product"] ) ? $product["product"]["id"] : 1,
                         'sale_id'       => $sale->id,
                         'quantity'      => $product["quantity"],
                         'subtotal'      => $product["subtotal"],

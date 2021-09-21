@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use App\Models\Line;
 use App\Models\Brand;
 use App\Models\Category;
@@ -27,6 +28,20 @@ class ProductSeeder extends Seeder
 
         $category = Category::create(['name' => 'Productos']);
         $line = Line::create(['name' => 'Fichas']);
+
+        $brand->products()->create([
+            'name'                  => 'Saldo',
+            'code'                  => 'Saldo-Serintel',
+            'description'           => 'Venta de saldo por la cantidad especificada',
+            'cost'                  => 0,
+            'retail_price'          => 0,
+            'wholesale_price'       => 0,
+            'special_price'         => 0,
+            'super_special_price'   => 0,
+            'category_id'           => $category->id,
+            'line_id'               => $line->id,
+            'deleted_at'            => Carbon::now(),
+        ]);
 
         $brand->products()->create([
             'name'                  => 'Ficha 100',
