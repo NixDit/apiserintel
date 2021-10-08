@@ -38,6 +38,7 @@ class SalesController extends Controller
                     'client_id'     => $request->client_id,
                     'subtotal'      => $request->subtotal,
                     'total'         => $request->total,
+                    'type'          => $request->type
                 ]);
 
                 $sale->folio = 'S-' . (str_pad( $sale->id, 10, '0', STR_PAD_LEFT));
@@ -55,6 +56,8 @@ class SalesController extends Controller
                     ]);
 
                 }
+
+
 
                 $this->notificateAdmins( $sale );
 
@@ -153,11 +156,13 @@ class SalesController extends Controller
             $to_format      = $to->format('d-m-Y');
 
             $sales = $user->sales()->whereBetween('created_at',[$from->format('Y-m-d 0:0:0'), $to->format('Y-m-d 23:59:59')] )->get();
+
+            // dd( $sales );
             $excel_name = "VENTAS_REALIZADAS_POR_{$user->name}_{$from_format}_A_{$to_format}.xlsx";
         }
 
 
-
+        // dd($sales);
         return Excel::download(new EmployeeSalesReportExportSheet($sales->chunk(50)), $excel_name );
 
     }

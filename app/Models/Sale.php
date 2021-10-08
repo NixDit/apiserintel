@@ -15,6 +15,7 @@ class Sale extends Model
         'employee_id',
         'subtotal',
         'total',
+        'type',
         'folio'
     ];
 

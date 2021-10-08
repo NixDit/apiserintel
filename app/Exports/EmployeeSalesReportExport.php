@@ -51,6 +51,7 @@ WithCustomValueBinder
     // COLUMNAS A DESCARGAR
     public function map($row): array
     {
+        $types = ['Prepago', 'Pagado', 'Postpago'];
         
         return [
             ++$this->rowNumber,
@@ -58,6 +59,7 @@ WithCustomValueBinder
             $row->costumer->clientInformation->business_name,
             number_format((float)$row->subtotal, 2, '.', ''),
             number_format((float)$row->total, 2, '.', ''),
+            $types[ $row->type - 1 ],
             $row->folio,
             Carbon::parse($row->created_at)->format('d/m/Y - H:i:s')
         ];
@@ -71,6 +73,7 @@ WithCustomValueBinder
             'Cliente',
             'Subtotal $',
             'Total $',
+            'Tipo',
             'Folio',
             'Fecha'
         ];
@@ -86,7 +89,7 @@ WithCustomValueBinder
         $drawing = new Drawing();
         $drawing->setPath(public_path('images/Logo.png'));
         $drawing->setHeight(30)->setWidth(100);
-        $drawing->setCoordinates('G1');
+        $drawing->setCoordinates('H1');
         $drawing->setOffsetX(25);
         $drawing->setOffsetY(5);
 
@@ -141,9 +144,9 @@ WithCustomValueBinder
                 'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
             ]
         ];
-        $sheet->mergeCells('A1:G1');
-        $sheet->getStyle('A1:G1')->applyFromArray($styleArrayHead);
-        $sheet->getStyle('A2:G2')->applyFromArray($styleArrayHeadings);
+        $sheet->mergeCells('A1:H1');
+        $sheet->getStyle('A1:H1')->applyFromArray($styleArrayHead);
+        $sheet->getStyle('A2:H2')->applyFromArray($styleArrayHeadings);
         $sheet->getStyle(
             'A2:'.
             $sheet->getHighestColumn() . 
