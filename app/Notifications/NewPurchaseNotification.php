@@ -43,11 +43,13 @@ class NewPurchaseNotification extends Notification
 
         $tokens = $notifiable->devices()->pluck('token')->toArray();
         $total = number_format((float)$this->data->total, 2, '.', '');
+        $types = ['Prepago', 'Pagado', 'Postpago'];
+        $selectedType = $types[ $this->data->type -1 ];
         
         return (new FirebaseMessage)
             ->withTitle('Nueva venta')
             ->withBody(
-            "Una venta ha sido realizada al cliente {$this->data->costumer->clientInformation->business_name} por el vendedor {$this->data->seller->fullName()} con un total de \${$total}"
+            "Una venta ha sido realizada al cliente {$this->data->costumer->clientInformation->business_name} por el vendedor {$this->data->seller->fullName()} con un total de \${$total} con el tipo de venta: {$selectedType}"
             )
             ->asNotification( $tokens );
     }

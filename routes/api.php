@@ -57,5 +57,6 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::get('/sales/download-report',[SalesController::class,'downloadExcelFromDates'])->name('api.sales.download');
     Route::get('/get-route', [SalesController::class, 'getRoute'])->name('api.sales.routes.get');
 
+    Route::get('/get-ticket', [SalesController::class, 'getTicket'])->name('api.sales.getTicket');
     //END:: Sale routes
 });

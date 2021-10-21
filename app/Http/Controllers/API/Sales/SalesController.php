@@ -17,6 +17,7 @@ use App\Http\Resources\SaleCollection;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Notification;
 use Kutia\Larafirebase\Facades\Larafirebase;
+use App\Http\Resources\TicketProductsResource;
 use App\Notifications\NewPurchaseNotification;
 use App\Exports\EmployeeSalesReportExportSheet;
 
@@ -28,6 +29,7 @@ class SalesController extends Controller
         // convert json to array
         $products = json_decode( $request->products, true);
         $employee_id = Auth::user()->id;
+        $data;
 
         try {
             
@@ -57,14 +59,17 @@ class SalesController extends Controller
 
                 }
 
-
-
+                
                 $this->notificateAdmins( $sale );
 
             });
 
+            $latest_sale = Sale::latest()->first();;
+            $data = new TicketProductsResource( $latest_sale );
+
             return response()->json([
                 'ok'            => true,
+                'ticket'        => $data,
                 'message'       => 'Venta realizada correctamente',
             ], 201);
 
@@ -173,6 +178,19 @@ class SalesController extends Controller
         $users = User::role('superadmin')->get();
 
         Notification::send($users, new NewPurchaseNotification($sale));
+
+    }
+    
+    public function getTicket() {
+
+        $latest_sale = Sale::latest()->first();;
+        $data = new TicketProductsResource( $latest_sale );
+
+        return response()->json([
+            'ok'            => true,
+            'ticket'        => $data,
+            'message'       => 'Venta realizada correctamente',
+        ], 201);
 
     }
 
