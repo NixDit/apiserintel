@@ -20,6 +20,7 @@ use Kutia\Larafirebase\Facades\Larafirebase;
 use App\Http\Resources\TicketProductsResource;
 use App\Notifications\NewPurchaseNotification;
 use App\Exports\EmployeeSalesReportExportSheet;
+use PDF;
 
 class SalesController extends Controller
 {
@@ -29,7 +30,7 @@ class SalesController extends Controller
         // convert json to array
         $products = json_decode( $request->products, true);
         $employee_id = Auth::user()->id;
-        $data;
+        $data = [];
 
         try {
             
@@ -191,6 +192,16 @@ class SalesController extends Controller
             'ticket'        => $data,
             'message'       => 'Venta realizada correctamente',
         ], 201);
+
+    }
+
+    public function downloadTicket( $ticketId ) {
+
+        $sale = Sale::findOrFail( $ticketId );
+        view()->share('sale', $sale);
+        $pdf_doc = PDF::loadView('sales.ticket', compact('sale'))->setOptions(['defaultFont' => 'sans-serif']);
+
+        return $pdf_doc->download('pdf.pdf');
 
     }
 

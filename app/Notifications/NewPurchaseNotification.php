@@ -3,10 +3,11 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Kutia\Larafirebase\Services\Larafirebase;
 use Kutia\Larafirebase\Messages\FirebaseMessage;
+use Illuminate\Notifications\Messages\MailMessage;
 
 
 class NewPurchaseNotification extends Notification
@@ -45,13 +46,19 @@ class NewPurchaseNotification extends Notification
         $total = number_format((float)$this->data->total, 2, '.', '');
         $types = ['Prepago', 'Pagado', 'Postpago'];
         $selectedType = $types[ $this->data->type -1 ];
-        
-        return (new FirebaseMessage)
-            ->withTitle('Nueva venta')
-            ->withBody(
-            "Una venta ha sido realizada al cliente {$this->data->costumer->clientInformation->business_name} por el vendedor {$this->data->seller->fullName()} con un total de \${$total} con el tipo de venta: {$selectedType}"
-            )
-            ->asNotification( $tokens );
+
+        return ( new Larafirebase )
+        ->fromRaw([
+            'registration_ids' => $tokens,
+            'data' => [
+                'type' => 'sale',
+                'sale_id' => $this->data->id,
+            ],
+            'notification' => [
+                'title' => 'Nueva venta',
+                'body' => "Una venta ha sido realizada al cliente {$this->data->costumer->clientInformation->business_name} por el vendedor {$this->data->seller->fullName()} con un total de \${$total} con el tipo de venta: {$selectedType}"
+            ]
+        ])->send();
     }
     
 }
