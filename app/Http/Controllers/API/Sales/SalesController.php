@@ -195,13 +195,25 @@ class SalesController extends Controller
 
     }
 
-    public function downloadTicket( $ticketId ) {
+    public function downloadTicket( Request $request ) {
 
-        $sale = Sale::findOrFail( $ticketId );
+        $folio = $request->f;
+        $array = explode('@', $folio);
+
+        $sale = Sale::where([
+            ['folio', '=', $array[0]],
+            ['client_id', '=', $array[1]],
+        ])->first();
+
+        if( !$sale )
+            abort(404);
+
         view()->share('sale', $sale);
-        $pdf_doc = PDF::loadView('sales.ticket', compact('sale'))->setOptions(['defaultFont' => 'sans-serif']);
 
-        return $pdf_doc->download('pdf.pdf');
+        $pdf_doc    = PDF::loadView('sales.ticket', compact('sale'))->setOptions(['defaultFont' => 'sans-serif']);
+        $date       = $sale->created_at->format('d-m-Y');
+
+        return $pdf_doc->download("Ticket-{$request->f}-{$date}.pdf");
 
     }
 

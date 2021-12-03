@@ -18,4 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/ticket-download/{ticket}', [ SalesController::class, 'downloadTicket']);
+Route::get('/ticket-download', [ SalesController::class, 'downloadTicket']);
