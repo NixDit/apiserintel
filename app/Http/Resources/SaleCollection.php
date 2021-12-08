@@ -16,11 +16,14 @@ class SaleCollection extends JsonResource
      * @return array
      */
     public function toArray($request)
-    {
+    {  
+        $types = ['Prepago', 'Pagado', 'Postpago'];
+
         return [
             'client'        => $this->costumer->clientInformation->business_name,
             'subtotal'      => $this->subtotal,
             'total'         => $this->total,
+            'type'         =>  $types[$this->type - 1],
             'status'        => $this->status,
             'folio'         => $this->folio,
             'created_at'    => $this->created_at->format('d-m-Y')

@@ -123,15 +123,31 @@ class SalesController extends Controller
     public function getSales( Request $request ) {
 
         $user = Auth::user();
+        $query = Sale::query();
         
+
         if( $request->from_date == null && $request->to_date == null ) {
-            $sales = $user->sales()->whereDate('created_at', Carbon::today() )->get();
-        } else {
+
+            $query->where('employee_id', $user->id )->whereDate('created_at', Carbon::today());
+
+            $query->when(request('type') != 0, function ($q) {
+                return $q->where('type', request('type'));
+            });
+
+            $sales = $query->get();
+        }else {
 
             $from = Carbon::createFromFormat('d/m/Y', $request->from_date);
             $to = Carbon::createFromFormat('d/m/Y', $request->to_date);
 
-            $sales = $user->sales()->whereBetween('created_at',[$from->format('Y-m-d 0:0:0'), $to->format('Y-m-d 23:59:59')] )->get();
+            $query->where('employee_id', $user->id )->whereBetween('created_at',[$from->format('Y-m-d 0:0:0'), $to->format('Y-m-d 23:59:59')] );
+
+            $query->when(request('type') != 0, function ($q) {
+                return $q->where('type', request('type'));
+            });
+
+            $sales = $query->get();
+
         }
 
         $data = SaleCollection::collection( $sales );
@@ -143,16 +159,26 @@ class SalesController extends Controller
         ], 200 );
         
     }
-
-    public function downloadExcelFromDates( ) {
-
+    
+    public function downloadExcelFromDates() {
         $user = Auth::user();
+        $query = Sale::query()->where('employee_id', $user->id);
+        $filters = ['GENERALES', 'PREPAGO', 'PAGADO', 'POSTPAGO'];
 
         if( request()->from_date == null && request()->to_date == null ) {
+
             $today = Carbon::today();
             $today_format = $today->format('d-m-Y');
-            $sales = $user->sales()->whereDate('created_at', $today )->get();
-            $excel_name = "VENTAS_REALIZADAS_POR_{$user->name}_{$today_format}.xlsx";
+            
+            $query->whereDate('created_at', $today );
+
+            $query->when(request()->type != 0, function ($q) {
+                return $q->where('type', request()->type);
+            });
+
+            $sales = $query->get();
+
+            $excel_name = "VENTAS_{$filters[request()->type]}_REALIZADAS_POR_{$user->name}_{$today_format}.xlsx";
         } else {
 
             $from = Carbon::createFromFormat('d/m/Y', request()->from_date);
@@ -161,14 +187,18 @@ class SalesController extends Controller
             $from_format    = $from->format('d-m-Y');
             $to_format      = $to->format('d-m-Y');
 
-            $sales = $user->sales()->whereBetween('created_at',[$from->format('Y-m-d 0:0:0'), $to->format('Y-m-d 23:59:59')] )->get();
+            $query->whereBetween('created_at',[$from->format('Y-m-d 0:0:0'), $to->format('Y-m-d 23:59:59')] );
 
-            // dd( $sales );
-            $excel_name = "VENTAS_REALIZADAS_POR_{$user->name}_{$from_format}_A_{$to_format}.xlsx";
+            $query->when(request()->type != 0, function ($q) {
+                return $q->where('type', request()->type);
+            });
+
+            $sales = $query->get();
+
+            $excel_name = "VENTAS_{$filters[request()->type]}_REALIZADAS_POR_{$user->name}_{$from_format}_A_{$to_format}.xlsx";
+
         }
 
-
-        // dd($sales);
         return Excel::download(new EmployeeSalesReportExportSheet($sales->chunk(50)), $excel_name );
 
     }
