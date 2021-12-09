@@ -51,7 +51,7 @@ class SalesController extends Controller
                 foreach ($products as $key => $product) {
 
                     $product_for_sale = ProductSale::create([
-                        'product_id'    => isset( $product["product"] ) ? $product["product"]["id"] : 1,
+                        'product_id'    => $product["product"]["id"],
                         'sale_id'       => $sale->id,
                         'quantity'      => $product["quantity"],
                         'subtotal'      => $product["subtotal"],
@@ -243,7 +243,7 @@ class SalesController extends Controller
         $pdf_doc    = PDF::loadView('sales.ticket', compact('sale'))->setOptions(['defaultFont' => 'sans-serif']);
         $date       = $sale->created_at->format('d-m-Y');
 
-        return $pdf_doc->download("Ticket-{$request->f}-{$date}.pdf");
+        return $pdf_doc->download("Ticket-{$array[0]}-{$date}.pdf");
 
     }
 

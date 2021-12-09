@@ -30,9 +30,35 @@ class ProductSeeder extends Seeder
         $line = Line::create(['name' => 'Fichas']);
 
         $brand->products()->create([
-            'name'                  => 'Saldo',
-            'code'                  => 'Saldo-Serintel',
-            'description'           => 'Venta de saldo por la cantidad especificada',
+            'name'                  => 'Saldo a recargas',
+            'code'                  => 'Saldo-Recargas-Serintel',
+            'description'           => 'Venta de saldo a recargas por la cantidad especificada',
+            'cost'                  => 0,
+            'retail_price'          => 0,
+            'wholesale_price'       => 0,
+            'special_price'         => 0,
+            'super_special_price'   => 0,
+            'category_id'           => $category->id,
+            'line_id'               => $line->id,
+            'deleted_at'            => Carbon::now(),
+        ]);
+        $brand->products()->create([
+            'name'                  => 'Saldo a servicios',
+            'code'                  => 'Saldo-Servicios-Serintel',
+            'description'           => 'Venta de saldo a servicios por la cantidad especificada',
+            'cost'                  => 0,
+            'retail_price'          => 0,
+            'wholesale_price'       => 0,
+            'special_price'         => 0,
+            'super_special_price'   => 0,
+            'category_id'           => $category->id,
+            'line_id'               => $line->id,
+            'deleted_at'            => Carbon::now(),
+        ]);
+        $brand->products()->create([
+            'name'                  => 'Saldo a monedero',
+            'code'                  => 'Saldo-Monedero-Serintel',
+            'description'           => 'Venta de saldo a monedero por la cantidad especificada',
             'cost'                  => 0,
             'retail_price'          => 0,
             'wholesale_price'       => 0,
