@@ -30,6 +30,19 @@ class ProductSeeder extends Seeder
         $line = Line::create(['name' => 'Fichas']);
 
         $brand->products()->create([
+            'name'                  => 'Abono a credito',
+            'code'                  => 'Abono-Credito-Serintel',
+            'description'           => 'Abono a credito por la cantidad especificada',
+            'cost'                  => 0,
+            'retail_price'          => 0,
+            'wholesale_price'       => 0,
+            'special_price'         => 0,
+            'super_special_price'   => 0,
+            'category_id'           => $category->id,
+            'line_id'               => $line->id,
+            'deleted_at'            => Carbon::now(),
+        ]);
+        $brand->products()->create([
             'name'                  => 'Saldo a recargas',
             'code'                  => 'Saldo-Recargas-Serintel',
             'description'           => 'Venta de saldo a recargas por la cantidad especificada',

@@ -35,4 +35,8 @@ class Sale extends Model
         return $this->belongsToMany('App\Models\Product')->using('App\Models\ProductSale')->withPivot(['quantity', 'subtotal', 'total']);
     }
 
+    public function credit() {
+        return $this->hasOne('App\Models\Credit');
+    }
+
 }

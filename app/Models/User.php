@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Laravel\Sanctum\HasApiTokens;
+use App\Http\Resources\SaleCollection;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Spatie\Permission\Traits\HasRoles;
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -62,6 +63,16 @@ class User extends Authenticatable
 
     public function sales() {
         return $this->hasMany('App\Models\Sale', 'employee_id', 'id');
+    }
+
+    public function purchases() {
+        return $this->hasMany('App\Models\Sale', 'client_id', 'id');
+    }
+
+    public function debts() { //In order to get prepago purchases type
+        return $this->purchases()->whereHas('credit' , function($query) {
+            return $query->where('status', 0 );
+        });
     }
     //ROUTES THAT BELONGS THIS CLIENT
     public function routes() {

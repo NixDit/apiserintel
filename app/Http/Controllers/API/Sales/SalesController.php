@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\API\Sales;
 
+use PDF;
 use Carbon\Carbon;
 use App\Models\Sale;
 use App\Models\User;
 use App\Models\Route;
+use App\Models\Credit;
 use App\Models\ScanLog;
 use App\Models\ProductSale;
 use Illuminate\Http\Request;
@@ -20,7 +22,6 @@ use Kutia\Larafirebase\Facades\Larafirebase;
 use App\Http\Resources\TicketProductsResource;
 use App\Notifications\NewPurchaseNotification;
 use App\Exports\EmployeeSalesReportExportSheet;
-use PDF;
 
 class SalesController extends Controller
 {
@@ -31,6 +32,48 @@ class SalesController extends Controller
         $products = json_decode( $request->products, true);
         $employee_id = Auth::user()->id;
         $data = [];
+
+        // try {
+
+        //     foreach ($products as $key => $product) {
+
+        //         if( isset($product["credit_id"]) ) {
+        //             $payment = Credit::find($product["credit_id"])->payments()->create([
+        //                 'quantity' => $product["total"]
+        //             ]);
+        //         }
+
+        //         if( isset($product["isTotalPayment"]) ) {
+        //             //Ventas que tienen credito por pagar
+        //             $debts = User::find($request->client_id)->debts();
+                    
+        //             foreach ($debts as $key => $debt) {
+
+        //                 $credit = $debt->credit;
+
+        //                 $credit->update(['status' => 1]);
+        //                 $credit()->payments()->create([
+        //                     'quantity' => $credit->total
+        //                 ]);
+        //             }
+
+        //         }
+
+        //         $product_for_sale = ProductSale::create([
+        //             'product_id'    => isset($product["product"]) ? $product["product"]["id"] : 1,
+        //             'sale_id'       => $sale->id,
+        //             'quantity'      => $product["quantity"],
+        //             'subtotal'      => $product["subtotal"],
+        //             'total'         => $product["total"]
+        //         ]);
+
+        //     }
+        // } catch (\Throwable $th) {
+        //     return response()->json([
+        //         'ok'        => false,
+        //         'message'   => $th->getMessage(),
+        //     ], 400);
+        // }
 
         try {
             
@@ -44,23 +87,92 @@ class SalesController extends Controller
                     'type'          => $request->type
                 ]);
 
-                $sale->folio = 'S-' . (str_pad( $sale->id, 10, '0', STR_PAD_LEFT));
+                $sale->folio = 'SV-' . (str_pad( $sale->id, 10, '0', STR_PAD_LEFT));
                 $sale->save();
+
                 
+                $creditPaymentCount = 0;    //Para saber si ya se guardo un pago de credito ya que para cada pago es necesario guardar un registro en la tabla
+                $creditPaymentTotal = 0;    // product_sale que es pivote pero todos los pagos de credito tienen id 1, asi que al ser primario
+                $productSale = null;             // no se pueden guardar mas de 2 productos con el mismo id en la tabla
                 
                 foreach ($products as $key => $product) {
 
-                    $product_for_sale = ProductSale::create([
-                        'product_id'    => $product["product"]["id"],
-                        'sale_id'       => $sale->id,
-                        'quantity'      => $product["quantity"],
-                        'subtotal'      => $product["subtotal"],
-                        'total'         => $product["total"]
-                    ]);
+                    if( isset($product["credit_id"]) ) {
+
+                        $saleWithCredit = Sale::find($product["credit_id"]);
+                        $credit = $saleWithCredit->credit;
+
+                        $payment = $credit->payments()->create([
+                            'quantity' => $product["total"]
+                        ]);
+
+                        $totalPaid = $credit->payments->sum('quantity');
+
+                        if( $totalPaid >= $credit->total ) {
+                            $credit->update([ 'status' => 1 ]);
+                        }
+
+                        //Si aun no se guardo una instancia del Producto con id 1 (Abono de credito) solo hay que actualizar
+                        if( $productSale == null ) {
+
+                            $productSale = ProductSale::create([
+                                'product_id'    => 1,
+                                'sale_id'       => $sale->id,
+                                'quantity'      => 1,
+                                'subtotal'      => $product["subtotal"],
+                                'total'         => $product["total"]
+                            ]);
+                        } else {
+
+                            $productSaleFinded = ProductSale::where([
+                                ['product_id','=', 1],
+                                ['sale_id','=', $sale->id]
+                            ])->first();
+
+                            
+                            $productSaleFinded->product_id  = 1;
+                            $productSaleFinded->sale_id     = $sale->id;
+                            $productSaleFinded->quantity    = $productSaleFinded->quantity + 1;
+                            $productSaleFinded->subtotal    = $productSaleFinded->total + $product["subtotal"];
+                            $productSaleFinded->total       = $productSaleFinded->total + $product["subtotal"];
+
+                            $productSaleFinded->save();
+
+                        }
+                        
+
+                    } else {
+
+                        $product_for_sale = ProductSale::create([
+                            'product_id'    => $product["product"]["id"],
+                            'sale_id'       => $sale->id,
+                            'quantity'      => $product["quantity"],
+                            'subtotal'      => $product["subtotal"],
+                            'total'         => $product["total"]
+                        ]);
+                        
+                    }
+
+                    // if( isset($product["isTotalPayment"]) ) {
+                    //     //Ventas que tienen credito por pagar
+                    //     $debts = User::find($request->client_id)->debts();
+                        
+                    //     foreach ($debts as $key => $debt) {
+
+                    //         $credit = $debt->credit;
+
+                    //         $credit->update(['status' => 1]);
+                    //         $credit()->payments()->create([
+                    //             'quantity' => $credit->total
+                    //         ]);
+                    //     }
+
+                    // }
+
+                    
 
                 }
 
-                
                 $this->notificateAdmins( $sale );
 
             });

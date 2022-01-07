@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\SaleCollection;
+use App\Http\Resources\PrepaidPurchasesCollection;
 
 class ClientController extends Controller
 {
@@ -26,11 +28,12 @@ class ClientController extends Controller
                         $clientInfo->where('code', $code);
                     })
                     ->with('clientInformation')
+                    ->with('debts')
                     ->first();
 
             if( $client ) {
-
-                $client->makeHidden(['roles', 'updated_at', 'email_verified_at']);
+                $client->credit = PrepaidPurchasesCollection::collection( $client->debts );
+                $client->makeHidden(['roles', 'updated_at','debts' ,'email_verified_at']);
                 $client->clientInformation->makeHidden(['id', 'user_id']);
 
                 $log = ScanLog::updateOrCreate([
