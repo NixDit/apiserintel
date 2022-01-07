@@ -29,51 +29,10 @@ class SalesController extends Controller
     public function store( Request $request ) {
 
         // convert json to array
+
         $products = json_decode( $request->products, true);
         $employee_id = Auth::user()->id;
         $data = [];
-
-        // try {
-
-        //     foreach ($products as $key => $product) {
-
-        //         if( isset($product["credit_id"]) ) {
-        //             $payment = Credit::find($product["credit_id"])->payments()->create([
-        //                 'quantity' => $product["total"]
-        //             ]);
-        //         }
-
-        //         if( isset($product["isTotalPayment"]) ) {
-        //             //Ventas que tienen credito por pagar
-        //             $debts = User::find($request->client_id)->debts();
-                    
-        //             foreach ($debts as $key => $debt) {
-
-        //                 $credit = $debt->credit;
-
-        //                 $credit->update(['status' => 1]);
-        //                 $credit()->payments()->create([
-        //                     'quantity' => $credit->total
-        //                 ]);
-        //             }
-
-        //         }
-
-        //         $product_for_sale = ProductSale::create([
-        //             'product_id'    => isset($product["product"]) ? $product["product"]["id"] : 1,
-        //             'sale_id'       => $sale->id,
-        //             'quantity'      => $product["quantity"],
-        //             'subtotal'      => $product["subtotal"],
-        //             'total'         => $product["total"]
-        //         ]);
-
-        //     }
-        // } catch (\Throwable $th) {
-        //     return response()->json([
-        //         'ok'        => false,
-        //         'message'   => $th->getMessage(),
-        //     ], 400);
-        // }
 
         try {
             
@@ -91,9 +50,9 @@ class SalesController extends Controller
                 $sale->save();
 
                 
-                $creditPaymentCount = 0;    //Para saber si ya se guardo un pago de credito ya que para cada pago es necesario guardar un registro en la tabla
-                $creditPaymentTotal = 0;    // product_sale que es pivote pero todos los pagos de credito tienen id 1, asi que al ser primario
-                $productSale = null;             // no se pueden guardar mas de 2 productos con el mismo id en la tabla
+                $productSaleCount = 0;      //Para saber si ya se guardo un pago de credito ya que para cada pago es necesario guardar un registro en la tabla
+                $productSaleTotal = 0;     // product_sale que es pivote pero todos los pagos de credito tienen id 1, asi que al ser primario
+                                            // no se pueden guardar mas de 2 productos con el mismo id en la tabla
                 
                 foreach ($products as $key => $product) {
 
@@ -112,33 +71,9 @@ class SalesController extends Controller
                             $credit->update([ 'status' => 1 ]);
                         }
 
-                        //Si aun no se guardo una instancia del Producto con id 1 (Abono de credito) solo hay que actualizar
-                        if( $productSale == null ) {
-
-                            $productSale = ProductSale::create([
-                                'product_id'    => 1,
-                                'sale_id'       => $sale->id,
-                                'quantity'      => 1,
-                                'subtotal'      => $product["subtotal"],
-                                'total'         => $product["total"]
-                            ]);
-                        } else {
-
-                            $productSaleFinded = ProductSale::where([
-                                ['product_id','=', 1],
-                                ['sale_id','=', $sale->id]
-                            ])->first();
-
-                            
-                            $productSaleFinded->product_id  = 1;
-                            $productSaleFinded->sale_id     = $sale->id;
-                            $productSaleFinded->quantity    = $productSaleFinded->quantity + 1;
-                            $productSaleFinded->subtotal    = $productSaleFinded->total + $product["subtotal"];
-                            $productSaleFinded->total       = $productSaleFinded->total + $product["subtotal"];
-
-                            $productSaleFinded->save();
-
-                        }
+                        //Para solo crear un solo registro con el total de los pagos de credito en la tabla product_sale
+                        $productSaleCount++;
+                        $productSaleTotal += $product["total"];
                         
 
                     } else {
@@ -153,24 +88,24 @@ class SalesController extends Controller
                         
                     }
 
-                    // if( isset($product["isTotalPayment"]) ) {
-                    //     //Ventas que tienen credito por pagar
-                    //     $debts = User::find($request->client_id)->debts();
+
+                    //Si es la ultima iteracion
+                    if ($key === array_key_last($products)) {
                         
-                    //     foreach ($debts as $key => $debt) {
+                        //Si en la venta hubo por lo menos 1 abono de credito
+                        if( $productSaleCount > 0 ) {
+                            $productSale = ProductSale::create([
+                                'product_id'    => 1,
+                                'sale_id'       => $sale->id,
+                                'quantity'      => $productSaleCount,
+                                'subtotal'      => $productSaleTotal,
+                                'total'         => $productSaleTotal
+                            ]);
+                        }
 
-                    //         $credit = $debt->credit;
-
-                    //         $credit->update(['status' => 1]);
-                    //         $credit()->payments()->create([
-                    //             'quantity' => $credit->total
-                    //         ]);
-                    //     }
-
-                    // }
+                    }
 
                     
-
                 }
 
                 $this->notificateAdmins( $sale );
