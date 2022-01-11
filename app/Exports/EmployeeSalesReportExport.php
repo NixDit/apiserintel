@@ -56,7 +56,7 @@ WithCustomValueBinder
         return [
             ++$this->rowNumber,
             "{$row->seller->name} {$row->seller->last_name} ",
-            $row->costumer->clientInformation->business_name,
+            $row->customer->clientInformation->business_name,
             number_format((float)$row->subtotal, 2, '.', ''),
             number_format((float)$row->total, 2, '.', ''),
             $types[ $row->type - 1 ],

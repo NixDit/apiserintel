@@ -71,7 +71,7 @@
                     <div>TEL: 223 102 1029</div>
                     <div>{{ $sale->created_at->format('d/m/Y H:i A') }}</div>
                     <div>Folio: {{ $sale->folio }}</div>
-                    <div>Cliente: {{ $sale->costumer->clientInformation->business_name }}</div>
+                    <div>Cliente: {{ $sale->customer->clientInformation->business_name }}</div>
                     <div>Vendio: {{ $sale->seller->fullName() }}</div>
                 </div>
                 <br>

@@ -24,7 +24,7 @@ class Sale extends Model
     ];
 
 
-    public function costumer() {
+    public function customer() {
         return $this->belongsTo('App\Models\User', 'client_id', 'id');
     }
     public function seller() {

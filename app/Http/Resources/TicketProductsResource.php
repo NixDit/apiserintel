@@ -18,7 +18,7 @@ class TicketProductsResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'client'        => $this->costumer->clientInformation->business_name,
+            'client'        => $this->customer->clientInformation->business_name,
             'seller'        => $this->seller->name . ' #' . $this->seller->id,
             'subtotal'      => $this->subtotal,
             'total'         => $this->total,

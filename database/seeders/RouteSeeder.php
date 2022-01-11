@@ -24,30 +24,37 @@ class RouteSeeder extends Seeder
 
         RouteClient::create([
             'route_id'  => $route->id,
-            'user_id'   => 3
-        ]);
-
-        RouteClient::create([
-            'route_id'  => $route->id,
             'user_id'   => 4
         ]);
+
         RouteClient::create([
             'route_id'  => $route->id,
             'user_id'   => 5
         ]);
-
         RouteClient::create([
             'route_id'  => $route->id,
             'user_id'   => 6
         ]);
+
         RouteClient::create([
             'route_id'  => $route->id,
             'user_id'   => 7
         ]);
 
+        $route2 = Route::create([
+            'name'          => 'Tehuacan Clara',
+            'employee_id'   => 3,
+            'day'           => 1
+        ]);
+
         RouteClient::create([
-            'route_id'  => $route->id,
+            'route_id'  => $route2->id,
             'user_id'   => 8
+        ]);
+
+        RouteClient::create([
+            'route_id'  => $route2->id,
+            'user_id'   => 9
         ]);
         // END:: LUNES
 
@@ -61,21 +68,37 @@ class RouteSeeder extends Seeder
 
         RouteClient::create([
             'route_id'  => $route->id,
-            'user_id'   => 8
+            'user_id'   => 9
         ]);
 
         RouteClient::create([
             'route_id'  => $route->id,
+            'user_id'   => 8
+        ]);
+        RouteClient::create([
+            'route_id'  => $route->id,
             'user_id'   => 7
         ]);
+
         RouteClient::create([
             'route_id'  => $route->id,
             'user_id'   => 6
         ]);
 
+        $route2 = Route::create([
+            'name'          => 'Tehuacan Centro Clara',
+            'employee_id'   => 3,
+            'day'           => 2
+        ]);
+
         RouteClient::create([
-            'route_id'  => $route->id,
+            'route_id'  => $route2->id,
             'user_id'   => 5
+        ]);
+
+        RouteClient::create([
+            'route_id'  => $route2->id,
+            'user_id'   => 4
         ]);
         // END:: MARTES
 
@@ -88,16 +111,37 @@ class RouteSeeder extends Seeder
 
         RouteClient::create([
             'route_id'  => $route->id,
-            'user_id'   => 5
+            'user_id'   => 7
         ]);
 
         RouteClient::create([
             'route_id'  => $route->id,
-            'user_id'   => 6
+            'user_id'   => 8
         ]);
         RouteClient::create([
             'route_id'  => $route->id,
-            'user_id'   => 7
+            'user_id'   => 9
+        ]);
+
+        $route2 = Route::create([
+            'name'          => 'Tehuacan Centro Miercoles Clara',
+            'employee_id'   => 3,
+            'day'           => 3
+        ]);
+
+        RouteClient::create([
+            'route_id'  => $route2->id,
+            'user_id'   => 4
+        ]);
+
+        RouteClient::create([
+            'route_id'  => $route2->id,
+            'user_id'   => 5
+        ]);
+
+        RouteClient::create([
+            'route_id'  => $route2->id,
+            'user_id'   => 6
         ]);
         // END:: MIERCOLES
 
@@ -110,7 +154,7 @@ class RouteSeeder extends Seeder
 
         RouteClient::create([
             'route_id'  => $route->id,
-            'user_id'   => 3
+            'user_id'   => 4
         ]);
 
         RouteClient::create([
@@ -120,6 +164,27 @@ class RouteSeeder extends Seeder
         RouteClient::create([
             'route_id'  => $route->id,
             'user_id'   => 7
+        ]);
+
+        $route2 = Route::create([
+            'name'          => 'Tehuacan Jueves Clara',
+            'employee_id'   => 3,
+            'day'           => 4
+        ]);
+
+        RouteClient::create([
+            'route_id'  => $route2->id,
+            'user_id'   => 6
+        ]);
+
+        RouteClient::create([
+            'route_id'  => $route2->id,
+            'user_id'   => 8
+        ]);
+
+        RouteClient::create([
+            'route_id'  => $route2->id,
+            'user_id'   => 9
         ]);
         // END:: JUEVES
 
@@ -132,16 +197,35 @@ class RouteSeeder extends Seeder
 
         RouteClient::create([
             'route_id'  => $route->id,
-            'user_id'   => 3
+            'user_id'   => 4
         ]);
 
         RouteClient::create([
             'route_id'  => $route->id,
-            'user_id'   => 4
+            'user_id'   => 5
         ]);
         RouteClient::create([
             'route_id'  => $route->id,
-            'user_id'   => 5
+            'user_id'   => 6
+        ]);
+
+        $route2 = Route::create([
+            'name'          => 'Tehuacan Ruta Centro Viernes Clara',
+            'employee_id'   => 3,
+            'day'           => 5
+        ]);
+
+        RouteClient::create([
+            'route_id'  => $route2->id,
+            'user_id'   => 7
+        ]);
+        RouteClient::create([
+            'route_id'  => $route2->id,
+            'user_id'   => 8
+        ]);
+        RouteClient::create([
+            'route_id'  => $route2->id,
+            'user_id'   => 9
         ]);
         // END:: VIERNES
 
@@ -154,30 +238,37 @@ class RouteSeeder extends Seeder
 
         RouteClient::create([
             'route_id'  => $route->id,
-            'user_id'   => 3
-        ]);
-
-        RouteClient::create([
-            'route_id'  => $route->id,
             'user_id'   => 4
         ]);
+
         RouteClient::create([
             'route_id'  => $route->id,
             'user_id'   => 5
         ]);
-
         RouteClient::create([
             'route_id'  => $route->id,
             'user_id'   => 6
         ]);
+
         RouteClient::create([
             'route_id'  => $route->id,
             'user_id'   => 7
         ]);
 
+        $route2 = Route::create([
+            'name'          => 'Tehuacan Sabado Clara',
+            'employee_id'   => 3,
+            'day'           => 6
+        ]);
+
         RouteClient::create([
-            'route_id'  => $route->id,
+            'route_id'  => $route2->id,
             'user_id'   => 8
+        ]);
+
+        RouteClient::create([
+            'route_id'  => $route2->id,
+            'user_id'   => 9
         ]);
         // END:: LUNES
 

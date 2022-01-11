@@ -22,20 +22,31 @@ class UserSeeder extends Seeder
             'email'     => 'superadmin@mail.com',
             'password'  => Hash::make('Superadmin@2021'),
         ]);
-        //END:: Create an superadmin
+        //END:: Create a superadmin
         
         $superadmin->assignRole('superadmin');
 
 
         //BEGIN:: Create an employee
         $employee = User::create([
-            'name'      => 'Empleado',
-            'last_name' => 'Serintel',
+            'name'      => 'Luis',
+            'last_name' => 'Hernandez',
             'email'     => 'empleado@mail.com',
             'password'  => Hash::make('Empleado@2021'),
         ]);
         
         $employee->assignRole('employee');
+        //END:: Create an employee
+
+        //BEGIN:: Create an employee
+        $second_employee = User::create([
+            'name'      => 'Clara',
+            'last_name' => 'Luz',
+            'email'     => 'empleado2@mail.com',
+            'password'  => Hash::make('Empleado@2021'),
+        ]);
+        
+        $second_employee->assignRole('employee');
         //END:: Create an employee
 
         //BEGIN:: Create a client
@@ -48,12 +59,12 @@ class UserSeeder extends Seeder
         
         $client->assignRole('client');
 
-        $client_code = 'S-' . (str_pad( $client->id, 10, '0', STR_PAD_LEFT));
+        $client_code = 'SC-' . (str_pad( $client->id, 10, '0', STR_PAD_LEFT));
 
         $client->clientInformation()->create([
             'business_name' => 'Abarrotes la Corona',
             'code'          => $client_code,
-            'phone'         => '1231231212',
+            'phone'         => '5562316601',
             'address'       => 'Calle 3 Ote 322',
             'latlng'        => '18.4606981,-97.3925737'
         ]);
@@ -69,12 +80,12 @@ class UserSeeder extends Seeder
         
         $second_client->assignRole('client');
 
-        $second_client_code = 'S-' . (str_pad( $second_client->id, 10, '0', STR_PAD_LEFT));
+        $second_client_code = 'SC-' . (str_pad( $second_client->id, 10, '0', STR_PAD_LEFT));
 
         $second_client->clientInformation()->create([
             'business_name' => 'Abarrotes Rosy',
             'code'          => $second_client_code,
-            'phone'         => '0980980909',
+            'phone'         => '5562316601',
             'address'       => 'Calle 3 Poniente',
             'latlng'        => '18.4611909,-97.4024359'
         ]);
@@ -90,12 +101,12 @@ class UserSeeder extends Seeder
         
         $third_client->assignRole('client');
 
-        $third_client_code = 'S-' . (str_pad( $third_client->id, 10, '0', STR_PAD_LEFT));
+        $third_client_code = 'SC-' . (str_pad( $third_client->id, 10, '0', STR_PAD_LEFT));
 
         $third_client->clientInformation()->create([
             'business_name' => 'Abarrotes el gallo de tehuacan',
             'code'          => $third_client_code,
-            'phone'         => '2342344556',
+            'phone'         => '5562316601',
             'address'       => 'Calle 3 Ote 535',
             'latlng'        => '18.4609287,-97.3899697'
         ]);
@@ -111,12 +122,12 @@ class UserSeeder extends Seeder
         
         $fourth_client->assignRole('client');
 
-        $fourth_client_code = 'S-' . (str_pad( $fourth_client->id, 10, '0', STR_PAD_LEFT));
+        $fourth_client_code = 'SC-' . (str_pad( $fourth_client->id, 10, '0', STR_PAD_LEFT));
 
         $fourth_client->clientInformation()->create([
             'business_name' => 'Abarrotes Conchita',
             'code'          => $fourth_client_code,
-            'phone'         => '5675675675',
+            'phone'         => '5562316601',
             'address'       => 'Calle 7 Sur ',
             'latlng'        => '18.4586785,-97.389476'
         ]);
@@ -132,12 +143,12 @@ class UserSeeder extends Seeder
         
         $client->assignRole('client');
 
-        $client_code = 'S-' . (str_pad( $client->id, 10, '0', STR_PAD_LEFT));
+        $client_code = 'SC-' . (str_pad( $client->id, 10, '0', STR_PAD_LEFT));
 
         $client->clientInformation()->create([
             'business_name' => 'Abarrotes Vinos y Licores Fandango',
             'code'          => $client_code,
-            'phone'         => '2345862038',
+            'phone'         => '5562316601',
             'address'       => 'Calle 5 Ote 524',
             'latlng'        => '18.4585225,-97.3904625'
         ]);
@@ -154,12 +165,12 @@ class UserSeeder extends Seeder
         
         $client->assignRole('client');
 
-        $client_code = 'S-' . (str_pad( $client->id, 10, '0', STR_PAD_LEFT));
+        $client_code = 'SC-' . (str_pad( $client->id, 10, '0', STR_PAD_LEFT));
 
         $client->clientInformation()->create([
             'business_name' => 'Mueganos El Aguila',
             'code'          => $client_code,
-            'phone'         => '4759683726',
+            'phone'         => '5562316601',
             'address'       => 'Calle 3 Sur 519',
             'latlng'        => '18.4579508,-97.393339'
         ]);

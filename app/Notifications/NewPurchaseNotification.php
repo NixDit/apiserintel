@@ -56,7 +56,7 @@ class NewPurchaseNotification extends Notification
             ],
             'notification' => [
                 'title' => 'Nueva venta',
-                'body' => "Una venta ha sido realizada al cliente {$this->data->costumer->clientInformation->business_name} por el vendedor {$this->data->seller->fullName()} con un total de \${$total} con el tipo de venta: {$selectedType}"
+                'body' => "Una venta ha sido realizada al cliente {$this->data->customer->clientInformation->business_name} por el vendedor {$this->data->seller->fullName()} con un total de \${$total} con el tipo de venta: {$selectedType}"
             ]
         ])->send();
     }

@@ -21,7 +21,7 @@ class SaleCollection extends JsonResource
 
         return [
             'id'            => $this->id,
-            'client'        => $this->costumer->clientInformation->business_name,
+            'client'        => $this->customer->clientInformation->business_name,
             'subtotal'      => $this->subtotal,
             'total'         => $this->total,
             'type'         =>  $types[$this->type - 1],

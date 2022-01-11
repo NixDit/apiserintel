@@ -76,8 +76,28 @@ class SalesController extends Controller
                         $productSaleTotal += $product["total"];
                         
 
-                    } else {
+                    } else if( isset($product["isTotalPayment"])) {
 
+                        //TODO:: Obtener los creditos del cliente y actualizarlos a pagado
+                        $salesWithCredit = $sale->customer->debts;
+
+                        $productSaleCount++;
+                        
+                        foreach ($salesWithCredit as $key => $saleWithCredit) {
+                            
+                            $credit = $saleWithCredit->credit;
+                            $total =  $credit->total - $credit->payments->sum('quantity');
+
+                            $payment = $credit->payments()->create([
+                                'quantity' => $total
+                            ]);
+
+                            $productSaleTotal += $total;
+                            $credit->update(['status' => 1 ]);
+                        }
+
+                        
+                    } else {
                         $product_for_sale = ProductSale::create([
                             'product_id'    => $product["product"]["id"],
                             'sale_id'       => $sale->id,
@@ -85,7 +105,6 @@ class SalesController extends Controller
                             'subtotal'      => $product["subtotal"],
                             'total'         => $product["total"]
                         ]);
-                        
                     }
 
 
