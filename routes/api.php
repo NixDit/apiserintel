@@ -25,6 +25,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // AUTHENTICATION ROUTES
 Route::post('/signup', [AuthController::class, 'signup'])->name('api.user.create');
 Route::post('/login', [AuthController::class, 'login'])->name('api.user.login');
+Route::post('/token/delete', [AuthController::class, 'deleteDevice'])->name('api.token.destroy');
 
 //BEGIN:GUEST ROUTES
 Route::get('/get-products', [ProductsController::class, 'getProducts'])->name('api.products.get');
@@ -36,7 +37,6 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     //BEGIN:: General routes
     Route::post('/user/update', [AuthController::class, 'update'])->name('api.user.update');
     Route::get('/token-renew', [AuthController::class, 'tokenRenew'])->name('api.token.renew');
-    Route::post('/token/delete', [AuthController::class, 'deleteDevice'])->name('api.token.destroy');
     //END:: General routes
 
     //BEGIN:: Product Routes

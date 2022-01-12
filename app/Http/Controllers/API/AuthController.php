@@ -34,7 +34,14 @@ class AuthController extends Controller
 
         }
 
-        $user->devices()->firstOrCreate(['token' => $request->token]);
+        $tokenAlreadyRegistered = $user->devices()->onlyTrashed()->where('token', $request->token)->first();
+
+        if( $tokenAlreadyRegistered ) {
+            $tokenAlreadyRegistered->restore();
+        } else {
+            $user->devices()->firstOrCreate(['token' => $request->token]);
+        }
+
 
         $token = $user->createToken('authtoken')->plainTextToken;
         
@@ -163,19 +170,28 @@ class AuthController extends Controller
 
         try {
             
-            $token = Device::where( 'user_id' , Auth::user()->id )->where( 'token', $request->token )->delete();
-
-            return response()->json([
-                'ok'        => true,
-                'message'   => 'Token eliminado correctamente',
-            ], 200);
+            $device = Device::where('token', $request->device)->delete();
+            dd($device);
 
         } catch (\Throwable $th) {
-            return response()->json([
-                'ok'        => true,
-                'message'   => "Ocurrio un error: " . $th->getMessage(),
-            ], 401);
+            //throw $th;
         }
+
+        // try {
+            
+        //     $token = Device::where( 'user_id' , Auth::user()->id )->where( 'token', $request->token )->delete();
+
+        //     return response()->json([
+        //         'ok'        => true,
+        //         'message'   => 'Token eliminado correctamente',
+        //     ], 200);
+
+        // } catch (\Throwable $th) {
+        //     return response()->json([
+        //         'ok'        => true,
+        //         'message'   => "Ocurrio un error: " . $th->getMessage(),
+        //     ], 401);
+        // }
 
     }
 }
