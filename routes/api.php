@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\Superadmin\SuperadminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
@@ -32,6 +33,9 @@ Route::get('/get-products', [ProductsController::class, 'getProducts'])->name('a
 
 // ROUTES PROTECTED BY AUTH:SANCTUM
 Route::group(['middleware' => 'auth:sanctum'], function() {
+
+    //BEGIN:: General routes
+    Route::get('/employees/get-all', [SuperadminController::class, 'getEmployees'])->name('api.employees.get');
 
     //BEGIN:: General routes
     Route::get('/token-renew', [AuthController::class, 'tokenRenew'])->name('api.token.renew');
