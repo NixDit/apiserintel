@@ -12,8 +12,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
-    
-
 
 
     public function getClient( Request $request ) {

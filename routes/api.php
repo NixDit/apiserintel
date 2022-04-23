@@ -61,4 +61,9 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::get('/get-route', [SalesController::class, 'getRoute'])->name('api.sales.routes.get');
 
     //END:: Sale routes
+
+    //BEGIN:: Superadmin routes
+    Route::post('/employees/store', [SuperadminController::class, 'store'])->name('api.employee.store');
+    //END:: Superadmin routes
+
 });
