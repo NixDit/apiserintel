@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
 
     //BEGIN:: General routes
     Route::get('/employees/get-all', [SuperadminController::class, 'getEmployees'])->name('api.employees.get');
+    Route::get('/clients/get-all', [SuperadminController::class, 'getClients'])->name('api.clients.get');
 
     //BEGIN:: General routes
     Route::get('/token-renew', [AuthController::class, 'tokenRenew'])->name('api.token.renew');
@@ -63,7 +64,7 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     //END:: Sale routes
 
     //BEGIN:: Superadmin routes
-    Route::post('/employees/store', [SuperadminController::class, 'store'])->name('api.employee.store');
+    Route::post('/employees/store', [SuperadminController::class, 'storeEmployee'])->name('api.employee.store');
     //END:: Superadmin routes
 
 });

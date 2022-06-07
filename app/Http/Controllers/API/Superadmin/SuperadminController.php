@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API\Superadmin;
 
+use App\Http\Resources\ClientResource;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -34,7 +35,26 @@ class SuperadminController extends Controller
 
     }
 
-    public function store(Request $request): JsonResponse {
+    public function getClients(): JsonResponse {
+        try {
+
+            $employees  = User::role('client')->get();
+            $data       = ClientResource::collection( $employees );
+            return response()->json([
+                'ok' => true,
+                'employees' => $data
+            ]);
+
+        } catch (Throwable $th) {
+            return response()->json([
+                'ok'        => false,
+                'employees' => [],
+            ]);
+        }
+
+    }
+
+    public function storeEmployee(Request $request): JsonResponse {
 
         $request->validate([
             'name'      => 'required|string|max:255',
