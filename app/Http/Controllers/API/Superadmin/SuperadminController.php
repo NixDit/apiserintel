@@ -42,14 +42,14 @@ class SuperadminController extends Controller
             $data       = ClientResource::collection( $employees );
             return response()->json([
                 'ok' => true,
-                'employees' => $data
+                'clients' => $data
             ]);
 
         } catch (Throwable $th) {
             return response()->json([
                 'ok'        => false,
-                'employees' => [],
-            ]);
+                'clients' => [],
+            ], 400);
         }
 
     }

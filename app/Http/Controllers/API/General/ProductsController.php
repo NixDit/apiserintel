@@ -6,16 +6,18 @@ use App\Models\Line;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class ProductsController extends Controller
 {
-    
-    public function store( Request $request ) {
+
+    public function store( Request $request ): JsonResponse
+    {
 
         try {
-            
+
             $newProduct = Product::create( $request->all() );
 
             if( $newProduct ) {
@@ -43,7 +45,8 @@ class ProductsController extends Controller
 
     }
 
-    public function getProducts() {
+    public function getProducts(): JsonResponse
+    {
 
         $categories = Category::with('products')->get();
 
@@ -67,10 +70,11 @@ class ProductsController extends Controller
 
     }
 
-    public function getCategoriesAndBrands() {
-        
+    public function getCategoriesAndBrands(): JsonResponse
+    {
+
         try {
-            
+
             $categories = Category::select(['id', 'name'])->get();
             $brands     = Brand::all();
             $lines      = Line::select('id','name')->get();
