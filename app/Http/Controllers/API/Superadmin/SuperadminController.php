@@ -54,6 +54,50 @@ class SuperadminController extends Controller
 
     }
 
+    public function storeClient(Request $request): JsonResponse {
+        $request->validate([
+            'name'          => 'required|string|max:255',
+            'last_name'     => 'required|string|max:255',
+            'email'         => 'required|unique:users|email',
+            'phone'         => 'required|max:255',
+            'address'       => 'required',
+            'business_name' => 'required',
+        ]);
+
+        try {
+            //BEGIN:: Create a client
+            $client = User::create([
+                'name'      => $request->name,
+                'last_name' => $request->last_name,
+                'email'     => $request->email,
+                'password'  => Hash::make('Cliente@2022'),
+            ]);
+
+            $client->assignRole('client');
+
+            $client_code = 'SC-' . (str_pad( $client->id, 10, '0', STR_PAD_LEFT));
+
+            $client->clientInformation()->create([
+                'business_name' => $request->business_name,
+                'code'          => $client_code,
+                'phone'         => $request->phone,
+                'address'       => $request->address,
+            ]);
+
+            return response()->json([
+                'ok'        => true,
+                'message'   => 'Cliente creado correctamente',
+            ], 201 );
+
+            //END:: Create a client
+        } catch (Throwable $th) {
+            return response()->json([
+                'ok' => false,
+                'message' => 'Error al crear el cliente',
+            ], 400);
+        }
+    }
+
     public function storeEmployee(Request $request): JsonResponse {
 
         $request->validate([
@@ -86,5 +130,7 @@ class SuperadminController extends Controller
         }
 
     }
+
+
 
 }

@@ -41,7 +41,7 @@ class SalesController extends Controller
                     'total'         => $request->total,
                 ]);
 
-                $sale->folio = 'S-' . (str_pad( $sale->id, 10, '0', STR_PAD_LEFT));
+                $sale->folio = 'SV-' . (str_pad( $sale->id, 10, '0', STR_PAD_LEFT));
                 $sale->save();
 
 

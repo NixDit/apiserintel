@@ -20,10 +20,10 @@ class UserSeeder extends Seeder
             'name'      => 'Serintel',
             'last_name' => 'Superadmin',
             'email'     => 'superadmin@mail.com',
-            'password'  => Hash::make('Superadmin@2021'),
+            'password'  => Hash::make('Superadmin2022'),
         ]);
         //END:: Create an superadmin
-        
+
         $superadmin->assignRole('superadmin');
 
 
@@ -32,9 +32,9 @@ class UserSeeder extends Seeder
             'name'      => 'Empleado',
             'last_name' => 'Serintel',
             'email'     => 'empleado@mail.com',
-            'password'  => Hash::make('Empleado@2021'),
+            'password'  => Hash::make('Empleado2022'),
         ]);
-        
+
         $employee->assignRole('employee');
         //END:: Create an employee
 
@@ -43,12 +43,12 @@ class UserSeeder extends Seeder
             'name'      => 'Josmar Salvador',
             'last_name' => 'Marroquin Parra',
             'email'     => 'josmarmp96@gmail.com',
-            'password'  => Hash::make('Cliente@2021'),
+            'password'  => Hash::make('Cliente2022'),
         ]);
-        
+
         $client->assignRole('client');
 
-        $client_code = 'S-' . (str_pad( $client->id, 10, '0', STR_PAD_LEFT));
+        $client_code = 'SC-' . (str_pad( $client->id, 10, '0', STR_PAD_LEFT));
 
         $client->clientInformation()->create([
             'business_name' => 'Josmii & Glass Videogames',
@@ -64,12 +64,12 @@ class UserSeeder extends Seeder
             'name'      => 'Juan Pablo',
             'last_name' => 'Bonilla Mendez',
             'email'     => 'jpm_caprico@gmail.com',
-            'password'  => Hash::make('Cliente@2021'),
+            'password'  => Hash::make('Cliente2022'),
         ]);
-        
+
         $second_client->assignRole('client');
 
-        $second_client_code = 'S-' . (str_pad( $second_client->id, 10, '0', STR_PAD_LEFT));
+        $second_client_code = 'SC-' . (str_pad( $second_client->id, 10, '0', STR_PAD_LEFT));
 
         $second_client->clientInformation()->create([
             'business_name' => 'NIX Desarrollo, Innovacion y Tecnologia',
@@ -85,12 +85,12 @@ class UserSeeder extends Seeder
             'name'      => 'Adan',
             'last_name' => 'Marroquin Mendez',
             'email'     => 'adan_marroquin@gmail.com',
-            'password'  => Hash::make('Marroquin@2021'),
+            'password'  => Hash::make('Cliente2022'),
         ]);
-        
+
         $third_client->assignRole('client');
 
-        $second_client_code = 'S-' . (str_pad( $third_client->id, 10, '0', STR_PAD_LEFT));
+        $second_client_code = 'SC-' . (str_pad( $third_client->id, 10, '0', STR_PAD_LEFT));
 
         $third_client->clientInformation()->create([
             'business_name' => 'GYM Kajoma',
@@ -101,6 +101,6 @@ class UserSeeder extends Seeder
         ]);
         //END:: Create a client
 
-        
+
     }
 }
