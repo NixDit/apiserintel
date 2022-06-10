@@ -43,9 +43,9 @@ class UserSeeder extends Seeder
             'name'      => 'Clara',
             'last_name' => 'Luz',
             'email'     => 'empleado2@mail.com',
-            'password'  => Hash::make('Empleado@2021'),
+            'password'  => Hash::make('Empleado2022'),
         ]);
-        
+
         $second_employee->assignRole('employee');
         //END:: Create an employee
 
@@ -117,9 +117,9 @@ class UserSeeder extends Seeder
             'name'      => 'Abarrotes conchita',
             'last_name' => 'Lopez',
             'email'     => 'conchita@gmail.com',
-            'password'  => Hash::make('conchita'),
+            'password'  => Hash::make('Cliente2022'),
         ]);
-        
+
         $fourth_client->assignRole('client');
 
         $fourth_client_code = 'SC-' . (str_pad( $fourth_client->id, 10, '0', STR_PAD_LEFT));
@@ -138,9 +138,9 @@ class UserSeeder extends Seeder
             'name'      => 'Abarrotes Vinos',
             'last_name' => 'Licores',
             'email'     => 'vinos@gmail.com',
-            'password'  => Hash::make('vinos'),
+            'password'  => Hash::make('Cliente2022'),
         ]);
-        
+
         $client->assignRole('client');
 
         $client_code = 'SC-' . (str_pad( $client->id, 10, '0', STR_PAD_LEFT));
@@ -160,9 +160,9 @@ class UserSeeder extends Seeder
             'name'      => 'Mueganos',
             'last_name' => 'Aguila',
             'email'     => 'aguila@gmail.com',
-            'password'  => Hash::make('aguila'),
+            'password'  => Hash::make('Cliente2022'),
         ]);
-        
+
         $client->assignRole('client');
 
         $client_code = 'SC-' . (str_pad( $client->id, 10, '0', STR_PAD_LEFT));
