@@ -4,7 +4,9 @@ namespace App\Http\Controllers\API\Superadmin;
 
 use App\Http\Resources\ClientResource;
 use App\Http\Resources\UserResource;
+use App\Models\Sale;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -131,6 +133,33 @@ class SuperadminController extends Controller
 
     }
 
+    public function getSales( Request $request) {
 
+        $sales = $this->salesQuery($request);
+        return $sales;
+
+    }
+
+    private function salesQuery(Request $request) {
+        $query = Sale::query();
+
+        if( $request->from && $request->to ) {
+            $from = Carbon::createFromFormat('d/m/Y', $request->from);
+            $to = Carbon::createFromFormat('d/m/Y', $request->to);
+
+            $query->whereBetween('created_at',[$from->format('Y-m-d 0:0:0'), $to->format('Y-m-d 23:59:59')] );
+            $query->when(request('type') != 0, function ($q) {
+                return $q->where('type', request('type'));
+            });
+            return $query->orderBy('client_id')->get();
+        }
+
+        $query->whereDate('created_at', Carbon::today());
+        $query->when(request('type') != 0, function ($q) {
+            return $q->where('type', request('type'));
+        });
+
+        return $query->orderBy('client_id')->get();
+    }
 
 }

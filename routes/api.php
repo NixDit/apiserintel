@@ -32,6 +32,8 @@ Route::post('/token/delete', [AuthController::class, 'deleteDevice'])->name('api
 Route::get('/get-products', [ProductsController::class, 'getProducts'])->name('api.products.get');
 //END:GUEST ROUTES
 
+Route::get('/sales/get', [SuperadminController::class, 'getSales'])->name('api.sales-superadmin.get');
+
 // ROUTES PROTECTED BY AUTH:SANCTUM
 Route::group(['middleware' => 'auth:sanctum'], function() {
 

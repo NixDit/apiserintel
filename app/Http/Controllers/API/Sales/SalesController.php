@@ -50,11 +50,11 @@ class SalesController extends Controller
                 $sale->folio = 'SV-' . (str_pad( $sale->id, 10, '0', STR_PAD_LEFT));
                 $sale->save();
 
-                
+
                 $productSaleCount = 0;      //Para saber si ya se guardo un pago de credito ya que para cada pago es necesario guardar un registro en la tabla
                 $productSaleTotal = 0;     // product_sale que es pivote pero todos los pagos de credito tienen id 1, asi que al ser primario
                                             // no se pueden guardar mas de 2 productos con el mismo id en la tabla
-                
+
                 foreach ($products as $key => $product) {
 
                     if( isset($product["credit_id"]) ) {
@@ -75,7 +75,7 @@ class SalesController extends Controller
                         //Para solo crear un solo registro con el total de los pagos de credito en la tabla product_sale
                         $productSaleCount++;
                         $productSaleTotal += $product["total"];
-                        
+
 
                     } else if( isset($product["isTotalPayment"])) {
 
@@ -83,9 +83,9 @@ class SalesController extends Controller
                         $salesWithCredit = $sale->customer->debts;
 
                         $productSaleCount++;
-                        
+
                         foreach ($salesWithCredit as $key => $saleWithCredit) {
-                            
+
                             $credit = $saleWithCredit->credit;
                             $total =  $credit->total - $credit->payments->sum('quantity');
 
@@ -97,7 +97,7 @@ class SalesController extends Controller
                             $credit->update(['status' => 1 ]);
                         }
 
-                        
+
                     } else {
                         $product_for_sale = ProductSale::create([
                             'product_id'    => $product["product"]["id"],
@@ -111,7 +111,7 @@ class SalesController extends Controller
 
                     //Si es la ultima iteracion
                     if ($key === array_key_last($products)) {
-                        
+
                         //Si en la venta hubo por lo menos 1 abono de credito
                         if( $productSaleCount > 0 ) {
                             $productSale = ProductSale::create([
@@ -125,7 +125,7 @@ class SalesController extends Controller
 
                     }
 
-                    
+
                 }
 
                 $this->notificateAdmins( $sale );
@@ -191,7 +191,7 @@ class SalesController extends Controller
 
         $user = Auth::user();
         $query = Sale::query();
-        
+
 
         if( $request->from_date == null && $request->to_date == null ) {
 
@@ -238,7 +238,7 @@ class SalesController extends Controller
 
             $today = Carbon::today();
             $today_format = $today->format('d-m-Y');
-            
+
             $query->whereDate('created_at', $today );
 
             $query->when(request()->type != 0, function ($q) {
@@ -280,7 +280,7 @@ class SalesController extends Controller
         Notification::send($users, new NewPurchaseNotification($sale));
 
     }
-    
+
     public function getTicket() {
 
         $latest_sale = Sale::latest()->first();;
