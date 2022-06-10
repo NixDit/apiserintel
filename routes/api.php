@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\Superadmin\SuperadminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
@@ -35,6 +36,11 @@ Route::get('/get-products', [ProductsController::class, 'getProducts'])->name('a
 Route::group(['middleware' => 'auth:sanctum'], function() {
 
     //BEGIN:: General routes
+    Route::get('/employees/get-all', [SuperadminController::class, 'getEmployees'])->name('api.employees.get');
+    Route::get('/clients/get-all', [SuperadminController::class, 'getClients'])->name('api.clients.get');
+
+    //BEGIN:: General routes
+    Route::get('/token-renew', [AuthController::class, 'tokenRenew'])->name('api.token.renew');
     Route::post('/user/update', [AuthController::class, 'update'])->name('api.user.update');
     Route::get('/token-renew', [AuthController::class, 'tokenRenew'])->name('api.token.renew');
     //END:: General routes
@@ -59,4 +65,10 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
 
     Route::get('/get-ticket', [SalesController::class, 'getTicket'])->name('api.sales.getTicket');
     //END:: Sale routes
+
+    //BEGIN:: Superadmin routes
+    Route::post('/employees/store', [SuperadminController::class, 'storeEmployee'])->name('api.employee.store');
+    Route::post('/clients/store', [SuperadminController::class, 'storeClient'])->name('api.client.store');
+    //END:: Superadmin routes
+
 });

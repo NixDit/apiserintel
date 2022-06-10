@@ -245,15 +245,6 @@ class RouteSeeder extends Seeder
             'route_id'  => $route->id,
             'user_id'   => 5
         ]);
-        RouteClient::create([
-            'route_id'  => $route->id,
-            'user_id'   => 6
-        ]);
-
-        RouteClient::create([
-            'route_id'  => $route->id,
-            'user_id'   => 7
-        ]);
 
         $route2 = Route::create([
             'name'          => 'Tehuacan Sabado Clara',
@@ -263,17 +254,16 @@ class RouteSeeder extends Seeder
 
         RouteClient::create([
             'route_id'  => $route2->id,
-            'user_id'   => 8
+            'user_id'   => 6
         ]);
 
         RouteClient::create([
             'route_id'  => $route2->id,
-            'user_id'   => 9
+            'user_id'   => 7
         ]);
-        // END:: LUNES
 
 
 
-
+        
     }
 }

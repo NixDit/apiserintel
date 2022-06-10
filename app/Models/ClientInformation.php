@@ -14,10 +14,12 @@ class ClientInformation extends Model
         'business_name',
         'code',
         'phone',
-        'adress'
+        'address'
     ];
 
     protected $hidden = [
+        'id',
+        'user_id',
         'created_at',
         'updated_at',
     ];

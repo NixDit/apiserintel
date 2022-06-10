@@ -14,8 +14,6 @@ use App\Http\Resources\PrepaidPurchasesCollection;
 
 class ClientController extends Controller
 {
-    
-
 
 
     public function getClient( Request $request ) {

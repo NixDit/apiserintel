@@ -22,10 +22,11 @@ use Kutia\Larafirebase\Facades\Larafirebase;
 use App\Http\Resources\TicketProductsResource;
 use App\Notifications\NewPurchaseNotification;
 use App\Exports\EmployeeSalesReportExportSheet;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class SalesController extends Controller
 {
-    
+
     public function store( Request $request ) {
 
         // convert json to array
@@ -35,7 +36,7 @@ class SalesController extends Controller
         $data = [];
 
         try {
-            
+
             DB::transaction( function() use ( $products, $employee_id, $request) {
 
                 $sale = Sale::create([
@@ -158,7 +159,7 @@ class SalesController extends Controller
         $route = Route::where('day', $dayOfTheWeek )
                     ->where('employee_id', Auth::id() )
                     ->with(['clients:id,name,last_name,email,created_at', 'clients.clientInformation'])
-                    ->first();                 
+                    ->first();
 
         if( $route ) {
 
@@ -168,9 +169,9 @@ class SalesController extends Controller
                     ->with('client.clientInformation')
                     ->get()
                     ->pluck('client.clientInformation.code');
-                    
+
             $route->logs = $logs;
-            
+
             return response()->json([
                 'ok'        => true,
                 'route'     => $route,
@@ -223,10 +224,12 @@ class SalesController extends Controller
             'sales'     => $data,
             'message'   => 'Ventas encontradas'
         ], 200 );
-        
+
     }
-    
-    public function downloadExcelFromDates() {
+
+    public function downloadExcelFromDates( ): BinaryFileResponse
+    {
+
         $user = Auth::user();
         $query = Sale::query()->where('employee_id', $user->id);
         $filters = ['GENERALES', 'PREPAGO', 'PAGADO', 'POSTPAGO'];

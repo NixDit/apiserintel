@@ -15,6 +15,12 @@ class Route extends Model
         'day'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'pivot'
+    ];
+
     public function clients() {
         return $this->belongsToMany('App\Models\User')->using('App\Models\RouteClient');
     }

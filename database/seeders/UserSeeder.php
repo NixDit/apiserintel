@@ -20,10 +20,10 @@ class UserSeeder extends Seeder
             'name'      => 'Serintel',
             'last_name' => 'Superadmin',
             'email'     => 'superadmin@mail.com',
-            'password'  => Hash::make('Superadmin@2021'),
+            'password'  => Hash::make('Superadmin2022'),
         ]);
-        //END:: Create a superadmin
-        
+        //END:: Create an superadmin
+
         $superadmin->assignRole('superadmin');
 
 
@@ -32,9 +32,9 @@ class UserSeeder extends Seeder
             'name'      => 'Luis',
             'last_name' => 'Hernandez',
             'email'     => 'empleado@mail.com',
-            'password'  => Hash::make('Empleado@2021'),
+            'password'  => Hash::make('Empleado2022'),
         ]);
-        
+
         $employee->assignRole('employee');
         //END:: Create an employee
 
@@ -51,12 +51,12 @@ class UserSeeder extends Seeder
 
         //BEGIN:: Create a client
         $client = User::create([
-            'name'      => 'Abarrotes ',
-            'last_name' => 'La corona',
-            'email'     => 'lacorona@gmail.com',
-            'password'  => Hash::make('lacorona'),
+            'name'      => 'Josmar Salvador',
+            'last_name' => 'Marroquin Parra',
+            'email'     => 'josmarmp96@gmail.com',
+            'password'  => Hash::make('Cliente2022'),
         ]);
-        
+
         $client->assignRole('client');
 
         $client_code = 'SC-' . (str_pad( $client->id, 10, '0', STR_PAD_LEFT));
@@ -72,12 +72,12 @@ class UserSeeder extends Seeder
 
         //BEGIN:: Create a client
         $second_client = User::create([
-            'name'      => 'Abarrotes Rosy',
-            'last_name' => 'Mendez',
-            'email'     => 'rosy@gmail.com',
-            'password'  => Hash::make('rosy'),
+            'name'      => 'Juan Pablo',
+            'last_name' => 'Bonilla Mendez',
+            'email'     => 'jpm_caprico@gmail.com',
+            'password'  => Hash::make('Cliente2022'),
         ]);
-        
+
         $second_client->assignRole('client');
 
         $second_client_code = 'SC-' . (str_pad( $second_client->id, 10, '0', STR_PAD_LEFT));
@@ -93,12 +93,12 @@ class UserSeeder extends Seeder
 
          //BEGIN:: Create a client
          $third_client = User::create([
-            'name'      => 'Abarrotes el Gallo',
-            'last_name' => 'Tehuacan',
-            'email'     => 'elgallo@gmail.com',
-            'password'  => Hash::make('elgallo'),
+            'name'      => 'Adan',
+            'last_name' => 'Marroquin Mendez',
+            'email'     => 'adan_marroquin@gmail.com',
+            'password'  => Hash::make('Cliente2022'),
         ]);
-        
+
         $third_client->assignRole('client');
 
         $third_client_code = 'SC-' . (str_pad( $third_client->id, 10, '0', STR_PAD_LEFT));
@@ -176,6 +176,6 @@ class UserSeeder extends Seeder
         ]);
         //END:: Create a client
 
-        
+
     }
 }
