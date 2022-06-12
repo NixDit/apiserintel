@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\Superadmin;
 
 use App\Http\Resources\ClientResource;
+use App\Http\Resources\SaleCollection;
 use App\Http\Resources\UserResource;
 use App\Models\Sale;
 use App\Models\User;
@@ -135,8 +136,23 @@ class SuperadminController extends Controller
 
     public function getSales( Request $request) {
 
-        $sales = $this->salesQuery($request);
-        return $sales;
+        try {
+            $sales = $this->salesQuery($request);
+            $data = SaleCollection::collection( $sales );
+
+            return response()->json([
+                'ok'        => true,
+                'sales'     => $data,
+                'message'   => 'Ventas encontradas'
+            ]);
+
+        }catch (Throwable $th) {
+            return response()->json([
+                'ok'        => false,
+                'sales'     => [],
+                'message'   => 'Ocurrio un error al obtener las ventas'
+            ], 500);
+        }
 
     }
 

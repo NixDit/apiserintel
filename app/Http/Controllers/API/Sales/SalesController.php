@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API\Sales;
 
+use Illuminate\Support\Facades\Log;
 use PDF;
 use Carbon\Carbon;
 use App\Models\Sale;
@@ -227,46 +228,31 @@ class SalesController extends Controller
 
     }
 
-    public function downloadExcelFromDates( ): BinaryFileResponse
+    public function downloadExcelFromDates(): BinaryFileResponse
     {
 
         $user = Auth::user();
-        $query = Sale::query()->where('employee_id', $user->id);
+        $query = Sale::query();
         $filters = ['GENERALES', 'PREPAGO', 'PAGADO', 'POSTPAGO'];
 
-        if( request()->from_date == null && request()->to_date == null ) {
+        if( $user->hasRole('employee') )
+            $query->where('employee_id', $user->id);
 
-            $today = Carbon::today();
-            $today_format = $today->format('d-m-Y');
+        $from = Carbon::createFromFormat('d/m/Y', request()->from_date);
+        $to = Carbon::createFromFormat('d/m/Y', request()->to_date);
 
-            $query->whereDate('created_at', $today );
+        $from_format    = $from->format('d-m-Y');
+        $to_format      = $to->format('d-m-Y');
 
-            $query->when(request()->type != 0, function ($q) {
-                return $q->where('type', request()->type);
-            });
+        $query->whereBetween('created_at',[$from->format('Y-m-d 0:0:0'), $to->format('Y-m-d 23:59:59')] );
 
-            $sales = $query->get();
+        $query->when(request()->type != 0, function ($q) {
+            return $q->where('type', request()->type);
+        });
 
-            $excel_name = "VENTAS_{$filters[request()->type]}_REALIZADAS_POR_{$user->name}_{$today_format}.xlsx";
-        } else {
+        $sales = $query->orderBy('employee_id')->get();
 
-            $from = Carbon::createFromFormat('d/m/Y', request()->from_date);
-            $to = Carbon::createFromFormat('d/m/Y', request()->to_date);
-
-            $from_format    = $from->format('d-m-Y');
-            $to_format      = $to->format('d-m-Y');
-
-            $query->whereBetween('created_at',[$from->format('Y-m-d 0:0:0'), $to->format('Y-m-d 23:59:59')] );
-
-            $query->when(request()->type != 0, function ($q) {
-                return $q->where('type', request()->type);
-            });
-
-            $sales = $query->get();
-
-            $excel_name = "VENTAS_{$filters[request()->type]}_REALIZADAS_POR_{$user->name}_{$from_format}_A_{$to_format}.xlsx";
-
-        }
+        $excel_name = "VENTAS_{$filters[request()->type]}_REALIZADAS_POR_{$user->name}_{$from_format}_A_{$to_format}.xlsx";
 
         return Excel::download(new EmployeeSalesReportExportSheet($sales->chunk(50)), $excel_name );
 
