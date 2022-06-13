@@ -71,6 +71,7 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     //BEGIN:: Superadmin routes
     Route::post('/employees/store', [SuperadminController::class, 'storeEmployee'])->name('api.employee.store');
     Route::post('/clients/store', [SuperadminController::class, 'storeClient'])->name('api.client.store');
+    Route::get('/clients/qr', [SuperadminController::class, 'getQrClients'])->name('api.client.getQr');
     //END:: Superadmin routes
 
 });
