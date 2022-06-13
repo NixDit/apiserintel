@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers\API\Superadmin;
 
-use App\Http\Resources\SaleCollection;
 use Throwable;
 use Carbon\Carbon;
 use App\Models\Sale;
 use App\Models\User;
-use Barryvdh\DomPDF\Facade\PDF;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\PDF;
 use App\Models\ClientInformation;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\ClientResource;
+use App\Http\Resources\SaleCollection;
 
 class SuperadminController extends Controller
 {
@@ -187,6 +188,7 @@ class SuperadminController extends Controller
         $data          = (object)[];
         $pdf           = null;
         try {
+            Log::info('Se inicia la obtención de clientes');
             $id = request()->id;
             if(!is_null($id)){
                 if(is_numeric($id) && (int)$id > 0){
@@ -211,12 +213,14 @@ class SuperadminController extends Controller
             if(!$error){
                 $pdf = PDF::loadView('pdf.clients', ['data' => (array)$data]);
                 $name = (($data->type == 'individual') ? "cliente_{$client_information->business_name}" : 'lista_clientes' ).'_'.Carbon::now()->format('d-m-Y').'.pdf';
+                Log::info('Obtención de clientes completada correctamente');
                 return $pdf->download($name);
             }
         } catch (\Throwable $th) {
             $http_response = 400;
             $error         = true;
             $message       = "Ocurrió un error durante el proceso\nError: {$th->getMessage()}";
+            Log::info("Ocurrió un error durante el proceso\nError: {$th->getMessage()}");
         }
         return response()->json([
             'error'   => $error,
