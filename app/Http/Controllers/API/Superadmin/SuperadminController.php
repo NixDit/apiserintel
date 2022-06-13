@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers\API\Superadmin;
 
-use App\Http\Resources\ClientResource;
 use App\Http\Resources\SaleCollection;
-use App\Http\Resources\UserResource;
+use Throwable;
+use Carbon\Carbon;
 use App\Models\Sale;
 use App\Models\User;
-use Carbon\Carbon;
-use Illuminate\Http\JsonResponse;
+use Barryvdh\DomPDF\Facade\PDF;
 use Illuminate\Http\Request;
+use App\Models\ClientInformation;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Hash;
-use Throwable;
+use App\Http\Resources\ClientResource;
 
 class SuperadminController extends Controller
 {
@@ -176,6 +178,50 @@ class SuperadminController extends Controller
         });
 
         return $query->orderBy('client_id')->get();
+    }
+
+    public function getQrClients(){
+        $http_response = 201;
+        $error         = false;
+        $message       = null;
+        $data          = (object)[];
+        $pdf           = null;
+        try {
+            $id = request()->id;
+            if(!is_null($id)){
+                if(is_numeric($id) && (int)$id > 0){
+                    $client_information = ClientInformation::find($id);
+                    if($client_information){
+                        $data->client_information = $client_information;
+                        $data->type               = 'individual';
+                    } else {
+                        $http_response = 400;
+                        $error         = true;
+                        $message       = 'Información no encontrada';
+                    }
+                } else {
+                    $http_response = 400;
+                    $error         = true;
+                    $message       = 'ID inválido';
+                }
+            } else {
+                $data->client_information = $client_information = ClientInformation::get();
+                $data->type               = 'multiple';
+            }
+            if(!$error){
+                $pdf = PDF::loadView('pdf.clients', ['data' => (array)$data]);
+                $name = (($data->type == 'individual') ? "cliente_{$client_information->business_name}" : 'lista_clientes' ).'_'.Carbon::now()->format('d-m-Y').'.pdf';
+                return $pdf->download($name);
+            }
+        } catch (\Throwable $th) {
+            $http_response = 400;
+            $error         = true;
+            $message       = "Ocurrió un error durante el proceso\nError: {$th->getMessage()}";
+        }
+        return response()->json([
+            'error'   => $error,
+            'message' => $message
+        ], $http_response);
     }
 
 }
