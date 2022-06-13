@@ -178,7 +178,7 @@ class SuperadminController extends Controller
             return $q->where('type', request('type'));
         });
 
-        return $query->orderBy('client_id')->get();
+        return $query->orderBy('employee_id')->get();
     }
 
     public function getQrClients(){
