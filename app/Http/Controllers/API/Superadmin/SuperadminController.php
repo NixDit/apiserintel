@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use App\Models\Sale;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade\PDF;
+use PDF;
 use App\Models\ClientInformation;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
@@ -211,7 +211,7 @@ class SuperadminController extends Controller
                 $data->type               = 'multiple';
             }
             if(!$error){
-                $pdf = PDF::loadView('pdf.clients', ['data' => (array)$data]);
+                $pdf  = PDF::loadView('pdf.clients', ['data' => (array)$data]);
                 $name = (($data->type == 'individual') ? "cliente_{$client_information->business_name}" : 'lista_clientes' ).'_'.Carbon::now()->format('d-m-Y').'.pdf';
                 Log::info('Obtención de clientes completada correctamente');
                 return $pdf->download($name);
