@@ -64,7 +64,7 @@
             <td>
                 <!--LOGO-->
                 <div style="text-align: right;">
-                    <img src="{{ asset('images/Logo.png') }}" width="200px" alt="">
+                    <img src="{{ public_path('images/Logo.png') }}" width="200px" alt="">
                 </div>
                 <!--DESCRIPTION below logo-->
                 <p style="width: 90%;margin: 0 0 0 auto;">
