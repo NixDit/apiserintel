@@ -192,14 +192,21 @@ class SuperadminController extends Controller
             $id = request()->id;
             if(!is_null($id)){
                 if(is_numeric($id) && (int)$id > 0){
-                    $client_information = ClientInformation::find($id);
-                    if($client_information){
-                        $data->client_information = $client_information;
-                        $data->type               = 'individual';
+                    $user = User::find($id);
+                    if($user){
+                        $client_information = $user->clientInformation;
+                        if($client_information){
+                            $data->client_information = $client_information;
+                            $data->type               = 'individual';
+                        } else {
+                            $http_response = 400;
+                            $error         = true;
+                            $message       = 'El usuario no contiene información de tipo cliente';
+                        }
                     } else {
                         $http_response = 400;
                         $error         = true;
-                        $message       = 'Información no encontrada';
+                        $message       = 'Usuario no encontrado';
                     }
                 } else {
                     $http_response = 400;
