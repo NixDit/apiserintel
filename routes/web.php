@@ -13,12 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect()->route('login');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
+// GENERAL ROUTES
+require __DIR__.'/includes/general.php';
+// AUTH ROUTES
 require __DIR__.'/auth.php';
