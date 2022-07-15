@@ -42,7 +42,7 @@
                             <div class="d-flex align-items-center">
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-35px symbol-circle">
-                                    <img alt="Pic" src="assets/media/avatars/300-6.jpg" />
+                                    <img alt="Pic" src="{{ asset('metronic/assets/media/avatars/300-6.jpg') }}" />
                                 </div>
                                 <!--end::Avatar-->
                                 <!--begin::Details-->
@@ -110,7 +110,7 @@
                             <div class="d-flex align-items-center">
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-35px symbol-circle">
-                                    <img alt="Pic" src="assets/media/avatars/300-1.jpg" />
+                                    <img alt="Pic" src="{{ asset('metronic/assets/media/avatars/300-1.jpg') }}" />
                                 </div>
                                 <!--end::Avatar-->
                                 <!--begin::Details-->
@@ -144,7 +144,7 @@
                             <div class="d-flex align-items-center">
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-35px symbol-circle">
-                                    <img alt="Pic" src="assets/media/avatars/300-5.jpg" />
+                                    <img alt="Pic" src="{{ asset('metronic/assets/media/avatars/300-5.jpg') }}" />
                                 </div>
                                 <!--end::Avatar-->
                                 <!--begin::Details-->
@@ -178,7 +178,7 @@
                             <div class="d-flex align-items-center">
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-35px symbol-circle">
-                                    <img alt="Pic" src="assets/media/avatars/300-25.jpg" />
+                                    <img alt="Pic" src="{{ asset('metronic/assets/media/avatars/300-25.jpg') }}" />
                                 </div>
                                 <!--end::Avatar-->
                                 <!--begin::Details-->
@@ -246,7 +246,7 @@
                             <div class="d-flex align-items-center">
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-35px symbol-circle">
-                                    <img alt="Pic" src="assets/media/avatars/300-9.jpg" />
+                                    <img alt="Pic" src="{{ asset('metronic/assets/media/avatars/300-9.jpg') }}" />
                                 </div>
                                 <!--end::Avatar-->
                                 <!--begin::Details-->
@@ -348,7 +348,7 @@
                             <div class="d-flex align-items-center">
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-35px symbol-circle">
-                                    <img alt="Pic" src="assets/media/avatars/300-23.jpg" />
+                                    <img alt="Pic" src="{{ asset('metronic/assets/media/avatars/300-23.jpg') }}" />
                                 </div>
                                 <!--end::Avatar-->
                                 <!--begin::Details-->
@@ -416,7 +416,7 @@
                             <div class="d-flex align-items-center">
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-35px symbol-circle">
-                                    <img alt="Pic" src="assets/media/avatars/300-12.jpg" />
+                                    <img alt="Pic" src="{{ asset('metronic/assets/media/avatars/300-12.jpg') }}" />
                                 </div>
                                 <!--end::Avatar-->
                                 <!--begin::Details-->

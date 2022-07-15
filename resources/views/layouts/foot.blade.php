@@ -29,7 +29,7 @@
 		<script src="https://cdn.amcharts.com/lib/5/geodata/usaLow.js"></script>
 		<script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZonesLow.js"></script>
 		<script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js"></script>
-		<script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
+		<script src="{{ asset('metronic/assets/plugins/custom/datatables/datatables.bundle.js?v='.rand()) }}"></script>
 		<!--end::Vendors Javascript-->
 		<!--begin::Custom Javascript(used by this page)-->
 		<script src="{{ asset('metronic/assets/js/widgets.bundle.js?v='.rand()) }}"></script>

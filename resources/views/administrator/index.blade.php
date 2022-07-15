@@ -1,7 +1,7 @@
 @extends('index')
 @section('title','Serintel | Tablero de control')
 @section('root')
-<div class="d-flex flex-column flex-root">
+<div class="d-flex flex-column flex-root" id="app">
     <!--begin::Page-->
     <div class="page d-flex flex-row flex-column-fluid">
         <!--begin::Aside-->

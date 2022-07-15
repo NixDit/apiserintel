@@ -3,7 +3,7 @@
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         <!--begin::Logo-->
         <a href="../../demo13/dist/index.html">
-            <img alt="Logo" src="assets/media/logos/demo13.svg" class="h-15px logo" />
+            <img alt="Logo" src="{{ asset('metronic/assets/media/logos/demo13.svg') }}" class="h-15px logo" />
         </a>
         <!--end::Logo-->
         <!--begin::Aside toggler-->

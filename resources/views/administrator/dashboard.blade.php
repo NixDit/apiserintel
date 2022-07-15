@@ -149,7 +149,7 @@
             <!--begin::Col-->
             <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-md-5 mb-xl-10">
                 <!--begin::Card widget 20-->
-                <div class="card card-flush bgi-no-repeat bgi-size-contain bgi-position-x-end h-md-50 mb-5 mb-xl-10" style="background-color: #F1416C;background-image:url('assets/media/patterns/vector-1.png')">
+                <div class="card card-flush bgi-no-repeat bgi-size-contain bgi-position-x-end h-md-50 mb-5 mb-xl-10" style="background-color: #F1416C;background-image:url('metronic/assets/media/patterns/vector-1.png')">
                     <!--begin::Header-->
                     <div class="card-header pt-5">
                         <!--begin::Title-->
@@ -208,19 +208,19 @@
                                 <span class="symbol-label bg-warning text-inverse-warning fw-bold">A</span>
                             </div>
                             <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Michael Eberon">
-                                <img alt="Pic" src="assets/media/avatars/300-11.jpg" />
+                                <img alt="Pic" src="{{ asset('metronic/assets/media/avatars/300-11.jpg') }}" />
                             </div>
                             <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Susan Redwood">
                                 <span class="symbol-label bg-primary text-inverse-primary fw-bold">S</span>
                             </div>
                             <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Melody Macy">
-                                <img alt="Pic" src="assets/media/avatars/300-2.jpg" />
+                                <img alt="Pic" src="{{ asset('metronic/assets/media/avatars/300-2.jpg') }}" />
                             </div>
                             <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Perry Matthew">
                                 <span class="symbol-label bg-danger text-inverse-danger fw-bold">P</span>
                             </div>
                             <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Barry Walter">
-                                <img alt="Pic" src="assets/media/avatars/300-12.jpg" />
+                                <img alt="Pic" src="{{ asset('metronic/assets/media/avatars/300-12.jpg') }}" />
                             </div>
                             <a href="#" class="symbol symbol-35px symbol-circle" data-bs-toggle="modal" data-bs-target="#kt_modal_view_users">
                                 <span class="symbol-label bg-dark text-gray-300 fs-8 fw-bold">+42</span>
@@ -495,7 +495,7 @@
                 <!--begin::Engage widget 10-->
                 <div class="card card-flush h-md-100">
                     <!--begin::Body-->
-                    <div class="card-body d-flex flex-column justify-content-between mt-9 bgi-no-repeat bgi-size-cover bgi-position-x-center pb-0" style="background-position: 100% 50%; background-image:url('assets/media/stock/900x600/42.png')">
+                    <div class="card-body d-flex flex-column justify-content-between mt-9 bgi-no-repeat bgi-size-cover bgi-position-x-center pb-0" style="background-position: 100% 50%; background-image:url('metronic/assets/media/stock/900x600/42.png')">
                         <!--begin::Wrapper-->
                         <div class="mb-10">
                             <!--begin::Title-->
@@ -517,8 +517,8 @@
                         </div>
                         <!--begin::Wrapper-->
                         <!--begin::Illustration-->
-                        <img class="mx-auto h-150px h-lg-200px theme-light-show" src="assets/media/illustrations/misc/upgrade.svg" alt="" />
-                        <img class="mx-auto h-150px h-lg-200px theme-dark-show" src="assets/media/illustrations/misc/upgrade-dark.svg" alt="" />
+                        <img class="mx-auto h-150px h-lg-200px theme-light-show" src="{{ asset('metronic/assets/media/illustrations/misc/upgrade.svg') }}" alt="" />
+                        <img class="mx-auto h-150px h-lg-200px theme-dark-show" src="{{ asset('metronic/assets/media/illustrations/misc/upgrade-dark.svg') }}" alt="" />
                         <!--end::Illustration-->
                     </div>
                     <!--end::Body-->
@@ -1001,7 +1001,7 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="symbol symbol-50px me-3">
-                                                            <img src="assets/media/avatars/300-3.jpg" class="" alt="" />
+                                                            <img src="{{ asset('metronic/assets/media/avatars/300-3.jpg') }}" class="" alt="" />
                                                         </div>
                                                         <div class="d-flex justify-content-start flex-column">
                                                             <a href="../../demo13/dist/pages/user-profile/overview.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Guy Hawkins</a>
@@ -1032,7 +1032,7 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="symbol symbol-50px me-3">
-                                                            <img src="assets/media/avatars/300-2.jpg" class="" alt="" />
+                                                            <img src="{{ asset('metronic/assets/media/avatars/300-2.jpg') }}" class="" alt="" />
                                                         </div>
                                                         <div class="d-flex justify-content-start flex-column">
                                                             <a href="../../demo13/dist/pages/user-profile/overview.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Jane Cooper</a>
@@ -1063,7 +1063,7 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="symbol symbol-50px me-3">
-                                                            <img src="assets/media/avatars/300-9.jpg" class="" alt="" />
+                                                            <img src="{{ asset('metronic/assets/media/avatars/300-9.jpg') }}" class="" alt="" />
                                                         </div>
                                                         <div class="d-flex justify-content-start flex-column">
                                                             <a href="../../demo13/dist/pages/user-profile/overview.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Jacob Jones</a>
@@ -1094,7 +1094,7 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="symbol symbol-50px me-3">
-                                                            <img src="assets/media/avatars/300-7.jpg" class="" alt="" />
+                                                            <img src="{{ asset('metronic/assets/media/avatars/300-7.jpg') }}" class="" alt="" />
                                                         </div>
                                                         <div class="d-flex justify-content-start flex-column">
                                                             <a href="../../demo13/dist/pages/user-profile/overview.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Cody Fishers</a>
@@ -1151,7 +1151,7 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="symbol symbol-50px me-3">
-                                                            <img src="assets/media/avatars/300-25.jpg" class="" alt="" />
+                                                            <img src="{{ asset('metronic/assets/media/avatars/300-25.jpg') }}" class="" alt="" />
                                                         </div>
                                                         <div class="d-flex justify-content-start flex-column">
                                                             <a href="../../demo13/dist/pages/user-profile/overview.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Brooklyn Simmons</a>
@@ -1182,7 +1182,7 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="symbol symbol-50px me-3">
-                                                            <img src="assets/media/avatars/300-24.jpg" class="" alt="" />
+                                                            <img src="{{ asset('metronic/assets/media/avatars/300-24.jpg') }}" class="" alt="" />
                                                         </div>
                                                         <div class="d-flex justify-content-start flex-column">
                                                             <a href="../../demo13/dist/pages/user-profile/overview.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Esther Howard</a>
@@ -1213,7 +1213,7 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="symbol symbol-50px me-3">
-                                                            <img src="assets/media/avatars/300-20.jpg" class="" alt="" />
+                                                            <img src="{{ asset('metronic/assets/media/avatars/300-20.jpg') }}" class="" alt="" />
                                                         </div>
                                                         <div class="d-flex justify-content-start flex-column">
                                                             <a href="../../demo13/dist/pages/user-profile/overview.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Annette Black</a>
@@ -1244,7 +1244,7 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="symbol symbol-50px me-3">
-                                                            <img src="assets/media/avatars/300-17.jpg" class="" alt="" />
+                                                            <img src="{{ asset('metronic/assets/media/avatars/300-17.jpg') }}" class="" alt="" />
                                                         </div>
                                                         <div class="d-flex justify-content-start flex-column">
                                                             <a href="../../demo13/dist/pages/user-profile/overview.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Marvin McKinney</a>
@@ -1301,7 +1301,7 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="symbol symbol-50px me-3">
-                                                            <img src="assets/media/avatars/300-11.jpg" class="" alt="" />
+                                                            <img src="{{ asset('metronic/assets/media/avatars/300-11.jpg') }}" class="" alt="" />
                                                         </div>
                                                         <div class="d-flex justify-content-start flex-column">
                                                             <a href="../../demo13/dist/pages/user-profile/overview.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Jacob Jones</a>
@@ -1332,7 +1332,7 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="symbol symbol-50px me-3">
-                                                            <img src="assets/media/avatars/300-23.jpg" class="" alt="" />
+                                                            <img src="{{ asset('metronic/assets/media/avatars/300-23.jpg') }}" class="" alt="" />
                                                         </div>
                                                         <div class="d-flex justify-content-start flex-column">
                                                             <a href="../../demo13/dist/pages/user-profile/overview.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Ronald Richards</a>
@@ -1363,7 +1363,7 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="symbol symbol-50px me-3">
-                                                            <img src="assets/media/avatars/300-4.jpg" class="" alt="" />
+                                                            <img src="{{ asset('metronic/assets/media/avatars/300-4.jpg') }}" class="" alt="" />
                                                         </div>
                                                         <div class="d-flex justify-content-start flex-column">
                                                             <a href="../../demo13/dist/pages/user-profile/overview.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Leslie Alexander</a>
@@ -1394,7 +1394,7 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="symbol symbol-50px me-3">
-                                                            <img src="assets/media/avatars/300-1.jpg" class="" alt="" />
+                                                            <img src="{{ asset('metronic/assets/media/avatars/300-1.jpg') }}" class="" alt="" />
                                                         </div>
                                                         <div class="d-flex justify-content-start flex-column">
                                                             <a href="../../demo13/dist/pages/user-profile/overview.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Courtney Henry</a>
@@ -1451,7 +1451,7 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="symbol symbol-50px me-3">
-                                                            <img src="assets/media/avatars/300-12.jpg" class="" alt="" />
+                                                            <img src="{{ asset('metronic/assets/media/avatars/300-12.jpg') }}" class="" alt="" />
                                                         </div>
                                                         <div class="d-flex justify-content-start flex-column">
                                                             <a href="../../demo13/dist/pages/user-profile/overview.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Arlene McCoy</a>
@@ -1482,7 +1482,7 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="symbol symbol-50px me-3">
-                                                            <img src="assets/media/avatars/300-21.jpg" class="" alt="" />
+                                                            <img src="{{ asset('metronic/assets/media/avatars/300-21.jpg') }}" class="" alt="" />
                                                         </div>
                                                         <div class="d-flex justify-content-start flex-column">
                                                             <a href="../../demo13/dist/pages/user-profile/overview.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Marvin McKinneyr</a>
@@ -1513,7 +1513,7 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="symbol symbol-50px me-3">
-                                                            <img src="assets/media/avatars/300-30.jpg" class="" alt="" />
+                                                            <img src="{{ asset('metronic/assets/media/avatars/300-30.jpg') }}" class="" alt="" />
                                                         </div>
                                                         <div class="d-flex justify-content-start flex-column">
                                                             <a href="../../demo13/dist/pages/user-profile/overview.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Jacob Jones</a>
@@ -1544,7 +1544,7 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="symbol symbol-50px me-3">
-                                                            <img src="assets/media/avatars/300-14.jpg" class="" alt="" />
+                                                            <img src="{{ asset('metronic/assets/media/avatars/300-14.jpg') }}" class="" alt="" />
                                                         </div>
                                                         <div class="d-flex justify-content-start flex-column">
                                                             <a href="../../demo13/dist/pages/user-profile/overview.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Esther Howard</a>
@@ -1601,7 +1601,7 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="symbol symbol-50px me-3">
-                                                            <img src="assets/media/avatars/300-6.jpg" class="" alt="" />
+                                                            <img src="{{ asset('metronic/assets/media/avatars/300-6.jpg') }}" class="" alt="" />
                                                         </div>
                                                         <div class="d-flex justify-content-start flex-column">
                                                             <a href="../../demo13/dist/pages/user-profile/overview.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Jane Cooper</a>
@@ -1632,7 +1632,7 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="symbol symbol-50px me-3">
-                                                            <img src="assets/media/avatars/300-10.jpg" class="" alt="" />
+                                                            <img src="{{ asset('metronic/assets/media/avatars/300-10.jpg') }}" class="" alt="" />
                                                         </div>
                                                         <div class="d-flex justify-content-start flex-column">
                                                             <a href="../../demo13/dist/pages/user-profile/overview.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Esther Howard</a>
@@ -1663,7 +1663,7 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="symbol symbol-50px me-3">
-                                                            <img src="assets/media/avatars/300-9.jpg" class="" alt="" />
+                                                            <img src="{{ asset('metronic/assets/media/avatars/300-9.jpg') }}" class="" alt="" />
                                                         </div>
                                                         <div class="d-flex justify-content-start flex-column">
                                                             <a href="../../demo13/dist/pages/user-profile/overview.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Jacob Jones</a>
@@ -1694,7 +1694,7 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="symbol symbol-50px me-3">
-                                                            <img src="assets/media/avatars/300-3.jpg" class="" alt="" />
+                                                            <img src="{{ asset('metronic/assets/media/avatars/300-3.jpg') }}" class="" alt="" />
                                                         </div>
                                                         <div class="d-flex justify-content-start flex-column">
                                                             <a href="../../demo13/dist/pages/user-profile/overview.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Ralph Edwards</a>
@@ -1753,7 +1753,7 @@
                             <!--begin::Col-->
                             <div class="col-sm-6 mb-10 mb-sm-0">
                                 <!--begin::Image-->
-                                <div class="bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-400px min-h-sm-100 h-100" style="background-size: 100% 100%;background-image:url('assets/media/stock/600x600/img-65.jpg')"></div>
+                                <div class="bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-400px min-h-sm-100 h-100" style="background-size: 100% 100%;background-image:url('metronic/assets/media/stock/600x600/img-65.jpg')"></div>
                                 <!--end::Image-->
                             </div>
                             <!--end::Col-->
@@ -1780,7 +1780,7 @@
                                             <div class="d-flex align-items-center me-5 me-xl-13">
                                                 <!--begin::Symbol-->
                                                 <div class="symbol symbol-30px symbol-circle me-3">
-                                                    <img src="assets/media/avatars/300-3.jpg" class="" alt="" />
+                                                    <img src="{{ asset('metronic/assets/media/avatars/300-3.jpg') }}" class="" alt="" />
                                                 </div>
                                                 <!--end::Symbol-->
                                                 <!--begin::Info-->
@@ -1856,10 +1856,10 @@
                                         <!--begin::Users group-->
                                         <div class="symbol-group symbol-hover flex-nowrap">
                                             <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Melody Macy">
-                                                <img alt="Pic" src="assets/media/avatars/300-2.jpg" />
+                                                <img alt="Pic" src="{{ asset('metronic/assets/media/avatars/300-2.jpg') }}" />
                                             </div>
                                             <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Michael Eberon">
-                                                <img alt="Pic" src="assets/media/avatars/300-3.jpg" />
+                                                <img alt="Pic" src="{{ asset('metronic/assets/media/avatars/300-3.jpg') }}" />
                                             </div>
                                             <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Susan Redwood">
                                                 <span class="symbol-label bg-primary text-inverse-primary fw-bold">S</span>
@@ -2460,7 +2460,7 @@
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <div class="symbol symbol-50px me-3">
-                                                    <img src="assets/media/stock/600x600/img-49.jpg" class="" alt="" />
+                                                    <img src="{{ asset('metronic/assets/media/stock/600x600/img-49.jpg') }}" class="" alt="" />
                                                 </div>
                                                 <div class="d-flex justify-content-start flex-column">
                                                     <a href="#" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Mivy App</a>
@@ -2507,7 +2507,7 @@
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <div class="symbol symbol-50px me-3">
-                                                    <img src="assets/media/stock/600x600/img-40.jpg" class="" alt="" />
+                                                    <img src="{{ asset('metronic/assets/media/stock/600x600/img-40.jpg') }}" class="" alt="" />
                                                 </div>
                                                 <div class="d-flex justify-content-start flex-column">
                                                     <a href="#" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Avionica</a>
@@ -2554,7 +2554,7 @@
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <div class="symbol symbol-50px me-3">
-                                                    <img src="assets/media/stock/600x600/img-39.jpg" class="" alt="" />
+                                                    <img src="{{ asset('metronic/assets/media/stock/600x600/img-39.jpg') }}" class="" alt="" />
                                                 </div>
                                                 <div class="d-flex justify-content-start flex-column">
                                                     <a href="#" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Charto CRM</a>
@@ -2601,7 +2601,7 @@
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <div class="symbol symbol-50px me-3">
-                                                    <img src="assets/media/stock/600x600/img-47.jpg" class="" alt="" />
+                                                    <img src="{{ asset('metronic/assets/media/stock/600x600/img-47.jpg') }}" class="" alt="" />
                                                 </div>
                                                 <div class="d-flex justify-content-start flex-column">
                                                     <a href="#" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Tower Hill</a>
@@ -2648,7 +2648,7 @@
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <div class="symbol symbol-50px me-3">
-                                                    <img src="assets/media/stock/600x600/img-48.jpg" class="" alt="" />
+                                                    <img src="{{ asset('metronic/assets/media/stock/600x600/img-48.jpg') }}" class="" alt="" />
                                                 </div>
                                                 <div class="d-flex justify-content-start flex-column">
                                                     <a href="#" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">9 Degree</a>

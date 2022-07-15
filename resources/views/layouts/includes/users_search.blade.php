@@ -79,7 +79,7 @@
                                 <a href="#" class="d-flex align-items-center p-3 rounded bg-state-light bg-state-opacity-50 mb-1">
                                     <!--begin::Avatar-->
                                     <div class="symbol symbol-35px symbol-circle me-5">
-                                        <img alt="Pic" src="assets/media/avatars/300-6.jpg" />
+                                        <img alt="Pic" src="{{ asset('metronic/assets/media/avatars/300-6.jpg') }}" />
                                     </div>
                                     <!--end::Avatar-->
                                     <!--begin::Info-->
@@ -109,7 +109,7 @@
                                 <a href="#" class="d-flex align-items-center p-3 rounded bg-state-light bg-state-opacity-50 mb-1">
                                     <!--begin::Avatar-->
                                     <div class="symbol symbol-35px symbol-circle me-5">
-                                        <img alt="Pic" src="assets/media/avatars/300-1.jpg" />
+                                        <img alt="Pic" src="{{ asset('metronic/assets/media/avatars/300-1.jpg') }}" />
                                     </div>
                                     <!--end::Avatar-->
                                     <!--begin::Info-->
@@ -124,7 +124,7 @@
                                 <a href="#" class="d-flex align-items-center p-3 rounded bg-state-light bg-state-opacity-50 mb-1">
                                     <!--begin::Avatar-->
                                     <div class="symbol symbol-35px symbol-circle me-5">
-                                        <img alt="Pic" src="assets/media/avatars/300-5.jpg" />
+                                        <img alt="Pic" src="{{ asset('metronic/assets/media/avatars/300-5.jpg') }}" />
                                     </div>
                                     <!--end::Avatar-->
                                     <!--begin::Info-->
@@ -139,7 +139,7 @@
                                 <a href="#" class="d-flex align-items-center p-3 rounded bg-state-light bg-state-opacity-50 mb-1">
                                     <!--begin::Avatar-->
                                     <div class="symbol symbol-35px symbol-circle me-5">
-                                        <img alt="Pic" src="assets/media/avatars/300-25.jpg" />
+                                        <img alt="Pic" src="{{ asset('metronic/assets/media/avatars/300-25.jpg') }}" />
                                     </div>
                                     <!--end::Avatar-->
                                     <!--begin::Info-->
@@ -169,7 +169,7 @@
                                         <!--end::Checkbox-->
                                         <!--begin::Avatar-->
                                         <div class="symbol symbol-35px symbol-circle">
-                                            <img alt="Pic" src="assets/media/avatars/300-6.jpg" />
+                                            <img alt="Pic" src="{{ asset('metronic/assets/media/avatars/300-6.jpg') }}" />
                                         </div>
                                         <!--end::Avatar-->
                                         <!--begin::Details-->
@@ -241,7 +241,7 @@
                                         <!--end::Checkbox-->
                                         <!--begin::Avatar-->
                                         <div class="symbol symbol-35px symbol-circle">
-                                            <img alt="Pic" src="assets/media/avatars/300-1.jpg" />
+                                            <img alt="Pic" src="{{ asset('metronic/assets/media/avatars/300-1.jpg') }}" />
                                         </div>
                                         <!--end::Avatar-->
                                         <!--begin::Details-->
@@ -277,7 +277,7 @@
                                         <!--end::Checkbox-->
                                         <!--begin::Avatar-->
                                         <div class="symbol symbol-35px symbol-circle">
-                                            <img alt="Pic" src="assets/media/avatars/300-5.jpg" />
+                                            <img alt="Pic" src="{{ asset('metronic/assets/media/avatars/300-5.jpg') }}" />
                                         </div>
                                         <!--end::Avatar-->
                                         <!--begin::Details-->
@@ -313,7 +313,7 @@
                                         <!--end::Checkbox-->
                                         <!--begin::Avatar-->
                                         <div class="symbol symbol-35px symbol-circle">
-                                            <img alt="Pic" src="assets/media/avatars/300-25.jpg" />
+                                            <img alt="Pic" src="{{ asset('metronic/assets/media/avatars/300-25.jpg') }}" />
                                         </div>
                                         <!--end::Avatar-->
                                         <!--begin::Details-->
@@ -385,7 +385,7 @@
                                         <!--end::Checkbox-->
                                         <!--begin::Avatar-->
                                         <div class="symbol symbol-35px symbol-circle">
-                                            <img alt="Pic" src="assets/media/avatars/300-9.jpg" />
+                                            <img alt="Pic" src="{{ asset('metronic/assets/media/avatars/300-9.jpg') }}" />
                                         </div>
                                         <!--end::Avatar-->
                                         <!--begin::Details-->
@@ -493,7 +493,7 @@
                                         <!--end::Checkbox-->
                                         <!--begin::Avatar-->
                                         <div class="symbol symbol-35px symbol-circle">
-                                            <img alt="Pic" src="assets/media/avatars/300-23.jpg" />
+                                            <img alt="Pic" src="{{ asset('metronic/assets/media/avatars/300-23.jpg') }}" />
                                         </div>
                                         <!--end::Avatar-->
                                         <!--begin::Details-->
@@ -565,7 +565,7 @@
                                         <!--end::Checkbox-->
                                         <!--begin::Avatar-->
                                         <div class="symbol symbol-35px symbol-circle">
-                                            <img alt="Pic" src="assets/media/avatars/300-12.jpg" />
+                                            <img alt="Pic" src="{{ asset('metronic/assets/media/avatars/300-12.jpg') }}" />
                                         </div>
                                         <!--end::Avatar-->
                                         <!--begin::Details-->
@@ -637,7 +637,7 @@
                                         <!--end::Checkbox-->
                                         <!--begin::Avatar-->
                                         <div class="symbol symbol-35px symbol-circle">
-                                            <img alt="Pic" src="assets/media/avatars/300-13.jpg" />
+                                            <img alt="Pic" src="{{ asset('metronic/assets/media/avatars/300-13.jpg') }}" />
                                         </div>
                                         <!--end::Avatar-->
                                         <!--begin::Details-->
@@ -709,7 +709,7 @@
                                         <!--end::Checkbox-->
                                         <!--begin::Avatar-->
                                         <div class="symbol symbol-35px symbol-circle">
-                                            <img alt="Pic" src="assets/media/avatars/300-21.jpg" />
+                                            <img alt="Pic" src="{{ asset('metronic/assets/media/avatars/300-21.jpg') }}" />
                                         </div>
                                         <!--end::Avatar-->
                                         <!--begin::Details-->
@@ -787,7 +787,7 @@
                             <!--end::Message-->
                             <!--begin::Illustration-->
                             <div class="text-center px-5">
-                                <img src="assets/media/illustrations/unitedpalms-1/1.png" alt="" class="w-100 h-200px h-sm-325px" />
+                                <img src="{{ asset('metronic/assets/media/illustrations/unitedpalms-1/1.png') }}" alt="" class="w-100 h-200px h-sm-325px" />
                             </div>
                             <!--end::Illustration-->
                         </div>

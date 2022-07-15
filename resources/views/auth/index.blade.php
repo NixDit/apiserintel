@@ -31,7 +31,7 @@ License: For each use you must have a valid license purchased only from above li
 		<!--begin::Global Stylesheets Bundle(used by all pages)-->
 		<link href="{{ asset('metronic/assets/plugins/global/plugins.bundle.css?v='.rand()) }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('metronic/assets/css/style.bundle.css?v='.rand()) }}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('css/styles.css?v='.rand()) }}" rel="stylesheet" type="text/css" />
+        {{-- <link href="{{ asset('css/styles.css?v='.rand()) }}" rel="stylesheet" type="text/css" /> --}}
 		<!--end::Global Stylesheets Bundle-->
         <!--begin::Page bg image-->
         <style>body { background-image: url('metronic/assets/media/auth/bg4.jpg'); } [data-theme="dark"] body { background-image: url('metronic/assets/media/auth/bg4-dark.jpg'); }</style>

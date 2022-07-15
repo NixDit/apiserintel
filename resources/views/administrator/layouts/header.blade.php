@@ -11,7 +11,7 @@
         <!--begin::Mobile logo-->
         <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
             <a href="../../demo13/dist/index.html" class="d-lg-none">
-                <img alt="Logo" src="assets/media/logos/demo13-small.svg" class="h-25px" />
+                <img alt="Logo" src="{{ asset('metronic/assets/media/logos/demo13-small.svg') }}" class="h-25px" />
             </a>
         </div>
         <!--end::Mobile logo-->
@@ -689,7 +689,7 @@
                                                 <!--end:Col-->
                                                 <!--begin:Col-->
                                                 <div class="col-lg-4">
-                                                    <img src="assets/media/stock/600x600/img-82.jpg" class="rounded mw-100" alt="" />
+                                                    <img src="{{ asset('metronic/assets/media/stock/600x600/img-82.jpg') }}" class="rounded mw-100" alt="" />
                                                 </div>
                                                 <!--end:Col-->
                                             </div>
@@ -799,7 +799,7 @@
                                                 <!--end:Col-->
                                                 <!--begin:Col-->
                                                 <div class="col-lg-7">
-                                                    <img src="assets/media/stock/900x600/46.jpg" class="rounded mw-100" alt="" />
+                                                    <img src="{{ asset('metronic/assets/media/stock/900x600/46.jpg') }}" class="rounded mw-100" alt="" />
                                                 </div>
                                                 <!--end:Col-->
                                             </div>
@@ -1493,7 +1493,7 @@
                                                 <!--end:Col-->
                                                 <!--begin:Col-->
                                                 <div class="col-lg-5 pe-lg-5">
-                                                    <img src="assets/media/stock/600x600/img-84.jpg" class="rounded mw-100" alt="" />
+                                                    <img src="{{ asset('metronic/assets/media/stock/600x600/img-84.jpg') }}" class="rounded mw-100" alt="" />
                                                 </div>
                                                 <!--end:Col-->
                                             </div>
@@ -1564,7 +1564,7 @@
                                                 <!--end:Col-->
                                                 <!--begin:Col-->
                                                 <div class="col-lg-8">
-                                                    <img src="assets/media/stock/900x600/44.jpg" class="rounded mw-100" alt="" />
+                                                    <img src="{{ asset('metronic/assets/media/stock/900x600/44.jpg') }}" class="rounded mw-100" alt="" />
                                                 </div>
                                                 <!--end:Col-->
                                             </div>
@@ -2883,7 +2883,7 @@
                                         <a href="#" class="d-flex text-dark text-hover-primary align-items-center mb-5">
                                             <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
-                                                <img src="assets/media/avatars/300-6.jpg" alt="" />
+                                                <img src="{{ asset('metronic/assets/media/avatars/300-6.jpg') }}" alt="" />
                                             </div>
                                             <!--end::Symbol-->
                                             <!--begin::Title-->
@@ -2898,7 +2898,7 @@
                                         <a href="#" class="d-flex text-dark text-hover-primary align-items-center mb-5">
                                             <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
-                                                <img src="assets/media/avatars/300-2.jpg" alt="" />
+                                                <img src="{{ asset('metronic/assets/media/avatars/300-2.jpg') }}" alt="" />
                                             </div>
                                             <!--end::Symbol-->
                                             <!--begin::Title-->
@@ -2913,7 +2913,7 @@
                                         <a href="#" class="d-flex text-dark text-hover-primary align-items-center mb-5">
                                             <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
-                                                <img src="assets/media/avatars/300-9.jpg" alt="" />
+                                                <img src="{{ asset('metronic/assets/media/avatars/300-9.jpg') }}" alt="" />
                                             </div>
                                             <!--end::Symbol-->
                                             <!--begin::Title-->
@@ -2928,7 +2928,7 @@
                                         <a href="#" class="d-flex text-dark text-hover-primary align-items-center mb-5">
                                             <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
-                                                <img src="assets/media/avatars/300-14.jpg" alt="" />
+                                                <img src="{{ asset('metronic/assets/media/avatars/300-14.jpg') }}" alt="" />
                                             </div>
                                             <!--end::Symbol-->
                                             <!--begin::Title-->
@@ -2943,7 +2943,7 @@
                                         <a href="#" class="d-flex text-dark text-hover-primary align-items-center mb-5">
                                             <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
-                                                <img src="assets/media/avatars/300-11.jpg" alt="" />
+                                                <img src="{{ asset('metronic/assets/media/avatars/300-11.jpg') }}" alt="" />
                                             </div>
                                             <!--end::Symbol-->
                                             <!--begin::Title-->
@@ -2962,7 +2962,7 @@
                                             <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
                                                 <span class="symbol-label bg-light">
-                                                    <img class="w-20px h-20px" src="assets/media/svg/brand-logos/volicity-9.svg" alt="" />
+                                                    <img class="w-20px h-20px" src="{{ asset('metronic/assets/media/svg/brand-logos/volicity-9.svg') }}" alt="" />
                                                 </span>
                                             </div>
                                             <!--end::Symbol-->
@@ -2979,7 +2979,7 @@
                                             <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
                                                 <span class="symbol-label bg-light">
-                                                    <img class="w-20px h-20px" src="assets/media/svg/brand-logos/tvit.svg" alt="" />
+                                                    <img class="w-20px h-20px" src="{{ asset('metronic/assets/media/svg/brand-logos/tvit.svg') }}" alt="" />
                                                 </span>
                                             </div>
                                             <!--end::Symbol-->
@@ -2996,7 +2996,7 @@
                                             <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
                                                 <span class="symbol-label bg-light">
-                                                    <img class="w-20px h-20px" src="assets/media/svg/misc/infography.svg" alt="" />
+                                                    <img class="w-20px h-20px" src="{{ asset('metronic/assets/media/svg/misc/infography.svg') }}" alt="" />
                                                 </span>
                                             </div>
                                             <!--end::Symbol-->
@@ -3013,7 +3013,7 @@
                                             <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
                                                 <span class="symbol-label bg-light">
-                                                    <img class="w-20px h-20px" src="assets/media/svg/brand-logos/leaf.svg" alt="" />
+                                                    <img class="w-20px h-20px" src="{{ asset('metronic/assets/media/svg/brand-logos/leaf.svg') }}" alt="" />
                                                 </span>
                                             </div>
                                             <!--end::Symbol-->
@@ -3030,7 +3030,7 @@
                                             <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
                                                 <span class="symbol-label bg-light">
-                                                    <img class="w-20px h-20px" src="assets/media/svg/brand-logos/tower.svg" alt="" />
+                                                    <img class="w-20px h-20px" src="{{ asset('metronic/assets/media/svg/brand-logos/tower.svg') }}" alt="" />
                                                 </span>
                                             </div>
                                             <!--end::Symbol-->
@@ -3832,7 +3832,7 @@
                                     <!--end::Section-->
                                     <!--begin::Illustration-->
                                     <div class="text-center px-4">
-                                        <img class="mw-100 mh-200px" alt="image" src="assets/media/illustrations/unitedpalms-1/1.png" />
+                                        <img class="mw-100 mh-200px" alt="image" src="{{ asset('metronic/assets/media/illustrations/unitedpalms-1/1.png') }}" />
                                     </div>
                                     <!--end::Illustration-->
                                 </div>
@@ -4285,7 +4285,7 @@
                 <div class="d-flex align-items-stretch" id="kt_header_user_menu_toggle">
                     <!--begin::Menu wrapper-->
                     <div class="topbar-item cursor-pointer symbol px-3 px-lg-5 me-n3 me-lg-n5 symbol-30px symbol-md-35px" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end" data-kt-menu-flip="bottom">
-                        <img src="assets/media/avatars/300-1.jpg" alt="metronic" />
+                        <img src="{{ asset('metronic/assets/media/avatars/300-1.jpg') }}" alt="metronic" />
                     </div>
                     <!--begin::User account menu-->
                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-semibold py-4 fs-6 w-275px" data-kt-menu="true">
@@ -4294,7 +4294,7 @@
                             <div class="menu-content d-flex align-items-center px-3">
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-50px me-5">
-                                    <img alt="Logo" src="assets/media/avatars/300-1.jpg" />
+                                    <img alt="Logo" src="{{ asset('metronic/assets/media/avatars/300-1.jpg') }}" />
                                 </div>
                                 <!--end::Avatar-->
                                 <!--begin::Username-->
@@ -4384,7 +4384,7 @@
                             <a href="#" class="menu-link px-5">
                                 <span class="menu-title position-relative">Language
                                 <span class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">English
-                                <img class="w-15px h-15px rounded-1 ms-2" src="assets/media/flags/united-states.svg" alt="" /></span></span>
+                                <img class="w-15px h-15px rounded-1 ms-2" src="{{ asset('metronic/assets/media/flags/united-states.svg') }}" alt="" /></span></span>
                             </a>
                             <!--begin::Menu sub-->
                             <div class="menu-sub menu-sub-dropdown w-175px py-4">
@@ -4392,7 +4392,7 @@
                                 <div class="menu-item px-3">
                                     <a href="../../demo13/dist/account/settings.html" class="menu-link d-flex px-5 active">
                                     <span class="symbol symbol-20px me-4">
-                                        <img class="rounded-1" src="assets/media/flags/united-states.svg" alt="" />
+                                        <img class="rounded-1" src="{{ asset('metronic/assets/media/flags/united-states.svg') }}" alt="" />
                                     </span>English</a>
                                 </div>
                                 <!--end::Menu item-->
@@ -4400,7 +4400,7 @@
                                 <div class="menu-item px-3">
                                     <a href="../../demo13/dist/account/settings.html" class="menu-link d-flex px-5">
                                     <span class="symbol symbol-20px me-4">
-                                        <img class="rounded-1" src="assets/media/flags/spain.svg" alt="" />
+                                        <img class="rounded-1" src="{{ asset('metronic/assets/media/flags/spain.svg') }}" alt="" />
                                     </span>Spanish</a>
                                 </div>
                                 <!--end::Menu item-->
@@ -4408,7 +4408,7 @@
                                 <div class="menu-item px-3">
                                     <a href="../../demo13/dist/account/settings.html" class="menu-link d-flex px-5">
                                     <span class="symbol symbol-20px me-4">
-                                        <img class="rounded-1" src="assets/media/flags/germany.svg" alt="" />
+                                        <img class="rounded-1" src="{{ asset('metronic/assets/media/flags/germany.svg') }}" alt="" />
                                     </span>German</a>
                                 </div>
                                 <!--end::Menu item-->
@@ -4416,7 +4416,7 @@
                                 <div class="menu-item px-3">
                                     <a href="../../demo13/dist/account/settings.html" class="menu-link d-flex px-5">
                                     <span class="symbol symbol-20px me-4">
-                                        <img class="rounded-1" src="assets/media/flags/japan.svg" alt="" />
+                                        <img class="rounded-1" src="{{ asset('metronic/assets/media/flags/japan.svg') }}" alt="" />
                                     </span>Japanese</a>
                                 </div>
                                 <!--end::Menu item-->
@@ -4424,7 +4424,7 @@
                                 <div class="menu-item px-3">
                                     <a href="../../demo13/dist/account/settings.html" class="menu-link d-flex px-5">
                                     <span class="symbol symbol-20px me-4">
-                                        <img class="rounded-1" src="assets/media/flags/france.svg" alt="" />
+                                        <img class="rounded-1" src="{{ asset('metronic/assets/media/flags/france.svg') }}" alt="" />
                                     </span>French</a>
                                 </div>
                                 <!--end::Menu item-->
