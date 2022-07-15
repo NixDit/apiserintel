@@ -390,12 +390,18 @@ render._withStripped = true;
   \*****************************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"]); // Initalizing Vue
+window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"]); // Vue
+// COMPONENTS
 
-Vue.component('example-component', (__webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]));
-Vue.component('login-form', (__webpack_require__(/*! ./components/auth/login/index.vue */ "./resources/js/components/auth/login/index.vue")["default"]));
-Vue.component('register-form', (__webpack_require__(/*! ./components/auth/register/index.vue */ "./resources/js/components/auth/register/index.vue")["default"]));
-var app = new Vue({}).$mount('#app');
+Vue.component('example-component', (__webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"])); // Example
+
+Vue.component('login-form', (__webpack_require__(/*! ./components/auth/login/index.vue */ "./resources/js/components/auth/login/index.vue")["default"])); // Login form
+
+Vue.component('register-form', (__webpack_require__(/*! ./components/auth/register/index.vue */ "./resources/js/components/auth/register/index.vue")["default"])); // Register form
+// INITIALIZING VUE
+
+var app = new Vue({//
+}).$mount('#app');
 
 /***/ }),
 
