@@ -27,6 +27,9 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class SalesController extends Controller
 {
+    public function index(){
+        return view('sales.index');
+    }
 
     public function store( Request $request ) {
 

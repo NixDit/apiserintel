@@ -40,6 +40,9 @@
 		<script src="{{ asset('metronic/assets/js/custom/utilities/modals/users-search.js?v='.rand()) }}"></script>
 		<!--end::Custom Javascript-->
 		<!--end::Javascript-->
+        {{-- SCRIPTS EXTRAS --}}
+        @stack('scripts')
+        {{-- END SCRIPTS EXTAS --}}
 	</body>
 	<!--end::Body-->
 </html>

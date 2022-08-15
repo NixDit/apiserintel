@@ -2,7 +2,7 @@
     <!--begin::Brand-->
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         <!--begin::Logo-->
-        <a href="../../demo13/dist/index.html">
+        <a href="{{ route('dashboard') }}">
             <img alt="Logo" src="{{ asset('metronic/assets/media/logos/demo13.svg') }}" class="h-15px logo" />
         </a>
         <!--end::Logo-->
@@ -42,7 +42,7 @@
                         <!--begin:Menu item-->
                         <div class="menu-item">
                             <!--begin:Menu link-->
-                            <a class="menu-link active" href="../../demo13/dist/index.html">
+                            <a class="menu-link active" href="{{ route('dashboard') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -54,7 +54,7 @@
                         <!--begin:Menu item-->
                         <div class="menu-item">
                             <!--begin:Menu link-->
-                            <a class="menu-link" href="../../demo13/dist/dashboards/ecommerce.html">
+                            <a class="menu-link" href="">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -297,7 +297,7 @@
                 <!--begin:Menu item-->
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="../../demo13/dist/documentation/base/utilities.html">
+                    <a class="menu-link" href="{{ route('index-sales') }}">
                         <span class="menu-icon">
                             <i class="bi bi-cart fs-3"></i>
                         </span>
@@ -309,7 +309,7 @@
                 <!--begin:Menu item-->
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="../../demo13/dist/documentation/base/utilities.html">
+                    <a class="menu-link" href="{{ route('index-client') }}">
                         <span class="menu-icon">
                             <i class="bi bi-people fs-3"></i>
                         </span>

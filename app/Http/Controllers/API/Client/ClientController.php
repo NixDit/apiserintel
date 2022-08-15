@@ -14,7 +14,9 @@ use App\Http\Resources\PrepaidPurchasesCollection;
 
 class ClientController extends Controller
 {
-
+    public function index(){
+        return view('serintel.customer.index');
+    }
 
     public function getClient( Request $request ) {
 

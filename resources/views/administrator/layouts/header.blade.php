@@ -4299,9 +4299,9 @@
                                 <!--end::Avatar-->
                                 <!--begin::Username-->
                                 <div class="d-flex flex-column">
-                                    <div class="fw-bold d-flex align-items-center fs-5">Max Smith
-                                    <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Pro</span></div>
-                                    <a href="#" class="fw-semibold text-muted text-hover-primary fs-7">max@kt.com</a>
+                                    <div class="fw-bold d-flex align-items-center fs-5">{{ Auth::user()->name }}
+                                    <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Activo</span></div>
+                                    <a href="#" class="fw-semibold text-muted text-hover-primary fs-7">{{ Auth::user()->email }}</a>
                                 </div>
                                 <!--end::Username-->
                             </div>
@@ -4312,13 +4312,13 @@
                         <!--end::Menu separator-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-5">
-                            <a href="../../demo13/dist/account/overview.html" class="menu-link px-5">My Profile</a>
+                            <a href="" class="menu-link px-5">Mi perfil</a>
                         </div>
                         <!--end::Menu item-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-5">
-                            <a href="../../demo13/dist/apps/projects/list.html" class="menu-link px-5">
-                                <span class="menu-text">My Projects</span>
+                            <a href="" class="menu-link px-5">
+                                <span class="menu-text">Actividades</span>
                                 <span class="menu-badge">
                                     <span class="badge badge-light-danger badge-circle fw-bold fs-7">3</span>
                                 </span>
@@ -4326,7 +4326,7 @@
                         </div>
                         <!--end::Menu item-->
                         <!--begin::Menu item-->
-                        <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="left-start">
+                        {{-- <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="left-start">
                             <a href="#" class="menu-link px-5">
                                 <span class="menu-title">My Subscription</span>
                                 <span class="menu-arrow"></span>
@@ -4369,12 +4369,12 @@
                                 <!--end::Menu item-->
                             </div>
                             <!--end::Menu sub-->
-                        </div>
+                        </div> --}}
                         <!--end::Menu item-->
                         <!--begin::Menu item-->
-                        <div class="menu-item px-5">
+                        {{-- <div class="menu-item px-5">
                             <a href="../../demo13/dist/account/statements.html" class="menu-link px-5">My Statements</a>
-                        </div>
+                        </div> --}}
                         <!--end::Menu item-->
                         <!--begin::Menu separator-->
                         <div class="separator my-2"></div>
@@ -4382,7 +4382,7 @@
                         <!--begin::Menu item-->
                         <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="left-start">
                             <a href="#" class="menu-link px-5">
-                                <span class="menu-title position-relative">Language
+                                <span class="menu-title position-relative">Idiomas
                                 <span class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">English
                                 <img class="w-15px h-15px rounded-1 ms-2" src="{{ asset('metronic/assets/media/flags/united-states.svg') }}" alt="" /></span></span>
                             </a>
@@ -4433,9 +4433,9 @@
                         </div>
                         <!--end::Menu item-->
                         <!--begin::Menu item-->
-                        <div class="menu-item px-5 my-1">
+                        {{-- <div class="menu-item px-5 my-1">
                             <a href="../../demo13/dist/account/settings.html" class="menu-link px-5">Account Settings</a>
-                        </div>
+                        </div> --}}
                         <!--end::Menu item-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-5">
