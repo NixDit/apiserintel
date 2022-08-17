@@ -3,7 +3,9 @@
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         <!--begin::Logo-->
         <a href="{{ route('dashboard') }}">
-            <img alt="Logo" src="{{ asset('metronic/assets/media/logos/demo13.svg') }}" class="h-15px logo" />
+            {{-- <img alt="Logo" src="{{ asset('metronic/assets/media/logos/demo13.svg') }}" class="h-15px logo" /> --}}
+            <img alt="Logo" src="{{ asset('images/Logo.png') }}" class="h-5px logo" />
+            {{-- <img alt="Logo" src="{{ asset('images/Logo.png') }}" class="h-35px logo" /> --}}
         </a>
         <!--end::Logo-->
         <!--begin::Aside toggler-->
@@ -314,6 +316,18 @@
                             <i class="bi bi-people fs-3"></i>
                         </span>
                         <span class="menu-title">Clientes</span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+                <!--begin:Menu item-->
+                <div class="menu-item">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="{{ route('index-product') }}">
+                        <span class="menu-icon">
+                            <i class="bi bi-phone-flip fs-3"></i>
+                        </span>
+                        <span class="menu-title">Productos</span>
                     </a>
                     <!--end:Menu link-->
                 </div>

@@ -6,7 +6,7 @@ var KTDatatablesButtons = function () {
     var datatable;
     // Private functions
     var initDatatable = function () {
-        let url     = `${HOST_URL}/sales/get-general-all`;
+        let url     = `${HOST_URL}/products/get-general-all`;
         let columns = [
             {   //ID
                 targets   : 0,
@@ -18,87 +18,113 @@ var KTDatatablesButtons = function () {
                 }
             },
             {
-                //CLIENT
+                //NAME
                 targets   : 1,
-                className : 'dt-head-center dt-body-center',
                 render    : function (data, type, row) {
-                    return `${row.customer.fullname}`;
+                    return `${row.name}`;
                 }
             },
             {
-                //EMPLOYEE
+                //SUPPLIER_CODE
                 targets   : 2,
-                className : 'dt-head-center dt-body-center',
                 orderable : false,
-                render    : function (data, type, row) {
-                    return `${row.seller.fullname}`;
+                render: function (data, type, row) {
+                    if(row.supplier_code == null){
+                        return `<span class="badge badge-light-info">--</span>`;
+                    }else {
+                        return `${row.supplier_code}`;
+                    }
+
+
                 }
             },
             {
-                //SUBTOTAL
+                //CODE
                 targets   : 3,
-                className : 'dt-head-center dt-body-center',
                 orderable : false,
                 render    : function (data, type, row) {
-                    return `$${Number(row.subtotal).toFixed(2)}`;
+                    return `${row.code}`;
                 }
             },
+            // {
+            //     //DESCRIPTION
+            //     targets   : 4,
+            //     className : 'dt-head-center dt-body-center',
+            //     orderable : false,
+            //     render    : function (data, type, row) {
+            //         return `${row.description}`;
+            //     }
+            // },
             {
-                //TOTAL
+                //COST
                 targets   : 4,
                 className : 'dt-head-center dt-body-center',
                 orderable : false,
                 render    : function (data, type, row) {
-                    return `$${Number(row.total).toFixed(2)}`;
+                    return `$${Number(row.cost).toFixed(2)}`;
                 }
             },
             {
-                //TYPE
-                targets: 5,
-                orderable: false,
-                render: function (data, type, row) {
-                    if(row.type == 1){
-                        return `<span class="badge badge-info">Prepago</span>`;
-                    }if (row.type == 2) {
-                        return `<span class="badge badge-success">Pagado</span>`;
-                    }if (row.type == 3){
-                        return `<span class="badge badge-primary">Postpago</span>`;
-                    } else {
-                        return `<span class="badge badge-secondary">--</span>`;
-                    }
-
-
+                //RETAIL_PRICE
+                targets   : 5,
+                className : 'dt-head-center dt-body-center',
+                orderable : false,
+                render    : function (data, type, row) {
+                    return `$${Number(row.retail_price).toFixed(2)}`;
                 }
             },
             {
-                //STATUS
-                targets: 6,
-                orderable: false,
-                render: function (data, type, row) {
-                    if(row.status == 0){
-                        return `<span class="badge badge-light-warning">Pendiente</span>`;
-                    }if (row.status == 1) {
-                        return `<span class="badge badge-light-success">Completado</span>`;
-                    }if (row.status == 2){
-                        return `<span class="badge badge-light-danger">Rechazado</span>`;
-                    } else {
-                        return `<span class="badge badge-light-secondary">--</span>`;
-                    }
+                //WHOLESALE_PRICE
+                targets   : 6,
+                className : 'dt-head-center dt-body-center',
+                orderable : false,
+                render    : function (data, type, row) {
+                    return `$${Number(row.wholesale_price).toFixed(2)}`;
                 }
             },
             {
-                //FOLIO
-                targets: 7,
-                orderable: false,
-                render: function (data, type, row) {
-                    return `${row.folio}`;
+                //SUPER_SPECIAL_PRICE
+                targets   : 7,
+                className : 'dt-head-center dt-body-center',
+                orderable : false,
+                render    : function (data, type, row) {
+                    return `$${Number(row.super_special_price).toFixed(2)}`;
                 }
             },
             {
-                //CREATED_AT
+                //BRAND_ID
                 targets: 8,
+                orderable: false,
                 render: function (data, type, row) {
-                    return `${row.format_created_at}`;
+                    return `${row.brand.name}`;
+                }
+            },
+            {
+                //CATEGORY_ID
+                targets: 9,
+                orderable: false,
+                render: function (data, type, row) {
+                    return `${row.category.name}`;
+                }
+            },
+            {
+                //LINE_ID
+                targets: 10,
+                render: function (data, type, row) {
+                    return `${row.line.name}`;
+                }
+            },
+            {
+                //ACCIONES
+                targets: 11,
+                data: null,
+                orderable: false,
+                className: 'text-end',
+                render: function (data, type, row) {
+                    return `
+                        <a href="#" class="btn btn-icon btn-light-warning"><i class="bi bi-pencil"></i></i></a>
+                        <a href="#" class="btn btn-icon btn-light-danger"><i class="bi bi-trash fs-2 me-2"></i></i></a>
+                    `;
                 }
             },
         ]

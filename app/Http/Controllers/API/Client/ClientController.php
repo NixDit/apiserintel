@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\ScanLog;
 use Illuminate\Http\Request;
+use App\Models\ClientInformation;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,7 @@ use App\Http\Resources\PrepaidPurchasesCollection;
 class ClientController extends Controller
 {
     public function index(){
-        return view('serintel.customer.index');
+        return view('serintel.client.index');
     }
 
     public function getClient( Request $request ) {
@@ -68,5 +69,11 @@ class ClientController extends Controller
             ], 400);
         }
 
+    }
+
+    public function getGeneralClients() {
+        $request = request();
+        $clients   = ClientInformation::with(['customer']);
+        return $clients->get();
     }
 }

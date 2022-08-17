@@ -12,6 +12,15 @@ use App\Http\Controllers\Controller;
 
 class ProductsController extends Controller
 {
+    public function index(){
+        return view('serintel.product.index');
+    }
+
+    public function getGeneralProducts() {
+        $request = request();
+        $products   = Product::with(['category','brand','line']);
+        return $products->get();
+    }
 
     public function store( Request $request ): JsonResponse
     {

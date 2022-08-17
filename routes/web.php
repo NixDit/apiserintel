@@ -22,4 +22,6 @@ require __DIR__.'/auth.php';
 
 require __DIR__.'/includes/sales.php';
 
-require __DIR__.'/includes/customer.php';
+require __DIR__.'/includes/client.php';
+
+require __DIR__.'/includes/product.php';
