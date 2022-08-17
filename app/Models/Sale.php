@@ -23,6 +23,15 @@ class Sale extends Model
         'created_at'
     ];
 
+    protected $appends = ['format_created_at'];
+
+    /**
+     * MUTATORS
+     */
+
+    public function getFormatCreatedAtAttribute() {
+        return $this->created_at->format('d/m/Y');
+    }
 
     public function customer() {
         return $this->belongsTo('App\Models\User', 'client_id', 'id');

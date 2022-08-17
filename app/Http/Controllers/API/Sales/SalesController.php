@@ -231,6 +231,12 @@ class SalesController extends Controller
 
     }
 
+    public function getGeneralSales() {
+        $request = request();
+        $sales   = Sale::with(['customer','seller']);
+        return $sales->get();
+    }
+
     public function downloadExcelFromDates(): BinaryFileResponse
     {
 

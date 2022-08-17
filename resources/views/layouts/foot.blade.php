@@ -39,6 +39,9 @@
 		<script src="{{ asset('metronic/assets/js/custom/utilities/modals/create-app.js?v='.rand()) }}"></script>
 		<script src="{{ asset('metronic/assets/js/custom/utilities/modals/users-search.js?v='.rand()) }}"></script>
 		<!--end::Custom Javascript-->
+		<!--begin::Factory-->
+		<script src="{{ asset('js/factory.js?v='.rand())}}"></script>
+		<!--end::Factory-->
 		<!--end::Javascript-->
         {{-- SCRIPTS EXTRAS --}}
         @stack('scripts')

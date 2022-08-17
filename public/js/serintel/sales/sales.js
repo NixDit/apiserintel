@@ -3,128 +3,96 @@
 // Class definition
 var KTDatatablesButtons = function () {
     // Shared variables
-    var table;
-    var dt;
-    var filterPayment;
-
+    var datatable;
     // Private functions
     var initDatatable = function () {
-
-
-        dt = $("#sales_datatable").DataTable({
-            searchDelay: 500,
-            processing: true,
-            serverSide: false,
-            order: [[0, 'asc']],
-            stateSave: true,
-            ajax: {
-                url: `${HOST_URL}/sales/get-all`,
-                method: 'GET'
+        let url     = `${HOST_URL}/sales/get-general-all`;
+        let columns = [
+            {   //ID
+                targets   : 0,
+                className : 'dt-head-center dt-body-center', // Center text for head and body column
+                orderable : true,
+                asc       : true,
+                render    : function (data,type, row) {
+                    return `${row.id}`;
+                }
             },
-            columns: [
-                { data: 'id' },
-                { data: 'client' },
-                { data: 'employee' },
-                { data: 'subtotal' },
-                { data: 'total' },
-                { data: 'type' },
-                { data: 'status' },
-                { data: 'folio' },
-                { data: 'created_at' },
-            ],
-            columnDefs: [
-                {   //ID
-                    targets: 0,
-                    orderable: true,
-                    asc: true,
-                    render: function (data) {
-                        return `${data}`;
-                    }
-                },
-                {
-                    //CLIENT
-                    targets: 1,
-                    render: function (data, type, row) {
-                        return `${data}`;
-                    }
-                },
-                {
-                    //EMPLOYEE
-                    targets: 2,
-                    orderable: false,
-                    render: function (data, type, row) {
-                        return `${data}`;
-                    }
-                },
-                {
-                    //SUBTOTAL
-                    targets: 3,
-                    orderable: false,
-                    render: function (data, type, row) {
-                        return `${data}`;
-                    }
-                },
-                {
-                    //TOTAL
-                    targets: 4,
-                    orderable: false,
-                    render: function (data, type, row) {
-                        return `${data}`;
-                    }
-                },
-                {
-                    //TYPE
-                    targets: 5,
-                    orderable: false,
-                    render: function (data, type, row) {
-                        return `${data}`;
-                    }
-                },
-                {
-                    //STATUS
-                    targets: 6,
-                    orderable: false,
-                    render: function (data, type, row) {
-                        return `${data}`;
-                    }
-                },
-                {
-                    //FOLIO
-                    targets: 7,
-                    orderable: false,
-                    render: function (data, type, row) {
-                        return `${data}`;
-                    }
-                },
-                {
-                    //CREATED_AT
-                    targets: 8,
-                    orderable: false,
-                    render: function (data, type, row) {
-                        return `${data}`;
-                    }
-                },
-            ],
-            // Add data-filter attribute
-            createdRow: function (row, data, dataIndex) {
-                $(row).find('td:eq(4)').attr('data-filter', data.CreditCardType);
-            }
-        });
-
-        table = dt.$;
-
-        // Re-init functions on every table re-draw -- more info: https://datatables.net/reference/event/draw
-        dt.on('draw', function () {
-            handleDeleteRows();
-            KTMenu.createInstances();
-        });
+            {
+                //CLIENT
+                targets   : 1,
+                className : 'dt-head-center dt-body-center',
+                render    : function (data, type, row) {
+                    return `${row.customer.fullname}`;
+                }
+            },
+            {
+                //EMPLOYEE
+                targets   : 2,
+                className : 'dt-head-center dt-body-center',
+                orderable : false,
+                render    : function (data, type, row) {
+                    return `${row.seller.fullname}`;
+                }
+            },
+            {
+                //SUBTOTAL
+                targets   : 3,
+                className : 'dt-head-center dt-body-center',
+                orderable : false,
+                render    : function (data, type, row) {
+                    return `$${Number(row.subtotal).toFixed(2)}`;
+                }
+            },
+            {
+                //TOTAL
+                targets   : 4,
+                className : 'dt-head-center dt-body-center',
+                orderable : false,
+                render    : function (data, type, row) {
+                    return `$${Number(row.total).toFixed(2)}`;
+                }
+            },
+            {
+                //TYPE
+                targets: 5,
+                orderable: false,
+                render: function (data, type, row) {
+                    return `${row.type}`;
+                }
+            },
+            {
+                //STATUS
+                targets: 6,
+                orderable: false,
+                render: function (data, type, row) {
+                    return `${row.status}`;
+                }
+            },
+            {
+                //FOLIO
+                targets: 7,
+                orderable: false,
+                render: function (data, type, row) {
+                    return `${row.folio}`;
+                }
+            },
+            {
+                //CREATED_AT
+                targets: 8,
+                orderable: false,
+                render: function (data, type, row) {
+                    return `${row.format_created_at}`;
+                }
+            },
+        ]
+        datatable = factoryNixDit.methods.activateDataTable(url,columns);
     }
 
-    // Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
+    // Search Datatable
     var handleSearchDatatable = function () {
-        const filterSearch = document.querySelector('[data-kt-docs-table-filter="search"]');
-        filterSearch.addEventListener('keyup', function (e) {
-            dt.search(e.target.value).draw();
+        $('#filter_client_name').on('keyup', function(event){ // Filter by client name
+            var client_name = $(this).val();
+            datatable.columns(1).search(client_name).draw();
         });
     }
 

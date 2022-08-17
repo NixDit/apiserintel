@@ -38,6 +38,7 @@ class User extends Authenticatable
     ];
 
     // protected $with = ['roles'];
+    protected $appends = ['fullname'];
 
     /**
      * The attributes that should be cast to native types.
@@ -47,6 +48,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * MUTATORS
+     */
+
+    public function getFullnameAttribute(){
+        return "{$this->name} {$this->last_name}";
+    }
 
 
     public function clientInformation() {

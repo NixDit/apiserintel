@@ -15,7 +15,7 @@
                 <div class="p-5">
                     <div class="col-md-4 my-2 my-md-0">
                         <div class="input-icon">
-                            <input type="text" class="form-control" placeholder="Buscar marca por nombre..." id="kt_dataTable_search" data-kt-docs-table-filter="search" />
+                            <input type="text" class="form-control" placeholder="Buscar cliente" id="filter_client_name"/>
                             <span>
                                 <i class="flaticon2-search-1 text-muted"></i>
                             </span>
@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <!--begin::Datatable-->
-                <table id="sales_datatable" class="table align-middle table-row-dashed fs-6 gy-5">
+                <table class="table align-middle table-row-dashed fs-6 gy-5 ajax_datatable">
                     <thead>
                     <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                         <th>N°</th>
