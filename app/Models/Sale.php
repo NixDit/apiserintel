@@ -15,8 +15,9 @@ class Sale extends Model
         'employee_id',
         'subtotal',
         'total',
-        'type',
-        'folio'
+        'type', // 1:Prepago, 2:Pagado, 3: Postpago
+        'folio',
+        'status' // 0:Pending, 1:Completed, 2:Rejected
     ];
 
     protected $casts = [
