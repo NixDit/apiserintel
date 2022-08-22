@@ -2,7 +2,7 @@
     <!--begin::Brand-->
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         <!--begin::Logo-->
-        <a href="{{ route('dashboard') }}">
+        <a href="{{ route('dashboard.app') }}">
             {{-- <img alt="Logo" src="{{ asset('metronic/assets/media/logos/demo13.svg') }}" class="h-15px logo" /> --}}
             <img alt="Logo" src="{{ asset('images/Logo.png') }}" class="h-5px logo" />
             {{-- <img alt="Logo" src="{{ asset('images/Logo.png') }}" class="h-35px logo" /> --}}
@@ -29,7 +29,7 @@
             <!--begin::Menu-->
             <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500" id="#kt_aside_menu" data-kt-menu="true">
                 <!--begin:Menu item-->
-                <div data-kt-menu-trigger="click" class="menu-item here show menu-accordion">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ setOpen('dashboard') }}">
                     <!--begin:Menu link-->
                     <span class="menu-link">
                         <span class="menu-icon">
@@ -44,7 +44,7 @@
                         <!--begin:Menu item-->
                         <div class="menu-item">
                             <!--begin:Menu link-->
-                            <a class="menu-link active" href="{{ route('dashboard') }}">
+                            <a class="menu-link {{ setActive('dashboard.app') }}" href="{{ route('dashboard.app') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -299,7 +299,7 @@
                 <!--begin:Menu item-->
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="{{ route('index-sales') }}">
+                    <a class="menu-link {{ setActive('index-sales') }}" href="{{ route('index-sales') }}">
                         <span class="menu-icon">
                             <i class="bi bi-cart fs-3"></i>
                         </span>

@@ -7,4 +7,4 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 // Dashboard route
-Route::get('/dashboard',[AdminController::class,'dashboard'])->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard-app-serintel',[AdminController::class,'dashboard'])->middleware(['auth'])->name('dashboard.app');
