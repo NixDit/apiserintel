@@ -17,32 +17,24 @@
                         <!--end::Subtitle=-->
                     </div>
                     <!--begin::Heading-->
-                    <!--begin::Login options-->
+                    <!--begin::Login options
                     <div class="row g-3 mb-9">
-                        <!--begin::Col-->
                         <div class="col-md-6">
-                            <!--begin::Google link=-->
                             <a href="#" class="btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100">
                             <img alt="Logo" src="metronic/assets/media/svg/brand-logos/google-icon.svg" class="h-15px me-3" />Iniciar con Google</a>
-                            <!--end::Google link=-->
                         </div>
-                        <!--end::Col-->
-                        <!--begin::Col-->
                         <div class="col-md-6">
-                            <!--begin::Google link=-->
                             <a href="#" class="btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100">
                             <img alt="Logo" src="metronic/assets/media/svg/brand-logos/apple-black.svg" class="theme-light-show h-15px me-3" />
                             <img alt="Logo" src="metronic/assets/media/svg/brand-logos/apple-black-dark.svg" class="theme-dark-show h-15px me-3" />Iniciar con Apple</a>
-                            <!--end::Google link=-->
                         </div>
-                        <!--end::Col-->
                     </div>
-                    <!--end::Login options-->
-                    <!--begin::Separator-->
+                    end::Login options-->
+                    <!--begin::Separator
                     <div class="separator separator-content my-14">
                         <span class="w-125px text-gray-500 fw-semibold fs-7">o con correo</span>
                     </div>
-                    <!--end::Separator-->
+                    end::Separator-->
                     <input type="hidden" name="_token" :value="csrfToken">
                     <!--begin::Input group=-->
                     <div class="fv-row mb-8">
@@ -64,7 +56,7 @@
                     <div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
                         <div></div>
                         <!--begin::Link-->
-                        <a href="../../demo13/dist/authentication/layouts/creative/reset-password.html" class="link-primary">¿Olvidó su contraseña?</a>
+                        <a href="" class="link-primary">¿Olvidó su contraseña?</a>
                         <!--end::Link-->
                     </div>
                     <div class="alert alert-warning d-flex align-items-center p-5 mb-10" v-if="errors.length > 0">

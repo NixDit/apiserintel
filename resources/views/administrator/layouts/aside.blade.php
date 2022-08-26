@@ -4,8 +4,8 @@
         <!--begin::Logo-->
         <a href="{{ route('dashboard.app') }}">
             {{-- <img alt="Logo" src="{{ asset('metronic/assets/media/logos/demo13.svg') }}" class="h-15px logo" /> --}}
-            <img alt="Logo" src="{{ asset('images/Logo.png') }}" class="h-5px logo" />
-            {{-- <img alt="Logo" src="{{ asset('images/Logo.png') }}" class="h-35px logo" /> --}}
+            {{-- <img alt="Logo" src="{{ asset('images/Logo.png') }}" class="h-5px logo" /> --}}
+            <img alt="Logo" src="{{ asset('images/Logo.png') }}" class="h-35px logo" />
         </a>
         <!--end::Logo-->
         <!--begin::Aside toggler-->
@@ -311,7 +311,7 @@
                 <!--begin:Menu item-->
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="{{ route('index-client') }}">
+                    <a class="menu-link {{ setActive('index-client') }}" href="{{ route('index-client') }}">
                         <span class="menu-icon">
                             <i class="bi bi-people fs-3"></i>
                         </span>
@@ -323,7 +323,7 @@
                 <!--begin:Menu item-->
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="{{ route('index-product') }}">
+                    <a class="menu-link {{ setActive('index-product') }}" href="{{ route('index-product') }}">
                         <span class="menu-icon">
                             <i class="bi bi-phone-flip fs-3"></i>
                         </span>
@@ -3015,8 +3015,8 @@
     <!--end::Aside menu-->
     <!--begin::Footer-->
     <div class="aside-footer flex-column-auto pb-7 px-5" id="kt_aside_footer">
-        <a href="../../demo13/dist/documentation/getting-started.html" class="btn btn-custom btn-primary w-100" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click" title="200+ in-house components and 3rd-party plugins">
-            <span class="btn-label">Docs &amp; Components</span>
+        <a href="https://serintelcelular.com/" target="_blanck" class="btn btn-custom btn-primary w-100" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click" title="Ir a la Página Oficial de Serintel Celular">
+            <span class="btn-label">Serintel Celular</span>
             <!--begin::Svg Icon | path: icons/duotune/general/gen005.svg-->
             <span class="svg-icon btn-icon svg-icon-2">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

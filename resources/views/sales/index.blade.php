@@ -1,6 +1,7 @@
 @extends('administrator.index')
 @section('title','Ventas | Serintel')
 @section('content')
+
 <div class="d-flex flex-column-fluid">
     <div class="container-fluid">
         <div class="card card-custom">
@@ -23,7 +24,7 @@
                     </div>
                 </div>
                 <!--begin::Datatable-->
-                <table class="table align-middle table-row-dashed fs-6 gy-5 ajax_datatable">
+                <table class="table align-middle table-row-dashed fs-6 gy-4 ajax_datatable">
                     <thead>
                     <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                         <th>N°</th>

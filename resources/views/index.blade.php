@@ -16,14 +16,14 @@
 <!--end::Main-->
 <!--begin::Engage drawers-->
 <!--begin::Demos drawer-->
-@include('layouts.includes.demos')
+{{-- @include('layouts.includes.demos') --}}
 <!--end::Demos drawer-->
 <!--begin::Help drawer-->
-@include('layouts.includes.help')
+{{-- @include('layouts.includes.help') --}}
 <!--end::Help drawer-->
 <!--end::Engage drawers-->
 <!--begin::Engage toolbar-->
-@include('layouts.includes.engage')
+{{-- @include('layouts.includes.engage') --}}
 <!--end::Engage toolbar-->
 <!--begin::Scrolltop-->
 @include('layouts.includes.scrolltop')

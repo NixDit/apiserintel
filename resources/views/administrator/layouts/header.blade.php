@@ -10,8 +10,8 @@
         <!--end::Aside mobile toggle-->
         <!--begin::Mobile logo-->
         <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-            <a href="../../demo13/dist/index.html" class="d-lg-none">
-                <img alt="Logo" src="{{ asset('metronic/assets/media/logos/demo13-small.svg') }}" class="h-25px" />
+            <a href="{{ route('dashboard.app') }}" class="d-lg-none">
+                <img alt="Logo" src="{{ asset('metronic/assets/media/logos/favicon.png') }}" class="h-25px" />
             </a>
         </div>
         <!--end::Mobile logo-->

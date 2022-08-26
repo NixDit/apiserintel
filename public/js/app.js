@@ -176,7 +176,7 @@ var render = function render() {
     on: {
       submit: _vm.validateForm
     }
-  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _c("input", {
+  }, [_vm._m(0), _vm._v(" "), _c("input", {
     attrs: {
       type: "hidden",
       name: "_token"
@@ -238,7 +238,7 @@ var render = function render() {
     }
   }), _vm._v(" "), _vm.password_error ? _c("span", {
     staticClass: "text-danger"
-  }, [_vm._v(_vm._s(_vm.password_msg))]) : _vm._e()]), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm.errors.length > 0 ? _c("div", {
+  }, [_vm._v(_vm._s(_vm.password_msg))]) : _vm._e()]), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm.errors.length > 0 ? _c("div", {
     staticClass: "alert alert-warning d-flex align-items-center p-5 mb-10"
   }, [_c("span", {
     staticClass: "svg-icon svg-icon-2hx svg-icon-warning me-4"
@@ -298,59 +298,11 @@ var staticRenderFns = [function () {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "row g-3 mb-9"
-  }, [_c("div", {
-    staticClass: "col-md-6"
-  }, [_c("a", {
-    staticClass: "btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100",
-    attrs: {
-      href: "#"
-    }
-  }, [_c("img", {
-    staticClass: "h-15px me-3",
-    attrs: {
-      alt: "Logo",
-      src: "metronic/assets/media/svg/brand-logos/google-icon.svg"
-    }
-  }), _vm._v("Iniciar con Google")])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-6"
-  }, [_c("a", {
-    staticClass: "btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100",
-    attrs: {
-      href: "#"
-    }
-  }, [_c("img", {
-    staticClass: "theme-light-show h-15px me-3",
-    attrs: {
-      alt: "Logo",
-      src: "metronic/assets/media/svg/brand-logos/apple-black.svg"
-    }
-  }), _vm._v(" "), _c("img", {
-    staticClass: "theme-dark-show h-15px me-3",
-    attrs: {
-      alt: "Logo",
-      src: "metronic/assets/media/svg/brand-logos/apple-black-dark.svg"
-    }
-  }), _vm._v("Iniciar con Apple")])])]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "separator separator-content my-14"
-  }, [_c("span", {
-    staticClass: "w-125px text-gray-500 fw-semibold fs-7"
-  }, [_vm._v("o con correo")])]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
     staticClass: "d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8"
   }, [_c("div"), _vm._v(" "), _c("a", {
     staticClass: "link-primary",
     attrs: {
-      href: "../../demo13/dist/authentication/layouts/creative/reset-password.html"
+      href: ""
     }
   }, [_vm._v("¿Olvidó su contraseña?")])]);
 }];
