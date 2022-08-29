@@ -36,7 +36,7 @@
                         <th>Status</th>
                         <th>Folio</th>
                         <th>Fecha</th>
-                        {{-- <th class="text-end min-w-100px">Acciones</th> --}}
+                        <th class="text-end min-w-100px">Acciones</th>
                     </tr>
                     </thead>
                     <tbody class="text-gray-600 fw-bold">

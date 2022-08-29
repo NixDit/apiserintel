@@ -19,6 +19,19 @@ use App\Http\Resources\SaleCollection;
 
 class SuperadminController extends Controller
 {
+    public function index(){
+        $data        = (object)[];
+        $data->users = $this->getGeneralUser();
+        return view('serintel.user.index',compact('data'));
+    }
+
+    public function getGeneralUser() {
+        // $request = request();
+        // $users   = User::role('employee');
+        // $user   = User::all();
+        return User::get();
+        // return $users->get();
+    }
 
     public function getEmployees(): JsonResponse
     {

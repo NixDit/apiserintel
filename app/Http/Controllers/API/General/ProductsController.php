@@ -6,9 +6,11 @@ use App\Models\Line;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Session;
 
 class ProductsController extends Controller
 {
@@ -16,9 +18,48 @@ class ProductsController extends Controller
         return view('serintel.product.index');
     }
 
+    public function create()
+    {
+        $data               = (object)[];
+        $data->category     = Category::all();
+        $data->brand        = Brand::all();
+        $data->line         = Line::all();
+        return view('serintel.product.create', compact('data'));
+    }
+
+    public function storeproduct(Request $request)
+    {
+
+        $event = Product::create([
+            'name' =>$request->name,
+            'supplier_code' =>$request->supplier_code,
+            'code' =>$request->code,
+            'description' =>$request->description,
+            'cost' =>$request->cost,
+            'retail_price' =>$request->retail_price,
+            'wholesale_price' =>$request->wholesale_price,
+            'special_price' =>$request->special_price,
+            'super_special_price' =>$request->super_special_price,
+            'brand_id' =>$request->brand_id,
+            'category_id' =>$request->category_id,
+            'line_id' =>$request->line_id
+        ]);
+        // dd($event);
+
+        event(new Registered($event));
+
+        Session::flash('alert',[ // Message for Swal general alert
+            'type'    => 'success',
+            'message' => 'El producto ha sido agregado correctamente'
+        ]);
+        // return redirect()->route('view-products');
+        return back();
+    }
+
     public function getGeneralProducts() {
         $request = request();
-        $products   = Product::with(['category','brand','line']);
+        $products   = Product::with(['category','brand','line'])
+        ->whereNull('deleted_at');
         return $products->get();
     }
 
@@ -106,6 +147,7 @@ class ProductsController extends Controller
         }
 
     }
+
 
 
 }

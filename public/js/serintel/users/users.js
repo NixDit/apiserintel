@@ -6,7 +6,7 @@ var KTDatatablesButtons = function () {
     var datatable;
     // Private functions
     var initDatatable = function () {
-        let url     = `${HOST_URL}/sales/get-general-all`;
+        let url     = `${HOST_URL}/user/get-general-all`;
         let columns = [
             {   //ID
                 targets   : 0,
@@ -20,90 +20,61 @@ var KTDatatablesButtons = function () {
             {
                 //CLIENT
                 targets   : 1,
-                className : 'dt-head-center dt-body-center',
                 render    : function (data, type, row) {
-                    return `${row.customer.fullname}`;
+                    return `${row.name}`;
                 }
             },
             {
-                //EMPLOYEE
+                //CLIENT
                 targets   : 2,
-                className : 'dt-head-center dt-body-center',
-                orderable : false,
                 render    : function (data, type, row) {
-                    return `${row.seller.fullname}`;
+                    return `${row.last_name}`;
                 }
             },
             {
-                //SUBTOTAL
+                //CLIENT
                 targets   : 3,
-                className : 'dt-head-center dt-body-center',
-                orderable : false,
                 render    : function (data, type, row) {
-                    return `$${Number(row.subtotal).toFixed(2)}`;
+                    return `${row.email}`;
                 }
             },
             {
-                //TOTAL
+                //CLIENT
                 targets   : 4,
                 className : 'dt-head-center dt-body-center',
-                orderable : false,
                 render    : function (data, type, row) {
-                    return `$${Number(row.total).toFixed(2)}`;
+                    return `<button class="btn btn-light-info btn-sm modal_roles" data-roles="">Ver roles</button>`;
+                    return `${row.name}`;
                 }
             },
             {
-                //TYPE
-                targets: 5,
-                orderable: false,
-                render: function (data, type, row) {
-                    if(row.type == 1){
-                        return `<span class="badge badge-info">Prepago</span>`;
-                    }if (row.type == 2) {
-                        return `<span class="badge badge-success">Pagado</span>`;
-                    }if (row.type == 3){
-                        return `<span class="badge badge-primary">Postpago</span>`;
-                    } else {
-                        return `<span class="badge badge-secondary">--</span>`;
+                //CLIENT
+                targets   : 5,
+                className : 'dt-head-center dt-body-center',
+                render    : function (data, type, row) {
+                    if(row.status == 1){
+                        return `<span class="badge badge-light-success">Activo</span>`;
+                    }else {
+                        return `<span class="badge badge-light-danger">Inactivo</span>`;
                     }
-
-
+                    return `${row.status}`;
                 }
             },
             {
-                //STATUS
-                targets: 6,
-                orderable: false,
-                render: function (data, type, row) {
-                    if(row.status == 0){
-                        return `<span class="badge badge-light-warning">Pendiente</span>`;
-                    }if (row.status == 1) {
-                        return `<span class="badge badge-light-success">Completado</span>`;
-                    }if (row.status == 2){
-                        return `<span class="badge badge-light-danger">Rechazado</span>`;
-                    } else {
+                //CLIENT
+                targets   : 6,
+                className : 'dt-head-center dt-body-center',
+                render    : function (data, type, row) {
+                    if(row.last_login == null){
                         return `<span class="badge badge-light-secondary">--</span>`;
+                    }else {
+                        return `${row.last_login}`;
                     }
-                }
-            },
-            {
-                //FOLIO
-                targets: 7,
-                orderable: false,
-                render: function (data, type, row) {
-                    return `${row.folio}`;
-                }
-            },
-            {
-                //CREATED_AT
-                targets: 8,
-                render: function (data, type, row) {
-                    return `${row.format_created_at}`;
                 }
             },
             {
                 //ACCIONES
-                targets: 9,
+                targets: 7,
                 data: null,
                 orderable: false,
                 className: 'text-center',

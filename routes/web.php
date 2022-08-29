@@ -25,3 +25,5 @@ require __DIR__.'/includes/sales.php';
 require __DIR__.'/includes/client.php';
 
 require __DIR__.'/includes/product.php';
+
+require __DIR__.'/includes/user.php';

@@ -29,6 +29,7 @@
             <!--begin::Menu-->
             <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500" id="#kt_aside_menu" data-kt-menu="true">
                 <!--begin:Menu item-->
+                @hasanyrole('superadmin')
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ setOpen('dashboard') }}">
                     <!--begin:Menu link-->
                     <span class="menu-link">
@@ -286,6 +287,7 @@
                     </div>
                     <!--end:Menu sub-->
                 </div>
+                @endhasanyrole
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
                 <div class="menu-item pt-5">
@@ -297,6 +299,7 @@
                 </div>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
+                @hasanyrole('superadmin')
                 <div class="menu-item">
                     <!--begin:Menu link-->
                     <a class="menu-link {{ setActive('index-sales') }}" href="{{ route('index-sales') }}">
@@ -307,8 +310,10 @@
                     </a>
                     <!--end:Menu link-->
                 </div>
+                @endhasanyrole
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
+                @hasanyrole('superadmin')
                 <div class="menu-item">
                     <!--begin:Menu link-->
                     <a class="menu-link {{ setActive('index-client') }}" href="{{ route('index-client') }}">
@@ -319,8 +324,10 @@
                     </a>
                     <!--end:Menu link-->
                 </div>
+                @endhasanyrole
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
+                @hasanyrole('superadmin')
                 <div class="menu-item">
                     <!--begin:Menu link-->
                     <a class="menu-link {{ setActive('index-product') }}" href="{{ route('index-product') }}">
@@ -331,6 +338,7 @@
                     </a>
                     <!--end:Menu link-->
                 </div>
+                @endhasanyrole
                 <!--end:Menu item-->
 
 
@@ -1016,6 +1024,7 @@
                 </div> --}}
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
+                @hasanyrole('superadmin')
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <!--begin:Menu link-->
                     <span class="menu-link">
@@ -1055,6 +1064,7 @@
                     </div>
                     <!--end:Menu sub-->
                 </div>
+                @endhasanyrole
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
                 {{-- <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
@@ -1757,6 +1767,7 @@
                 </div>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
+                @hasanyrole('superadmin')
                 <div class="menu-item">
                     <!--begin:Menu link-->
                     <a class="menu-link" href="../../demo13/dist/documentation/base/utilities.html">
@@ -1767,8 +1778,10 @@
                     </a>
                     <!--end:Menu link-->
                 </div>
+                @endhasanyrole
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
+                @hasanyrole('superadmin')
                 <div class="menu-item">
                     <!--begin:Menu link-->
                     <a class="menu-link" href="../../demo13/dist/documentation/base/utilities.html">
@@ -1779,8 +1792,10 @@
                     </a>
                     <!--end:Menu link-->
                 </div>
+                @endhasanyrole
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
+                @hasanyrole('superadmin')
                 <div class="menu-item">
                     <!--begin:Menu link-->
                     <a class="menu-link" href="../../demo13/dist/documentation/base/utilities.html">
@@ -1791,8 +1806,10 @@
                     </a>
                     <!--end:Menu link-->
                 </div>
+                @endhasanyrole
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
+                @hasanyrole('superadmin')
                 <div class="menu-item">
                     <!--begin:Menu link-->
                     <a class="menu-link" href="../../demo13/dist/documentation/base/utilities.html">
@@ -1803,8 +1820,10 @@
                     </a>
                     <!--end:Menu link-->
                 </div>
+                @endhasanyrole
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
+                @hasanyrole('superadmin')
                 <div class="menu-item">
                     <!--begin:Menu link-->
                     <a class="menu-link" href="../../demo13/dist/documentation/base/utilities.html">
@@ -1815,6 +1834,7 @@
                     </a>
                     <!--end:Menu link-->
                 </div>
+                @endhasanyrole
                 <!--end:Menu item-->
                 {{-- <!--begin:Menu item-->
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
@@ -2949,9 +2969,10 @@
                 </div>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
+                @hasanyrole('superadmin')
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="../../demo13/dist/documentation/base/utilities.html">
+                    <a class="menu-link {{ setActive('index-user') }}" href="{{ route('index-user') }}">
                         <span class="menu-icon">
                             <i class="bi bi-fingerprint fs-3"></i>
                         </span>
@@ -2959,6 +2980,7 @@
                     </a>
                     <!--end:Menu link-->
                 </div>
+                @endhasanyrole
                 <!--end:Menu item-->
                 {{-- <!--begin:Menu item-->
                 <div class="menu-item">
