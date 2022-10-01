@@ -302,7 +302,7 @@
                 @hasanyrole('superadmin')
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link {{ setActive('index-sales') }}" href="{{ route('index-sales') }}">
+                    <a class="menu-link {{ setActive('sales.index') }}" href="{{ route('sales.index') }}">
                         <span class="menu-icon">
                             <i class="bi bi-cart fs-3"></i>
                         </span>
@@ -316,7 +316,7 @@
                 @hasanyrole('superadmin')
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link {{ setActive('index-client') }}" href="{{ route('index-client') }}">
+                    <a class="menu-link {{ setActive('clients.index') }}" href="{{ route('clients.index') }}">
                         <span class="menu-icon">
                             <i class="bi bi-people fs-3"></i>
                         </span>
@@ -330,7 +330,7 @@
                 @hasanyrole('superadmin')
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link {{ setActive('index-product') }}" href="{{ route('index-product') }}">
+                    <a class="menu-link {{ setActive('products.index') }}" href="{{ route('products.index') }}">
                         <span class="menu-icon">
                             <i class="bi bi-phone-flip fs-3"></i>
                         </span>
@@ -1025,7 +1025,7 @@
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
                 @hasanyrole('superadmin')
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ setOpen('catalog') }}">
                     <!--begin:Menu link-->
                     <span class="menu-link">
                         <span class="menu-icon">
@@ -1040,11 +1040,11 @@
                         <!--begin:Menu item-->
                         <div class="menu-item">
                             <!--begin:Menu link-->
-                            <a class="menu-link" href="../../demo13/dist/pages/faq/classic.html">
+                            <a class="menu-link {{ setActive('catalog.brands') }}" href="{{ route('catalog.brands') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">FAQ Classic</span>
+                                <span class="menu-title">Marcas</span>
                             </a>
                             <!--end:Menu link-->
                         </div>
@@ -1052,11 +1052,11 @@
                         <!--begin:Menu item-->
                         <div class="menu-item">
                             <!--begin:Menu link-->
-                            <a class="menu-link" href="../../demo13/dist/pages/faq/extended.html">
+                            <a class="menu-link {{ setActive('catalog.categories') }}" href="{{ route('catalog.categories') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">FAQ Extended</span>
+                                <span class="menu-title">Categorías</span>
                             </a>
                             <!--end:Menu link-->
                         </div>
