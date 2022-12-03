@@ -6,6 +6,7 @@ use App\Models\Line;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Division;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
@@ -26,24 +27,39 @@ class CatalogController extends Controller
         return view('serintel.catalog.categories');
     }
 
-
-    public function create()
-    {
-        $data               = (object)[];
-        $data->category     = Category::all();
-        $data->brand        = Brand::all();
-        $data->line         = Line::all();
-        return view('serintel.product.create', compact('data'));
+    public function divisiones(){
+        return view('serintel.catalog.divisions');
     }
 
 
+    // public function create()
+    // {
+    //     $data               = (object)[];
+    //     $data->category     = Category::all();
+    //     $data->brand        = Brand::all();
+    //     $data->line         = Line::all();
+    //     return view('serintel.product.create', compact('data'));
+    // }
 
-    public function getGeneralProducts() {
-        $request = request();
-        $products   = Product::with(['category','brand','line'])
-        ->whereNull('deleted_at');
-        return $products->get();
+    public function getGeneralBrands() {
+        return Brand::get();
     }
+
+    public function getGeneralCategories() {
+        return Category::get();
+    }
+
+    public function getGeneralDivision() {
+        return Division::get();
+    }
+
+
+    // public function getGeneralProducts() {
+    //     $request = request();
+    //     $products   = Product::with(['category','brand','line'])
+    //     ->whereNull('deleted_at');
+    //     return $products->get();
+    // }
 
 
 

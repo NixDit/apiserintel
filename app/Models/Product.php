@@ -22,6 +22,7 @@ class Product extends Model
         'super_special_price',
         'brand_id',
         'category_id',
+        'division_id',
         'line_id',
     ];
 

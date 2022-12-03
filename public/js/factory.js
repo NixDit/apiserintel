@@ -8,7 +8,7 @@ const factoryNixDit = function(){
             searchDelay : 500,
             processing  : true,
             serverSide  : false,
-            order       : [[5, 'asc']],
+            order       : [[0, 'asc']],
             stateSave   : false,
             responsive  : false,
             ajax        : {
@@ -285,7 +285,7 @@ const factoryNixDit = function(){
             var value  = $(this).text(),date,dateFormat;
             if(value != ''){
                 date       = new Date(value),
-                dateFormat = new Intl.DateTimeFormat('es', { year: 'numeric',month: 'long',day: '2-digit' }).format(date);    
+                dateFormat = new Intl.DateTimeFormat('es', { year: 'numeric',month: 'long',day: '2-digit' }).format(date);
             } else {
                 dateFormat = 'N/A';
             }
@@ -298,7 +298,7 @@ const factoryNixDit = function(){
             var value = $(this).text(),date,dateFormat;
             if(value != ''){
                 date       = new Date(value),
-                dateFormat = new Intl.DateTimeFormat('es', { year: 'numeric',month: '2-digit', day: '2-digit' }).format(date);    
+                dateFormat = new Intl.DateTimeFormat('es', { year: 'numeric',month: '2-digit', day: '2-digit' }).format(date);
             } else {
                 dateFormat = 'N/A';
             }

@@ -25,7 +25,7 @@
         <!--begin::Actions-->
         <div class="d-flex align-items-center py-1">
             <!--begin::Button-->
-            <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app" id="kt_toolbar_primary_button">Crear Cliente</a>
+            <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_new_client" id="kt_toolbar_primary_button">Crear Cliente</a>
             <!--end::Button-->
         </div>
         <!--end::Actions-->

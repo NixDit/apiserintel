@@ -44,6 +44,12 @@
 <!--begin::Modal - Invite Friends-->
 @include('layouts.includes.invite_friends')
 <!--end::Modal - Invite Friend-->
+<!--begin::Modal - New Product-->
+@include('layouts.includes.new_product')
+<!--end::Modal - New Product-->
+<!--begin::Modal - New Client-->
+@include('layouts.includes.new_client')
+<!--end::Modal - New Client-->
 <!--end::Modals-->
 <!--begin::Foot-->
 @include('layouts.foot')

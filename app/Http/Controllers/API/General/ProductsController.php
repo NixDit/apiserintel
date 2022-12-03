@@ -6,6 +6,7 @@ use App\Models\Line;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Division;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
@@ -24,6 +25,7 @@ class ProductsController extends Controller
         $data->category     = Category::all();
         $data->brand        = Brand::all();
         $data->line         = Line::all();
+        $data->division     = Division::all();
         return view('serintel.product.create', compact('data'));
     }
 
@@ -42,6 +44,7 @@ class ProductsController extends Controller
             'super_special_price' =>$request->super_special_price,
             'brand_id' =>$request->brand_id,
             'category_id' =>$request->category_id,
+            'division_id' =>$request->division_id,
             'line_id' =>$request->line_id
         ]);
         // dd($event);
