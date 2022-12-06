@@ -32,7 +32,7 @@
                 <div class="card-body pt-5">
                     <!--begin::Form-->
 
-                    <form id="kt_ecommerce_settings_general_form" class="form" action="{{  route('products.storeproduct')  }}" method="POST">
+                    <form id="kt_ecommerce_settings_general_form" class="form" action="{{  route('clients.storeclient')  }}" method="POST">
                         @csrf
                         <!--begin::Row-->
                         <div class="row row-cols-1 row-cols-sm-2 rol-cols-md-1 row-cols-lg-2">
@@ -119,7 +119,7 @@
                                     </label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="text" class="form-control" name="bussines_client" value="" required/>
+                                    <input type="text" class="form-control" name="business_client" value="" required/>
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->

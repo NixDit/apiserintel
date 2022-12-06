@@ -45,11 +45,17 @@
 @include('layouts.includes.invite_friends')
 <!--end::Modal - Invite Friend-->
 <!--begin::Modal - New Product-->
-@include('layouts.includes.new_product')
+{{-- @include('layouts.includes.new_product') --}}
 <!--end::Modal - New Product-->
 <!--begin::Modal - New Client-->
 @include('layouts.includes.new_client')
 <!--end::Modal - New Client-->
+<!--begin::Modal - New Brand-->
+{{-- @include('layouts.includes.new_brand') --}}
+<!--end::Modal - New Brand-->
+<!--begin::Modal - New Division-->
+{{-- @include('layouts.includes.new_division') --}}
+<!--end::Modal - New Division-->
 <!--end::Modals-->
 <!--begin::Foot-->
 @include('layouts.foot')

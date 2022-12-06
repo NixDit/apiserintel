@@ -74,6 +74,7 @@
         </div>
     </div>
 </div>
+@include('layouts.includes.new_product')
 @endsection
 @push('scripts')
     <script type="text/javascript" src="{{  URL::asset ('js/serintel/products/products.js?v='.rand())  }}"></script>

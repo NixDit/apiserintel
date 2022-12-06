@@ -16,7 +16,13 @@ use Illuminate\Support\Facades\Session;
 class ProductsController extends Controller
 {
     public function index(){
-        return view('serintel.product.index');
+        $data               = (object)[];
+        $data->category     = Category::all();
+        $data->brand        = Brand::all();
+        $data->line         = Line::all();
+        $data->division     = Division::all();
+        // return view('serintel.product.index');
+        return view('serintel.product.index', compact('data'));
     }
 
     public function create()

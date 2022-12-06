@@ -16,7 +16,7 @@
             <!--begin::Breadcrumb-->
             <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-1">
                 <!--begin::Item-->
-                <li class="breadcrumb-item text-muted">Clientes registrados en el sistema</li>
+                <li class="breadcrumb-item text-muted">Total: {{ $data->users->count() }} Clientes registrados en el sistema</li>
                 <!--end::Item-->
             </ul>
             <!--end::Breadcrumb-->

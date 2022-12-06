@@ -80,7 +80,7 @@ var KTDatatablesButtons = function () {
                 className: 'text-end',
                 render: function (data, type, row) {
                     return `
-                        <a href="#" class="btn btn-icon btn-light-primary"><i class="bi bi-person-rolodex fs-2 me-2"></i></i></a>
+                        <a href="${HOST_URL}/clientes/perfil/${row.customer.id}" class="btn btn-icon btn-light-primary"><i class="bi bi-person-rolodex fs-2 me-2"></i></i></a>
                         <a href="#" class="btn btn-icon btn-light-danger"><i class="bi bi-trash fs-2 me-2"></i></i></a>
                     `;
                 }

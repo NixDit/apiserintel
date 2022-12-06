@@ -1,6 +1,7 @@
 <div class="modal fade" id="kt_modal_new_product" tabindex="-1" aria-hidden="true">
     <!--begin::Modal dialog-->
-    <div class="modal-dialog modal-xl">
+    {{-- <div class="modal-dialog modal-xl"> --}}
+    <div class="modal-dialog modal-dialog-centered mw-900px">
         <!--begin::Modal content-->
         <div class="modal-content rounded">
             <!--begin::Modal header-->
@@ -33,49 +34,7 @@
 
                     <form id="kt_ecommerce_settings_general_form" class="form" action="{{  route('products.storeproduct')  }}" method="POST">
                         @csrf
-                    {{-- <form id="kt_ecommerce_settings_general_form" class="form" action="{{ route('create-inventory') }}" method="POST"> --}}
                         <!--begin::Input group-->
-                        {{-- <div class="mb-7">
-                            <!--begin::Label-->
-                            <label class="fs-6 fw-semibold mb-3">
-                                <span>Imagen del producto</span>
-                                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Allowed file types: png, jpg, jpeg."></i>
-                            </label>
-                            <!--end::Label-->
-                            <!--begin::Image input wrapper-->
-                            <div class="mt-1">
-                                <!--begin::Image placeholder-->
-                                <style>.image-input-placeholder { background-image: url('assets/media/svg/files/blank-image.svg'); } [data-theme="dark"] .image-input-placeholder { background-image: url('assets/media/svg/files/blank-image-dark.svg'); }</style>
-                                <!--end::Image placeholder-->
-                                <!--begin::Image input-->
-                                <div class="image-input image-input-outline image-input-placeholder image-input-empty" data-kt-image-input="true">
-                                    <!--begin::Preview existing avatar-->
-                                    <div class="image-input-wrapper w-100px h-100px" style="background-image: url('assets/media//avatars/300-6.jpg')"></div>
-                                    <!--end::Preview existing avatar-->
-                                    <!--begin::Edit-->
-                                    <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Cambiar imagen">
-                                        <i class="bi bi-pencil-fill fs-7"></i>
-                                        <!--begin::Inputs-->
-                                        <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
-                                        <input type="hidden" name="avatar_remove" />
-                                        <!--end::Inputs-->
-                                    </label>
-                                    <!--end::Edit-->
-                                    <!--begin::Cancel-->
-                                    <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
-                                        <i class="bi bi-x fs-2"></i>
-                                    </span>
-                                    <!--end::Cancel-->
-                                    <!--begin::Remove-->
-                                    <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
-                                        <i class="bi bi-x fs-2"></i>
-                                    </span>
-                                    <!--end::Remove-->
-                                </div>
-                                <!--end::Image input-->
-                            </div>
-                            <!--end::Image input wrapper-->
-                        </div> --}}
                         <!--end::Input group-->
                         <!--begin::Row-->
                         <div class="row row-cols-1 row-cols-sm-2 rol-cols-md-1 row-cols-lg-2">
@@ -142,7 +101,7 @@
                                     </label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="number" class="form-control" name="cost" value="" required/>
+                                    <input type="number" step="0.01" class="form-control" name="cost" value="" required/>
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->
@@ -239,9 +198,9 @@
                                         <div class="overflow-hidden flex-grow-1">
                                             <select name="category_id" class="form-select rounded-start-0" data-control="select2" data-placeholder="Selecciona una opción" required>
                                                 <option></option>
-
-                                                <option name="category_id" value="">jk</option>
-
+                                                @foreach ($data->category as $categories)
+                                                <option name="category_id" value="{{ $categories->id }}">{{ $categories->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -265,7 +224,9 @@
                                         <div class="overflow-hidden flex-grow-1">
                                             <select name="division_id" class="form-select rounded-start-0" data-control="select2" data-placeholder="Selecciona una opción" required>
                                                 <option></option>
-                                                <option name="division_id" value=""></option>
+                                                @foreach ($data->division as $divisions)
+                                                <option name="division_id" value="{{ $divisions->id }}">{{ $divisions->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -293,7 +254,9 @@
                                         <div class="overflow-hidden flex-grow-1">
                                             <select name="brand_id" class="form-select rounded-start-0" data-control="select2" data-placeholder="Selecciona una opción" required>
                                                 <option></option>
-                                                <option name="brand_id" value=""></option>
+                                                @foreach ($data->brand as $brands)
+                                                <option name="brand_id" value="{{ $brands->id }}">{{ $brands->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -317,7 +280,9 @@
                                         <div class="overflow-hidden flex-grow-1">
                                             <select name="line_id" class="form-select rounded-start-0" data-control="select2" data-placeholder="Selecciona una opción" required>
                                                 <option></option>
-                                                <option name="line_id" value=""></option>
+                                                @foreach ($data->line as $lines)
+                                                <option name="line_id" value="{{ $lines->id }}">{{ $lines->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>

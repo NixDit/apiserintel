@@ -10,13 +10,46 @@ use App\Models\ClientInformation;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\SaleCollection;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Session;
 use App\Http\Resources\PrepaidPurchasesCollection;
 
 class ClientController extends Controller
 {
     public function index(){
-        return view('serintel.client.index');
+        $data        = (object)[];
+        $data->users = $this->getGeneralClients();
+        return view('serintel.client.index',compact('data'));
+    }
+
+    //STORE CLIENT
+    public function storeClientAdmin(Request $request)
+    {
+        $event = User::create([
+            'name'      =>$request->name_client,
+            'last_name' =>$request->last_name_client,
+            'email'     =>$request->email_client,
+            'password'  => Hash::make('Cliente2022'),
+        ]);
+        $event->assignRole('client');
+
+        $client_code = 'SC-' . (str_pad( $event->id, 10, '0', STR_PAD_LEFT));
+
+        $event->clientInformation()->create([
+            'business_name' => $request->business_client,
+            'code'          => $client_code,
+            'phone'         => $request->phone_client,
+            'address'       => $request->address_client,
+        ]);
+
+        event(new Registered($event));
+        Session::flash('alert',[ // Message for Swal general alert
+            'type'    => 'success',
+            'message' => 'Nuevo cliente registrado'
+        ]);
+        return back();
     }
 
     public function getClient( Request $request ) {
@@ -75,5 +108,14 @@ class ClientController extends Controller
         $request = request();
         $clients   = ClientInformation::with(['customer']);
         return $clients->get();
+    }
+
+    public function viewPerfil( $id ) {
+        $data         = (object)[];
+        $user         = User::find($id);
+        return view( 'serintel.client.perfil')->with([
+            'user'      => $user,
+            'data'      => $data
+        ]);
     }
 }

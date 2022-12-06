@@ -4,6 +4,7 @@
 var KTDatatablesButtons = function () {
     // Shared variables
     var datatable;
+    var dt;
     // Private functions
     var initDatatable = function () {
         let url     = `${HOST_URL}/divisiones/get-division-all`;
@@ -46,15 +47,15 @@ var KTDatatablesButtons = function () {
                 className: 'text-center',
                 render: function (data, type, row) {
                     return `
-                        <a href="#" class="btn btn-icon btn-light-warning"><i class="bi bi-pencil fs-2 me-2"></i></i></a>
-                        <a href="#" class="btn btn-icon btn-light-danger"><i class="bi bi-trash fs-2 me-2"></i></i></a>
+                        <a href="javascript:;" class="btn btn-icon btn-light-warning"><i class="bi bi-pencil fs-2 me-2"></i></i></a>
+                        <a href="javascript:;" class="btn btn-icon btn-light-danger delete-division" data-id="' + row.id + '" data-name="'+ row.name +'"><i class="bi bi-trash fs-2 me-2"></i></i></a>
                     `;
                 }
             },
         ]
         datatable = factoryNixDit.methods.activateDataTable(url,columns);
-    }
 
+    }
     // Search Datatable
     var handleSearchDatatable = function () {
         $('#filter_client_name').on('keyup', function(event){ // Filter by client name
@@ -63,63 +64,14 @@ var KTDatatablesButtons = function () {
         });
     }
 
-    // Delete customer
-    var handleDeleteRows = () => {
-        // Select all delete buttons
+    // Delete
 
-        const deleteButtons = document.querySelectorAll('[data-kt-docs-table-filter="delete_row"]');
-
-        deleteButtons.forEach(d => {
-            // Delete button on click
-            d.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                // Select parent row
-                const parent = e.target.closest('tr');
-                const id = e.target.getAttribute('data-user-id');
-                // Get customer name
-                const productName = parent.querySelectorAll('td')[1].innerText;
-
-                // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
-                Swal.fire({
-                    text: "Estas seguro de querer eliminar el usuario " + productName + "?",
-                    icon: "warning",
-                    showCancelButton: true,
-                    buttonsStyling: false,
-                    confirmButtonText: "Si, eliminar!",
-                    cancelButtonText: "No, cancelar",
-                    customClass: {
-                        confirmButton: "btn fw-bold btn-danger",
-                        cancelButton: "btn fw-bold btn-active-primary"
-                    }
-                }).then(function (result) {
-                    if (result.value) {
-                        $.ajax({
-                            url: '/user/delete/'+ id,
-                            dataType: 'json',
-                            contentType: false,
-                            processData: false,
-                            type: 'GET',
-                        }).done(function(response){
-                            Swal.fire({
-                                title: response.title,
-                                text: response.message,
-                                icon: response.icon,
-                                timer: 2000
-                            }).then( () => location.reload() );
-                        });
-                    }
-                });
-            })
-        });
-    }
 
     // Public methods
     return {
         init: function () {
             initDatatable();
             handleSearchDatatable();
-            handleDeleteRows();
         }
     }
 }();

@@ -31,15 +31,36 @@ class CatalogController extends Controller
         return view('serintel.catalog.divisions');
     }
 
+    //STORE BRAND
+    public function storebrand(Request $request)
+    {
+        $event = Brand::create([
+            'name' =>$request->name_brand,
+        ]);
+        event(new Registered($event));
+        Session::flash('alert',[ // Message for Swal general alert
+            'type'    => 'success',
+            'message' => 'Nueva marca registrada'
+        ]);
+        // return redirect()->route('view-products');
+        return back();
+    }
 
-    // public function create()
-    // {
-    //     $data               = (object)[];
-    //     $data->category     = Category::all();
-    //     $data->brand        = Brand::all();
-    //     $data->line         = Line::all();
-    //     return view('serintel.product.create', compact('data'));
-    // }
+    //STORE DIVISION
+    public function storedivision(Request $request)
+    {
+        $event = Division::create([
+            'name' =>$request->name_division,
+        ]);
+        event(new Registered($event));
+        Session::flash('alert',[ // Message for Swal general alert
+            'type'    => 'success',
+            'message' => 'Registro exitoso'
+        ]);
+        // return redirect()->route('view-products');
+        return back();
+    }
+
 
     public function getGeneralBrands() {
         return Brand::get();
@@ -54,12 +75,32 @@ class CatalogController extends Controller
     }
 
 
-    // public function getGeneralProducts() {
-    //     $request = request();
-    //     $products   = Product::with(['category','brand','line'])
-    //     ->whereNull('deleted_at');
-    //     return $products->get();
-    // }
+    public function deleteDivision( $id ) {
+        try {
+            $deletedDivi     = Division::findOrFail($id)->delete();
+            if( $deletedDivi ) {
+                $title  = 'Eliminado';
+                $msj    = 'El rol ha sido eliminado correctamente';
+                $type   = 'success';
+            } else {
+                $title  = 'Error';
+                $msj    = 'Ocurrio un error durante el proceso, contacte al equipo de sistemas o intentelo más tarde';
+                $type   = 'error';
+            }
+            return response()->json([
+                'title'     => $title,
+                'message'   => $msj,
+                'type'      => $type
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'title'     => 'Error',
+                'message'   => "Ocurrio un error: " . $th->getMessage(),
+                'type'      => 'error'
+            ]);
+        }
+
+    }
 
 
 

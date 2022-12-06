@@ -146,7 +146,7 @@
                                             </label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="number" class="form-control" name="cost" value="" required/>
+                                            <input type="number" step="0.01" class="form-control" name="cost" value="" required/>
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->

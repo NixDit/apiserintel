@@ -25,7 +25,7 @@
         <!--begin::Actions-->
         <div class="d-flex align-items-center py-1">
             <!--begin::Button-->
-            <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app" id="kt_toolbar_primary_button">Nueva Division</a>
+            <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_new_division" id="kt_toolbar_primary_button">Nueva Division</a>
             <!--end::Button-->
         </div>
         <!--end::Actions-->
@@ -65,6 +65,7 @@
         </div>
     </div>
 </div>
+@include('layouts.includes.new_division')
 @endsection
 @push('scripts')
     <script type="text/javascript" src="{{  URL::asset ('js/serintel/catalog/division.js?v='.rand())  }}"></script>
