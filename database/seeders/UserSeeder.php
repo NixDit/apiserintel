@@ -16,6 +16,16 @@ class UserSeeder extends Seeder
     public function run()
     {
         //BEGIN:: Create a superadmin
+        $superadminone = User::create([
+            'name'      => 'Nix',
+            'last_name' => 'Developer',
+            'email'     => 'developer@nixdit.com',
+            'password'  => Hash::make('NixAdmin2023'),
+        ]);
+        //END:: Create an superadmin
+        $superadminone->assignRole('superadmin');
+
+        //BEGIN:: Create a superadmin
         $superadmin = User::create([
             'name'      => 'Serintel',
             'last_name' => 'Superadmin',
@@ -23,7 +33,6 @@ class UserSeeder extends Seeder
             'password'  => Hash::make('Superadmin2022'),
         ]);
         //END:: Create an superadmin
-
         $superadmin->assignRole('superadmin');
 
 

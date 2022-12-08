@@ -1566,7 +1566,7 @@
                 @hasanyrole('superadmin')
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="../../demo13/dist/documentation/base/utilities.html">
+                    <a class="menu-link" href="javascript:;">
                         <span class="menu-icon">
                             <i class="bi bi-tools fs-3"></i>
                         </span>
@@ -1580,7 +1580,7 @@
                 @hasanyrole('superadmin')
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="../../demo13/dist/documentation/base/utilities.html">
+                    <a class="menu-link" href="javascript:;">
                         <span class="menu-icon">
                             <i class="bi bi-phone-vibrate-fill fs-3"></i>
                         </span>
@@ -1594,7 +1594,7 @@
                 @hasanyrole('superadmin')
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="../../demo13/dist/documentation/base/utilities.html">
+                    <a class="menu-link" href="javascript:;">
                         <span class="menu-icon">
                             <i class="bi bi-shield-check fs-3"></i>
                         </span>
@@ -1608,7 +1608,7 @@
                 @hasanyrole('superadmin')
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="../../demo13/dist/documentation/base/utilities.html">
+                    <a class="menu-link" href="javascript:;">
                         <span class="menu-icon">
                             <i class="bi bi-key fs-3"></i>
                         </span>
@@ -1622,7 +1622,7 @@
                 @hasanyrole('superadmin')
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="../../demo13/dist/documentation/base/utilities.html">
+                    <a class="menu-link" href="javascript:;">
                         <span class="menu-icon">
                             <i class="bi bi-layer-backward fs-3"></i>
                         </span>

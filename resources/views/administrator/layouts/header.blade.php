@@ -24,7 +24,7 @@
                     <!--begin::Menu-->
                     <div class="menu menu-rounded menu-column menu-lg-row menu-root-here-bg-desktop menu-active-bg menu-state-primary menu-title-gray-800 menu-arrow-gray-400 align-items-stretch my-5 my-lg-0 px-2 px-lg-0 fw-semibold fs-6" id="#kt_header_menu" data-kt-menu="true">
                         <!--begin:Menu item-->
-                        <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item here show menu-lg-down-accordion menu-here-bg me-0 me-lg-2">
+                        {{-- <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item here show menu-lg-down-accordion menu-here-bg me-0 me-lg-2">
                             <!--begin:Menu link-->
                             <span class="menu-link py-3">
                                 <span class="menu-title">Dashboards</span>
@@ -360,10 +360,10 @@
                                 <!--end:Dashboards menu-->
                             </div>
                             <!--end:Menu sub-->
-                        </div>
+                        </div> --}}
                         <!--end:Menu item-->
                         <!--begin:Menu item-->
-                        <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
+                        {{-- <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
                             <!--begin:Menu link-->
                             <span class="menu-link py-3">
                                 <span class="menu-title">Pages</span>
@@ -1577,10 +1577,10 @@
                                 <!--end:Pages menu-->
                             </div>
                             <!--end:Menu sub-->
-                        </div>
+                        </div> --}}
                         <!--end:Menu item-->
                         <!--begin:Menu item-->
-                        <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
+                        {{-- <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
                             <!--begin:Menu link-->
                             <span class="menu-link py-3">
                                 <span class="menu-title">Apps</span>
@@ -2714,10 +2714,10 @@
                                 <!--end:Menu item-->
                             </div>
                             <!--end:Menu sub-->
-                        </div>
+                        </div> --}}
                         <!--end:Menu item-->
                         <!--begin:Menu item-->
-                        <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
+                        {{-- <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
                             <!--begin:Menu link-->
                             <span class="menu-link py-3">
                                 <span class="menu-title">Help</span>
@@ -2776,7 +2776,7 @@
                                 <!--end:Menu item-->
                             </div>
                             <!--end:Menu sub-->
-                        </div>
+                        </div> --}}
                         <!--end:Menu item-->
                     </div>
                     <!--end::Menu-->
@@ -2787,7 +2787,7 @@
             <!--begin::Toolbar wrapper-->
             <div class="topbar d-flex align-items-stretch flex-shrink-0">
                 <!--begin::Search-->
-                <div class="d-flex align-items-stretch">
+                {{-- <div class="d-flex align-items-stretch">
                     <!--begin::Search-->
                     <div id="kt_header_search" class="header-search d-flex align-items-stretch" data-kt-search-keypress="true" data-kt-search-min-length="2" data-kt-search-enter="enter" data-kt-search-layout="menu" data-kt-menu-trigger="auto" data-kt-menu-overflow="false" data-kt-menu-permanent="true" data-kt-menu-placement="bottom-end">
                         <!--begin::Search toggle-->
@@ -3528,19 +3528,19 @@
                         <!--end::Menu-->
                     </div>
                     <!--end::Search-->
-                </div>
+                </div> --}}
                 <!--end::Search-->
                 <!--begin::Activities-->
-                <div class="d-flex align-items-stretch">
+                {{-- <div class="d-flex align-items-stretch">
                     <!--begin::drawer toggle-->
                     <div class="topbar-item px-3 px-lg-5" id="kt_activities_toggle">
                         <i class="bi bi-box-seam fs-3"></i>
                     </div>
                     <!--end::drawer toggle-->
-                </div>
+                </div> --}}
                 <!--end::Activities-->
                 <!--begin::Notifications-->
-                <div class="d-flex align-items-stretch">
+                {{-- <div class="d-flex align-items-stretch">
                     <!--begin::Menu wrapper-->
                     <div class="topbar-item px-3 px-lg-5 position-relative" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end" data-kt-menu-flip="bottom">
                         <i class="bi bi-app-indicator fs-3"></i>
@@ -4069,17 +4069,17 @@
                     </div>
                     <!--end::Menu-->
                     <!--end::Menu wrapper-->
-                </div>
+                </div> --}}
                 <!--end::Notifications-->
                 <!--begin::Chat-->
-                <div class="d-flex align-items-stretch">
+                {{-- <div class="d-flex align-items-stretch">
                     <!--begin::Menu wrapper-->
                     <div class="topbar-item px-3 px-lg-5 position-relative" id="kt_drawer_chat_toggle">
                         <i class="bi bi-chat-left-text fs-3"></i>
                         <span class="bullet bullet-dot bg-success h-6px w-6px position-absolute translate-middle top-0 mt-4 start-50 animation-blink"></span>
                     </div>
                     <!--end::Menu wrapper-->
-                </div>
+                </div> --}}
                 <!--end::Chat-->
                 <!--begin::Quick links-->
                 <div class="d-flex align-items-stretch">
@@ -4238,7 +4238,7 @@
                                     </span>
                                     <!--end::Svg Icon-->
                                 </span>
-                                <span class="menu-title">Light</span>
+                                <span class="menu-title">Claro</span>
                             </a>
                         </div>
                         <!--end::Menu item-->
@@ -4257,7 +4257,7 @@
                                     </span>
                                     <!--end::Svg Icon-->
                                 </span>
-                                <span class="menu-title">Dark</span>
+                                <span class="menu-title">Oscuro</span>
                             </a>
                         </div>
                         <!--end::Menu item-->
@@ -4381,51 +4381,19 @@
                         <!--end::Menu separator-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="left-start">
-                            <a href="#" class="menu-link px-5">
+                            <a href="javascript:;" class="menu-link px-5">
                                 <span class="menu-title position-relative">Idiomas
-                                <span class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">English
-                                <img class="w-15px h-15px rounded-1 ms-2" src="{{ asset('metronic/assets/media/flags/united-states.svg') }}" alt="" /></span></span>
+                                <span class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">Español
+                                <img class="w-15px h-15px rounded-1 ms-2" src="{{ asset('metronic/assets/media/flags/mexico.svg') }}" alt="" /></span></span>
                             </a>
                             <!--begin::Menu sub-->
                             <div class="menu-sub menu-sub-dropdown w-175px py-4">
                                 <!--begin::Menu item-->
                                 <div class="menu-item px-3">
-                                    <a href="../../demo13/dist/account/settings.html" class="menu-link d-flex px-5 active">
+                                    <a href="javascript:;" class="menu-link d-flex px-5 active">
                                     <span class="symbol symbol-20px me-4">
-                                        <img class="rounded-1" src="{{ asset('metronic/assets/media/flags/united-states.svg') }}" alt="" />
-                                    </span>English</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="../../demo13/dist/account/settings.html" class="menu-link d-flex px-5">
-                                    <span class="symbol symbol-20px me-4">
-                                        <img class="rounded-1" src="{{ asset('metronic/assets/media/flags/spain.svg') }}" alt="" />
-                                    </span>Spanish</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="../../demo13/dist/account/settings.html" class="menu-link d-flex px-5">
-                                    <span class="symbol symbol-20px me-4">
-                                        <img class="rounded-1" src="{{ asset('metronic/assets/media/flags/germany.svg') }}" alt="" />
-                                    </span>German</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="../../demo13/dist/account/settings.html" class="menu-link d-flex px-5">
-                                    <span class="symbol symbol-20px me-4">
-                                        <img class="rounded-1" src="{{ asset('metronic/assets/media/flags/japan.svg') }}" alt="" />
-                                    </span>Japanese</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="../../demo13/dist/account/settings.html" class="menu-link d-flex px-5">
-                                    <span class="symbol symbol-20px me-4">
-                                        <img class="rounded-1" src="{{ asset('metronic/assets/media/flags/france.svg') }}" alt="" />
-                                    </span>French</a>
+                                        <img class="rounded-1" src="{{ asset('metronic/assets/media/flags/mexico.svg') }}" alt="" />
+                                    </span>Español</a>
                                 </div>
                                 <!--end::Menu item-->
                             </div>

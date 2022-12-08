@@ -9,6 +9,6 @@ Route::group(['middleware' => ['role:superadmin|employee']], function () {
     Route::get('/products/get-general-all', [ProductsController::class, 'getGeneralProducts'])->middleware(['auth'])->name('products.get'); // TO: GENERAL
     Route::get('/create-new-product', [ProductsController::class, 'create'])->middleware(['auth'])->name('products.create');
     Route::post('/storeproduct',[ProductsController::class,'storeproduct'])->middleware(['auth'])->name('products.storeproduct');
-    Route::resource('productos', ProductsController::class)->middleware(['auth'])->names('products')->except(['destroy']);
+    Route::resource('products', ProductsController::class)->middleware(['auth'])->names('products')->except(['destroy']);
 
 });
