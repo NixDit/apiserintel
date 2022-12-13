@@ -19,6 +19,11 @@ Route::group(['middleware' => ['role:superadmin|employee']], function () {
     Route::get('/divisiones/delete/{id}', [CatalogController::class, 'deleteDivision'])->middleware(['auth'])->name('catalog.delete.division'); //TO: DELETE
     Route::post('/storedivision',[CatalogController::class,'storedivision'])->middleware(['auth'])->name('catalog.storedivision');
 
+    //PROVIDER
+    Route::get('/proveedores',[CatalogController::class,'providers'])->middleware(['auth'])->name('catalog.providers');
+    Route::get('/providers/get-provider-all', [CatalogController::class, 'getGeneralProviders'])->middleware(['auth'])->name('catalog.providers.get'); // GET PROVIDER
+    Route::post('/storeprovider',[CatalogController::class,'storeProviderAdmin'])->middleware(['auth'])->name('catalog.storeprovider');
+
 
     Route::resource('catalog', CatalogController::class)->middleware(['auth'])->names('catalog')->except(['destroy']);
 

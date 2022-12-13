@@ -17,7 +17,7 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        
+
         $brand = Brand::create([
             'name' => 'Telcel',
         ]);
@@ -169,7 +169,7 @@ class ProductSeeder extends Seeder
             'category_id'           => $second_category->id,
             'line_id'               => $second_line->id
         ]);
-        
+
         $second_brand->products()->create([
             'name'                  => 'Liberacion de celular',
             'code'                  => 'Liberacion-celular',
@@ -182,6 +182,11 @@ class ProductSeeder extends Seeder
             'category_id'           => $second_category->id,
             'line_id'               => $second_line->id
         ]);
+
+        $third_line = Line::create(['name' => 'Accesorios']);
+        $fourth_line = Line::create(['name' => 'Cuidado Personal']);
+        $fifth_line = Line::create(['name' => 'Servicios']);
+        $sixth_line = Line::create(['name' => 'Equipos']);
 
     }
 }

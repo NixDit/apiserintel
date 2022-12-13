@@ -62,6 +62,10 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\ClientInformation');
     }
 
+    public function providers() {
+        return $this->hasOne('App\Models\Provider', 'provider_id', 'id');
+    }
+
     public function devices() {
         return $this->hasMany('App\Models\Device');
     }

@@ -15,16 +15,44 @@ class DivisionSeeder extends Seeder
      */
     public function run()
     {
+        // DB::table('division')->insert([
+        //     'name'          =>'Bat',
+        //     'created_at'    => Carbon::now(),
+        // ]);
+        // DB::table('division')->insert([
+        //     'name'          =>'Cables',
+        //     'created_at'    => Carbon::now(),
+        // ]);
+        // DB::table('division')->insert([
+        //     'name'          =>'Case',
+        //     'created_at'    => Carbon::now(),
+        // ]);
         DB::table('division')->insert([
-            'name'          =>'Bat',
+            'name'          =>'Baterias',
             'created_at'    => Carbon::now(),
         ]);
         DB::table('division')->insert([
-            'name'          =>'Cables',
+            'name'          =>'Cargadores',
             'created_at'    => Carbon::now(),
         ]);
         DB::table('division')->insert([
-            'name'          =>'Case',
+            'name'          =>'Robot',
+            'created_at'    => Carbon::now(),
+        ]);
+        DB::table('division')->insert([
+            'name'          =>'Cristales',
+            'created_at'    => Carbon::now(),
+        ]);
+        DB::table('division')->insert([
+            'name'          =>'Equipos',
+            'created_at'    => Carbon::now(),
+        ]);
+        DB::table('division')->insert([
+            'name'          =>'PC',
+            'created_at'    => Carbon::now(),
+        ]);
+        DB::table('division')->insert([
+            'name'          =>'Varios',
             'created_at'    => Carbon::now(),
         ]);
     }

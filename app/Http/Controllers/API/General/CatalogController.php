@@ -3,13 +3,16 @@
 namespace App\Http\Controllers\API\General;
 
 use App\Models\Line;
+use App\Models\User;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Division;
+use App\Models\Provider;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Session;
 
@@ -29,6 +32,10 @@ class CatalogController extends Controller
 
     public function divisiones(){
         return view('serintel.catalog.divisions');
+    }
+
+    public function providers(){
+        return view('serintel.catalog.providers');
     }
 
     //STORE BRAND
@@ -74,6 +81,12 @@ class CatalogController extends Controller
         return Division::get();
     }
 
+    public function getGeneralProviders() {
+        $request = request();
+        $provider   = Provider::with(['provider']);
+        return $provider->get();
+    }
+
 
     public function deleteDivision( $id ) {
         try {
@@ -100,6 +113,32 @@ class CatalogController extends Controller
             ]);
         }
 
+    }
+
+    //STORE PROVIDER
+    public function storeProviderAdmin(Request $request)
+    {
+        $event = User::create([
+            'name'      =>$request->name_provider,
+            'last_name' =>$request->last_name_provider,
+            'email'     =>$request->email_provider,
+            'password'  => Hash::make('Provider2023'),
+        ]);
+        $event->assignRole('provider');
+
+        $event->providers()->create([
+            'razon_social' => $request->razon_provider,
+            'rfc'          => $request->rfc_provider,
+            'phone'         => $request->phone_provider,
+            'address'       => $request->address_provider,
+        ]);
+
+        event(new Registered($event));
+        Session::flash('alert',[ // Message for Swal general alert
+            'type'    => 'success',
+            'message' => 'Nuevo cliente registrado'
+        ]);
+        return back();
     }
 
 
