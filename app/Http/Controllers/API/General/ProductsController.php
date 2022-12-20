@@ -65,6 +65,67 @@ class ProductsController extends Controller
         return back();
     }
 
+    public function edit($id){
+        $error   = false;
+        $message = null;
+        $render  = null;
+        try {
+            $product = Product::find($id);
+            if($product){
+                $data             = (object)[];
+                $data->product    = $product;
+                $data->categories = Category::select('id','name')->get();
+                $data->brands     = Brand::select('id','name')->get();
+                $data->lines      = Line::select('id','name')->get();
+                $data->divisions  = Division::select('id','name')->get();
+                $render = view('serintel.product.modals.update_product',compact('data'))->render();
+            } else {
+                $error   = false;
+                $message = 'Producto no encontrado';
+            }
+        } catch (\Throwable $th) {
+            $error   = false;
+            $message = "Ocurrió un error durante el proceso: {$th->getMessage()}";
+        }
+
+        return response()->json([
+            'error'   => $error,
+            'message' => $message,
+            'render'  => $render
+        ]);
+    }
+
+    public function update(Request $request){
+        $type_message = false;
+        $message      = null;
+        try {
+            $product = Product::find($request->id);
+            if($product){
+                $updated = $product->update($request->all());
+                if($updated) {
+                    $type_message = 'success';
+                    $message      = 'Producto editado correctamente';
+                } else {
+                    $type_message = 'warning';
+                    $message      = 'El producto no fue editado, intente nuevamente';
+                }
+            } else {
+                $type_message = 'error';
+                $message      = 'Producto no encontrado';
+            }
+        } catch (\Throwable $th) {
+            $type_message = 'error';
+            $message      = "Ocurrio un error durante el proceso: {$th->getMessage()}";
+        }
+
+        Session::flash('alert',[ // Message alert
+            'type'    => $type_message,
+            'message' => $message
+        ]);
+
+        return back();
+    }
+
     public function getGeneralProducts() {
         $request = request();
         $products   = Product::with(['category','brand','line'])
@@ -157,6 +218,32 @@ class ProductsController extends Controller
 
     }
 
+    public function destroy($id){
+        $error   = false;
+        $message = null;
+        try {
+            $product = Product::find($id);
+            if($product){
+                $deleted = $product->delete();
+                if($deleted){
+                    $message = 'Producto eliminado correctamente';
+                } else {
+                    $error   = true;
+                    $message = 'El producto no pudo ser eliminado, intente nuevamente';
+                }
+            } else {
+                $error   = true;
+                $message = 'Producto no encontrado';
+            }
+        } catch (\Throwable $th) {
+            $error   = true;
+            $message = "Ocurrió un error durante el proceso: {$th->getMessage()}";
+        }
 
+        return response()->json([
+            'error'   => $error,
+            'message' => $message
+        ]);
+    }
 
 }

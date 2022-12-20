@@ -74,6 +74,9 @@
         </div>
     </div>
 </div>
+{{-- Edit product - modal --}}
+<div id="edit_product_modal"></div>
+{{-- New product --}}
 @include('layouts.includes.new_product')
 @endsection
 @push('scripts')

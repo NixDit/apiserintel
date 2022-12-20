@@ -3,7 +3,7 @@
 // Class definition
 var KTDatatablesButtons = function () {
     // Shared variables
-    var datatable;
+    let datatable;
     // Private functions
     var initDatatable = function () {
         let url     = `${HOST_URL}/products/get-general-all`;
@@ -122,8 +122,8 @@ var KTDatatablesButtons = function () {
                 className: 'text-end',
                 render: function (data, type, row) {
                     return `
-                        <a href="#" class="btn btn-icon btn-light-warning"><i class="bi bi-pencil"></i></i></a>
-                        <a href="#" class="btn btn-icon btn-light-danger"><i class="bi bi-trash fs-2 me-2"></i></i></a>
+                        <button type="button" data-id="${row.id}" class="btn btn-icon btn-light-warning update_product"><i class="bi bi-pencil"></i></i></a>
+                        <button type="button" data-id="${row.id}" data-name="${row.name}" class="btn btn-icon btn-light-danger delete_product"><i class="bi bi-trash fs-2 me-2"></i></i></a>
                     `;
                 }
             },
@@ -190,12 +190,71 @@ var KTDatatablesButtons = function () {
         });
     }
 
+    // UPDATE PRODUCT
+    let updateUser = function () {
+        $(document).on('click','.update_product',function(){
+            let id = $(this).data('id');
+            $.ajax({
+                url         : `/product/${id}/edit`,
+                dataType    : 'json',
+                contentType : false,
+                processData : false,
+                type        : 'GET',
+            }).done(function(response){
+                if(!response.error){
+                    $('#edit_product_modal').empty();
+                    $('#edit_product_modal').append(response.render);
+                    $('#kt_modal_update_product').modal('show');
+                } else {
+                    // Colocar mensaje en caso de error
+                }
+            });
+        });
+    }
+
+    // DELETE PRODUCT
+    let deleteUser = function () {
+        $(document).on('click','.delete_product',function(){
+            let id   = $(this).data('id');
+            let name = $(this).data('name');
+            Swal.fire({
+                text: `¿Estas seguro de querer eliminar el producto ${name}?`,
+                icon: "warning",
+                showCancelButton: true,
+                buttonsStyling: false,
+                confirmButtonText: "Si, eliminar",
+                cancelButtonText: "No, cancelar",
+                customClass: {
+                    confirmButton: "btn fw-bold btn-danger",
+                    cancelButton: "btn fw-bold btn-active-primary"
+                }
+            }).then(function (result) {
+                if (result.value) {
+                    $.ajax({
+                        url         : '/product/delete/'+ id,
+                        dataType    : 'json',
+                        contentType : false,
+                        processData : false,
+                        type        : 'GET',
+                    }).done(function(response){
+                        Swal.fire({
+                            title : response.title,
+                            text  : response.message,
+                            icon  : response.icon
+                        }).then( () => datatable.ajax.reload() );
+                    });
+                }
+            });
+        });
+    }
     // Public methods
     return {
         init: function () {
             initDatatable();
             handleSearchDatatable();
             handleDeleteRows();
+            updateUser(); // Update product
+            deleteUser(); // Delete product
         }
     }
 }();
