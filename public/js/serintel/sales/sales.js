@@ -110,6 +110,7 @@ var KTDatatablesButtons = function () {
                 render: function (data, type, row) {
                     return `
                         <a href="#" class="btn btn-icon btn-light-primary"><i class="bi bi-eye"></i></i></a>
+                        <a href="#" class="btn btn-icon btn-light-info"><i class="bi bi-printer fs-2 me-2"></i></i></a>
                         <a href="#" class="btn btn-icon btn-light-warning"><i class="bi bi-pencil"></i></i></a>
                         <a href="#" class="btn btn-icon btn-light-danger"><i class="bi bi-trash fs-2 me-2"></i></i></a>
                     `;

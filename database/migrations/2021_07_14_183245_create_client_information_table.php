@@ -21,6 +21,7 @@ class CreateClientInformationTable extends Migration
             $table->string('code');
             $table->string('phone');
             $table->text('address');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

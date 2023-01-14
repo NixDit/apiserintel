@@ -84,9 +84,23 @@
                 @hasanyrole('superadmin|employee')
                 <div class="menu-item">
                     <!--begin:Menu link-->
+                    <a class="menu-link" href="javascript:;">
+                        <span class="menu-icon">
+                            <i class="bi bi-cart-plus-fill fs-3"></i>
+                        </span>
+                        <span class="menu-title">Nueva Venta</span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                @endhasanyrole
+                <!--end:Menu item-->
+                <!--begin:Menu item-->
+                @hasanyrole('superadmin|employee')
+                <div class="menu-item">
+                    <!--begin:Menu link-->
                     <a class="menu-link {{ setActive('sales.index') }}" href="{{ route('sales.index') }}">
                         <span class="menu-icon">
-                            <i class="bi bi-cart fs-3"></i>
+                            <i class="bi bi-bag fs-3"></i>
                         </span>
                         <span class="menu-title">Ventas</span>
                     </a>

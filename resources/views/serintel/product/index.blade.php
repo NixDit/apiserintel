@@ -52,6 +52,7 @@
                     <thead>
                     <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                         <th>N°</th>
+                        <th>Imagen</th>
                         <th>Nombre</th>
                         <th>C. Proveedor</th>
                         <th>Código interno</th>

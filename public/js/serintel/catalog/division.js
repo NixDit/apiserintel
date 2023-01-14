@@ -3,7 +3,7 @@
 // Class definition
 var KTDatatablesButtons = function () {
     // Shared variables
-    var datatable;
+    let datatable;
     var dt;
     // Private functions
     var initDatatable = function () {
@@ -47,8 +47,8 @@ var KTDatatablesButtons = function () {
                 className: 'text-center',
                 render: function (data, type, row) {
                     return `
-                        <a href="javascript:;" class="btn btn-icon btn-light-warning"><i class="bi bi-pencil fs-2 me-2"></i></i></a>
-                        <a href="javascript:;" class="btn btn-icon btn-light-danger delete-division" data-id="' + row.id + '" data-name="'+ row.name +'"><i class="bi bi-trash fs-2 me-2"></i></i></a>
+                        <button type="button" data-id="${row.id}" class="btn btn-icon btn-light-warning update_division"><i class="bi bi-pencil "></i></button>
+                        <button type="button" data-id="${row.id}" data-name="${row.name}" class="btn btn-icon btn-light-danger delete_division"><i class="bi bi-trash fs-2 me-2"></i></button>
                     `;
                 }
             },
@@ -64,7 +64,63 @@ var KTDatatablesButtons = function () {
         });
     }
 
-    // Delete
+    // DELETE DIVISION
+    let deleteDivision = function () {
+        $(document).on('click','.delete_division',function(){
+            let id   = $(this).data('id');
+            let name = $(this).data('name');
+            Swal.fire({
+                text: `¿Estas seguro de querer eliminar la división ${name}?`,
+                icon: "warning",
+                showCancelButton: true,
+                buttonsStyling: false,
+                confirmButtonText: "Si, eliminar",
+                cancelButtonText: "No, cancelar",
+                customClass: {
+                    confirmButton: "btn fw-bold btn-danger",
+                    cancelButton: "btn fw-bold btn-active-primary"
+                }
+            }).then(function (result) {
+                if (result.value) {
+                    $.ajax({
+                        url         : '/divisiones/delete/'+ id,
+                        dataType    : 'json',
+                        contentType : false,
+                        processData : false,
+                        type        : 'GET',
+                    }).done(function(response){
+                        Swal.fire({
+                            title : response.title,
+                            text  : response.message,
+                            icon  : response.icon
+                        }).then( () => datatable.ajax.reload() );
+                    });
+                }
+            });
+        });
+    }
+
+    // UPDATE DIVISION
+    let updateDivision = function () {
+        $(document).on('click','.update_division',function(){
+            let id = $(this).data('id');
+            $.ajax({
+                url         : `/divisiones/${id}/edit`,
+                dataType    : 'json',
+                contentType : false,
+                processData : false,
+                type        : 'GET',
+            }).done(function(response){
+                if(!response.error){
+                    $('#edit_division_modal').empty();
+                    $('#edit_division_modal').append(response.render);
+                    $('#kt_modal_update_division').modal('show');
+                } else {
+                    // Colocar mensaje en caso de error
+                }
+            });
+        });
+    }
 
 
     // Public methods
@@ -72,6 +128,8 @@ var KTDatatablesButtons = function () {
         init: function () {
             initDatatable();
             handleSearchDatatable();
+            updateDivision(); // Update product
+            deleteDivision(); // Delete product
         }
     }
 }();

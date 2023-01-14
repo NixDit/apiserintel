@@ -18,6 +18,25 @@ var KTDatatablesButtons = function () {
                 }
             },
             {
+                //IMAGE
+                targets   : 1,
+                orderable: false,
+                render    : function (data, type, row) {
+                    var url = HOST_URL;
+                    if (row.image) {
+                        url += row.image;
+                    } else {
+                        url += '/metronic/assets/media/products/image.png';
+                    }
+                    var image = '<div class="d-flex align-items-center">\
+								<div class="symbol symbol-90 symbol-sm flex-shrink-0">\
+									<img class="" src="'+ url + '" alt="photo">\
+								</div>\
+							</div>';
+                    return image;
+                }
+            },
+            {
                 //NAME
                 targets   : 1,
                 render    : function (data, type, row) {
@@ -122,8 +141,8 @@ var KTDatatablesButtons = function () {
                 className: 'text-end',
                 render: function (data, type, row) {
                     return `
-                        <button type="button" data-id="${row.id}" class="btn btn-icon btn-light-warning update_product"><i class="bi bi-pencil"></i></i></a>
-                        <button type="button" data-id="${row.id}" data-name="${row.name}" class="btn btn-icon btn-light-danger delete_product"><i class="bi bi-trash fs-2 me-2"></i></i></a>
+                        <button type="button" data-id="${row.id}" class="btn btn-icon btn-light-warning update_product"><i class="bi bi-pencil "></i></button>
+                        <button type="button" data-id="${row.id}" data-name="${row.name}" class="btn btn-icon btn-light-danger delete_product"><i class="bi bi-trash fs-2 me-2"></i></button>
                     `;
                 }
             },
@@ -135,7 +154,7 @@ var KTDatatablesButtons = function () {
     var handleSearchDatatable = function () {
         $('#filter_client_name').on('keyup', function(event){ // Filter by client name
             var client_name = $(this).val();
-            datatable.columns(1).search(client_name).draw();
+            datatable.columns(2).search(client_name).draw();
         });
     }
 

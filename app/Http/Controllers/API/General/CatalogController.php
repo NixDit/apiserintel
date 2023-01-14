@@ -87,31 +87,125 @@ class CatalogController extends Controller
         return $provider->get();
     }
 
-
-    public function deleteDivision( $id ) {
+    //Edit Division
+    public function editDivision($id){
+        $error   = false;
+        $message = null;
+        $render  = null;
         try {
-            $deletedDivi     = Division::findOrFail($id)->delete();
-            if( $deletedDivi ) {
-                $title  = 'Eliminado';
-                $msj    = 'El rol ha sido eliminado correctamente';
-                $type   = 'success';
+            $division = Division::find($id);
+            if($division){
+                $data             = (object)[];
+                $data->division    = $division;
+                $render = view('serintel.catalog.modals.update_division',compact('data'))->render();
             } else {
-                $title  = 'Error';
-                $msj    = 'Ocurrio un error durante el proceso, contacte al equipo de sistemas o intentelo más tarde';
-                $type   = 'error';
+                $error   = false;
+                $message = 'Division no encontrado';
             }
-            return response()->json([
-                'title'     => $title,
-                'message'   => $msj,
-                'type'      => $type
-            ]);
         } catch (\Throwable $th) {
-            return response()->json([
-                'title'     => 'Error',
-                'message'   => "Ocurrio un error: " . $th->getMessage(),
-                'type'      => 'error'
-            ]);
+            $error   = false;
+            $message = "Ocurrió un error durante el proceso: {$th->getMessage()}";
         }
+
+        return response()->json([
+            'error'   => $error,
+            'message' => $message,
+            'render'  => $render
+        ]);
+        // return view( 'serintel.product.modals.update_product' )->with('division', Division::find($id));
+    }
+
+    //Update Division
+    public function updateDivision(Request $request){
+        $type_message = false;
+        $message      = null;
+        try {
+            $division = Division::find($request->id);
+            if($division){
+                $updated = $division->update($request->all());
+                if($updated) {
+                    $type_message = 'success';
+                    $message      = 'Division editado correctamente';
+                } else {
+                    $type_message = 'warning';
+                    $message      = 'La division no fue editado, intente nuevamente';
+                }
+            } else {
+                $type_message = 'error';
+                $message      = 'Division no encontrado';
+            }
+        } catch (\Throwable $th) {
+            $type_message = 'error';
+            $message      = "Ocurrio un error durante el proceso: {$th->getMessage()}";
+        }
+
+        Session::flash('alert',[ // Message alert
+            'type'    => $type_message,
+            'message' => $message
+        ]);
+
+        return back();
+    }
+
+    //Delete Division
+    public function deleteDivision( $id ) {
+        $error   = false;
+        $message = null;
+        try {
+            $division = Division::find($id);
+            if($division){
+                $deleted = $division->delete();
+                if($deleted){
+                    $message = 'División eliminado correctamente';
+                    $type   = 'success';
+                } else {
+                    $error   = true;
+                    $message = 'Error pudo ser eliminado, intente nuevamente';
+                }
+            } else {
+                $error   = true;
+                $message = 'División no encontrado';
+            }
+        } catch (\Throwable $th) {
+            $error   = true;
+            $message = "Ocurrió un error durante el proceso: {$th->getMessage()}";
+        }
+
+        return response()->json([
+            'error'   => $error,
+            'message' => $message
+        ]);
+
+    }
+
+    //Delete Brand
+    public function deleteBrand( $id ) {
+        $error   = false;
+        $message = null;
+        try {
+            $brand = Brand::find($id);
+            if($brand){
+                $deleted = $brand->delete();
+                if($deleted){
+                    $message = 'Marca eliminado correctamente';
+                    $type   = 'success';
+                } else {
+                    $error   = true;
+                    $message = 'Error pudo ser eliminado, intente nuevamente';
+                }
+            } else {
+                $error   = true;
+                $message = 'División no encontrado';
+            }
+        } catch (\Throwable $th) {
+            $error   = true;
+            $message = "Ocurrió un error durante el proceso: {$th->getMessage()}";
+        }
+
+        return response()->json([
+            'error'   => $error,
+            'message' => $message
+        ]);
 
     }
 

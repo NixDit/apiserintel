@@ -21,6 +21,7 @@ class CreateProviderTable extends Migration
             $table->string('rfc');
             $table->string('phone');
             $table->text('address');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
