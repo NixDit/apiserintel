@@ -330,6 +330,14 @@ const factoryNixDit = function(){
             $('.form_loading .btn_loading').attr('disabled',true).text('Guardando...').addClass('spinner spinner-white spinner-right');
         });
     }
+    // ALLOW ONLY NUMBER VALUES - CLASS
+    let activateonlyNumberValues = function(){
+        $(document).on('keypress','.onlyNumberValue', function(event){
+            // let codes = [46,48,49,50,51,52,53,54,55,56,57];// 46 = "." | 44 = ","
+            // if(!codes.includes(event.keyCode)) return false;
+            if ( isNaN( String.fromCharCode(event.keyCode) )) return false; // Only numeric values
+        });
+    }
     // DATA RETURN BY FACTORY
     return {
         // ACTIVATE GENERAL FUNCTIONS
@@ -340,6 +348,7 @@ const factoryNixDit = function(){
             formatDateShort();
             formatDateWithTime();
             formSubmitLoading();
+            activateonlyNumberValues();
         },
         "data": {
             // GENERAL DATA TO RETURN

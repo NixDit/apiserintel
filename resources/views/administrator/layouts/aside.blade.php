@@ -84,7 +84,7 @@
                 @hasanyrole('superadmin|employee')
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="javascript:;">
+                    <a class="menu-link {{ setActive('sales.new_sale') }}" href="{{ route('sales.new_sale') }}">
                         <span class="menu-icon">
                             <i class="bi bi-cart-plus-fill fs-3"></i>
                         </span>

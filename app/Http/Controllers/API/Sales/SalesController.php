@@ -31,6 +31,10 @@ class SalesController extends Controller
         return view('sales.index');
     }
 
+    public function newSale(){
+        return view('sales.new-sale');
+    }
+
     public function store( Request $request ) {
 
         // convert json to array
@@ -48,7 +52,8 @@ class SalesController extends Controller
                     'client_id'     => $request->client_id,
                     'subtotal'      => $request->subtotal,
                     'total'         => $request->total,
-                    'type'          => $request->type
+                    'type'          => $request->type,
+                    'payment_method' => $request->payment_method
                 ]);
 
                 $sale->folio = 'SV-' . (str_pad( $sale->id, 10, '0', STR_PAD_LEFT));

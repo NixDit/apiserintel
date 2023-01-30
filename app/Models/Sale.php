@@ -17,7 +17,8 @@ class Sale extends Model
         'total',
         'type', // 1:Prepago, 2:Pagado, 3: Postpago
         'folio',
-        'status' // 0:Pending, 1:Completed, 2:Rejected
+        'status', // 0:Pending, 1:Completed, 2:Rejected,
+        'payment_method' // 1:Efectivo, 2:Tarjeta
     ];
 
     protected $casts = [
