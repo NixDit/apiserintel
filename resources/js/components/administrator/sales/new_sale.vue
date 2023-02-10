@@ -13,6 +13,9 @@
 .menu-products-to-select .product-element:hover{
     background-color: #e8fff3 !important;
 }
+.content-price-summary{
+    border-radius: 5px;
+}
 
 /* FIXED TABLE HEADER */
 .table-products-content{
@@ -36,7 +39,9 @@
                         <div class="card-body p-0">
                             <!-- Search product -->
                             <div class="form-group mb-5">
+                                <!-- Search -->
                                 <input type="text" v-model="product_search" class="form-control mb-2 mb-md-0" placeholder="Buscar producto" />
+                                <!-- Search options -->
                                 <div id="products_found_content" style="display: none;">
                                     <div v-if="searching_product">
                                         <p class="badge badge-info">Buscando...</p>
@@ -78,13 +83,12 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Table products -->
                             <div class="table-responsive table-products-content">
-                                <!-- Table products -->
                                 <table class="table table-row-dashed align-middle gs-0 gy-4 my-0" id="table_products">
                                     <thead class="table-products-head bg-success text-white">
                                         <tr class="border-bottom-0 text-center">
                                             <th>Productos</th>
-                                            <th>Precio</th>
                                             <th width="150px">Cantidad</th>
                                             <th width="150px">Total</th>
                                             <th width="50px"></th>
@@ -93,11 +97,8 @@
                                     <tbody v-if="products_selected.length > 0">
                                         <tr class="text-center" v-for="(product,index) in products_selected" :key="index">
                                             <td>
-                                                <a href="../../demo13/dist/apps/ecommerce/catalog/edit-product.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6 pe-0">{{ product.name }}</a>
-                                                <span class="text-gray-400 fw-semibold fs-7 d-block ps-0">{{ product.code }}</span>
-                                            </td>
-                                            <td>
-                                                <span class="text-gray-800 fw-bold d-block fs-6">${{ product.cost }}</span>
+                                                <a role="button" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6 pe-0" @click="showProductDetails(product)">{{ product.product.name }}</a>
+                                                <span class="text-gray-400 fw-semibold fs-7 d-block ps-0">{{ product.product.code }}</span>
                                             </td>
                                             <td>
                                                 <span class="text-gray-800 fw-bold d-block fs-6 ps-0">
@@ -109,7 +110,7 @@
                                                 </span>
                                             </td>
                                             <td>
-                                                <span class="text-gray-800 fw-bold d-block fs-6">${{ product.total }}</span>
+                                                <span class="text-gray-800 fw-bold d-block fs-6">${{ stringFormatCommas(product.total) }}</span>
                                             </td>
                                             <td>
                                                 <button class="btn btn-icon btn-danger" @click="removeProduct(index)">
@@ -136,12 +137,73 @@
                 <div class="card card-custom ">
                     <div class="card-header flex-wrap border-0 p-5">
                         <div class="card-body p-0">
+                            <!-- Clients -->
                             <div class="form-group mb-5">
-                                <select class="form-select" data-control="select2" data-placeholder="Buscar cliente">
+                                <select class="form-select" data-control="select2" data-placeholder="Buscar cliente" id="client_select">
                                     <option></option>
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
                                 </select>
+                            </div>
+                            <!-- Total data -->
+                            <div class="bg-success p-2 content-price-summary">
+                                <div class="row">
+                                    <!-- Quantity products selected -->
+                                    <div class="col-md-7">
+                                        <p class="text-white text-start">Cantidad de productos</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="text-white text-end">{{ products_selected.length }}</p>
+                                    </div>
+                                    <!-- Subtotal -->
+                                    <div class="col-md-7">
+                                        <p class="text-white text-start">Subtotal</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p class="text-white text-end">${{ stringFormatCommas(subtotal) }}</p>
+                                    </div>
+                                    <!-- Total -->
+                                    <div class="col-md-7 mt-5">
+                                        <h2 class="text-white text-start">TOTAL</h2>
+                                    </div>
+                                    <div class="col-md-5 mt-5">
+                                        <h2 class="text-white text-end">${{ stringFormatCommas(total) }}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Payment method -->
+                            <div class="row mt-5">
+                                <p class="col-md-12 text-center">Método de pago</p>
+                                <div class="col-md-6">
+                                    <label :class="['form-check-image', {'active' : payment_method == 1}]">
+                                        <div class="form-check-wrapper">
+                                            <img src="/metronic/assets/media/stock/600x400/img-1.jpg"/>
+                                        </div>
+                                        <div class="form-check form-check-custom form-check-solid">
+                                            <input class="form-check-input" type="radio" checked value="1" v-model="payment_method"/>
+                                            <div class="form-check-label">
+                                                Efectivo
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label :class="['form-check-image', {'active' : payment_method == 2}]">
+                                        <div class="form-check-wrapper">
+                                            <img src="/metronic/assets/media/stock/600x400/img-2.jpg"/>
+                                        </div>
+                                        <div class="form-check form-check-custom form-check-solid me-10">
+                                            <input class="form-check-input" type="radio" value="2" v-model="payment_method"/>
+                                            <div class="form-check-label">
+                                                Tarjeta
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <!-- Make sale -->
+                            <div class="row mt-5">
+                                <div class="col-md-12">
+                                    <button class="btn btn-danger w-100" @click="makeSale">Imprimir recibo</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -151,6 +213,7 @@
     </div>
 </template>
 <script>
+import { stringFormatCommas } from '../../../utils/commonFunctions';
 export default {
     data(){
         return {
@@ -158,7 +221,10 @@ export default {
             products_found    : [],
             products_selected : [],
             timer_search      : null,
-            searching_product : true
+            searching_product : true,
+            payment_method    : null,
+            clients           : [],
+            client_id         : 0
         }
     },
     watch: {
@@ -175,7 +241,39 @@ export default {
             }
         }
     },
+    computed: {
+        subtotal(){
+            return this.products_selected.reduce((sum,product) => sum + product.total,0);
+        },
+        total(){
+            return this.subtotal;
+        }
+    },
+    mounted(){
+        this.getClients();
+    },
     methods: {
+        getClients(){ // Get all clients
+            let _this = this;
+            axios.get(`/clients/get-general-all`).then(function(response){
+                _this.clients = response.data;
+                _this.clients.forEach(client => { // Fill client's select tag
+                    var newOption = new Option(client.business_name, _this.formatCodeClients(client.code), false, false);
+                    $('#client_select').append(newOption).trigger('change'); // Add and refresh content data
+                });
+                _this.onChangeSelectData();
+            });
+        },
+        onChangeSelectData(){
+            let _this = this;
+            $('#client_select').on('select2:select', function (e) { // Set "id" value of selected option in client's select tag
+                var data        = e.params.data;
+                _this.client_id = data.id;
+            });
+        },
+        formatCodeClients(value){ // Covert code(SC-000001) of clients to int value
+            return Number(value.replace(/SC-/g,''));
+        },
         searchProduct(){ // Function to search product by name
             let _this              = this;
             this.searching_product = true;
@@ -195,10 +293,14 @@ export default {
             let product_exists = this.existsProductSelected(product); // Verifica si el producto ya fue agregado, en caso que si le suma +1 en su cantidad
             if(!product_exists){
                 this.products_selected.push({
-                    "id"       : product.id,
-                    "name"     : product.name,
-                    "cost"     : product.cost,
+                    "product" : {
+                        "id"   : product.id,
+                        "name" : product.name,
+                        "cost" : product.cost,
+                        "code" : product.code
+                    },
                     "quantity" : 1,
+                    "subtotal" : product.cost,
                     "total"    : product.cost * 1,
                 });
             }
@@ -206,9 +308,9 @@ export default {
         },
         existsProductSelected(product){ // Check if the product to add exists, if exists in products selected add +1
             if(this.products_selected.length > 0){
-                let product_exists = this.products_selected.find(product_f => product_f.id == product.id);
+                let product_exists = this.products_selected.find(product_f => product_f.product.id == product.id);
                 if(product_exists){
-                    let product_index = this.products_selected.findIndex(product_s => product_s.id == product_exists.id);
+                    let product_index = this.products_selected.findIndex(product_s => product_s.product.id == product_exists.product.id);
                     if(product_index != -1){ // Index is found
                         this.addQuantityProduct(product_index);
                     }
@@ -227,7 +329,7 @@ export default {
             if(product_to_edit){
                 if(product_to_edit.quantity > 1){
                     product_to_edit.quantity -= 1;
-                    product_to_edit.total     = product_to_edit.quantity * product_to_edit.cost;
+                    product_to_edit.total     = product_to_edit.quantity * product_to_edit.product.cost;
                 }
             }
         },
@@ -235,7 +337,7 @@ export default {
             let product_to_edit = this.products_selected[index];
             if(product_to_edit){
                 product_to_edit.quantity += 1;
-                product_to_edit.total     = product_to_edit.quantity * product_to_edit.cost;
+                product_to_edit.total     = product_to_edit.quantity * product_to_edit.product.cost;
             }
         },
         checkQuantityProduct(index){ // Check quantity of product
@@ -256,6 +358,96 @@ export default {
         },
         removeProduct(index){ // Remove product
             this.products_selected.splice(index,1);
+        },
+        showProductDetails(product){ // Show dialog with product details
+            console.log(product);
+        },
+        stringFormatCommas(value){ // Format string value to 999,999.00
+            return stringFormatCommas(value);
+        },
+        makeSale(){
+            let sale_valid = this.validationSale();
+            let _this      = this;
+            if(sale_valid){
+                Swal.fire({
+                    text              : "¿Está seguro de realizar la venta?",
+                    icon              : "warning",
+                    showCancelButton  : true,
+                    buttonsStyling    : false,
+                    confirmButtonText : "¡Si!",
+                    cancelButtonText  : "No, cancelar",
+                    customClass : {
+                        confirmButton : "btn fw-bold btn-primary",
+                        cancelButton  : "btn fw-bold btn-active-danger"
+                    }
+                }).then(function (result) {
+                    if (result.value) {
+                        axios.post(`/api/sale`,{
+                            "products"       : JSON.stringify(_this.products_selected),
+                            "client_id"      : _this.client_id,
+                            "subtotal"       : _this.subtotal,
+                            "total"          : _this.total,
+                            "type"           : 2, // 1:Prepago, 2:Pagado, 3:Postpago
+                            "payment_method" : _this.payment_method
+                        }).then(function(response){
+                            response = response.data;
+                            if(response.ok){
+                                Swal.fire({
+                                    title : 'ÉXITO',
+                                    text  : response.message,
+                                    icon  : 'success'
+                                });
+                                _this.resetSaleData();
+                            } else {
+                                Swal.fire({
+                                    title : 'ERROR',
+                                    text  : response.message,
+                                    icon  : 'error'
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        },
+        validationSale(){
+            if(this.products_selected.length == 0){
+                Swal.fire({
+                    title : 'Cuidado',
+                    text  : "Agregue al menos 1 producto a vender",
+                    icon  : 'warning'
+                })
+                return false;
+            }
+            if(this.client_id == null  || this.client_id == 0 || this.client_id == ''){
+                Swal.fire({
+                    title : 'Cuidado',
+                    text  : "Seleccione un cliente",
+                    icon  : 'warning'
+                })
+                return false;
+            }
+            if(this.payment_method == null || this.payment_method == 0 || this.payment_method == ''){
+                Swal.fire({
+                    title : 'Cuidado',
+                    text  : "Seleccione un método de pago",
+                    icon  : 'warning'
+                })
+                return false;
+            }
+            return true;
+        },
+        resetSaleData(){
+            this.product_search    = null;
+            this.products_found    = [];
+            this.products_selected = [];
+            this.timer_search      = null;
+            this.searching_product = true;
+            this.payment_method    = null;
+            this.clients           = [];
+            this.client_id         = 0;
+            $('#client_select').val(null);
+            $('#client_select').trigger('change');
         }
     }
 }
