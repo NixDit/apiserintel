@@ -294,6 +294,25 @@ class SalesController extends Controller
 
     }
 
+    public function downloadTicketSale(){
+        $request = request();
+        $folio   = $request->folio;
+        $sale    = Sale::where('folio',$folio)->first();
+        if( !$sale ){ abort(404); } // If ticket is not found, return page 404
+        $pdf_doc = PDF::loadView('sales.ticket', compact('sale'))->setOptions(['defaultFont' => 'sans-serif']);
+        $date    = $sale->created_at->format('d-m-Y');
+
+        return $pdf_doc->download("Ticket-{$folio}-{$date}.pdf");
+    }
+
+    public function getTicketViewData(){
+        $request = request();
+        $folio   = $request->folio;
+        $sale    = Sale::where('folio',$folio)->first();
+        if( !$sale ){ abort(404); } // If ticket is not found, return page 404
+        return view('sales.ticket',compact('sale'))->render();
+    }
+
     public function downloadTicket( Request $request ) {
 
         $folio = $request->f;

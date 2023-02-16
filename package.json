@@ -28,6 +28,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "jquery": "^3.6.3",
         "postcss-import": "^14.1.0"
     }
 }

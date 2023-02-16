@@ -31,6 +31,7 @@
 </style>
 <template>
     <div class="container-fluid">
+        <div id="ticket_content_data"></div>
         <div class="row">
             <!-- PRODUCTS -->
             <div class="col-md-8">
@@ -202,7 +203,7 @@
                             <!-- Make sale -->
                             <div class="row mt-5">
                                 <div class="col-md-12">
-                                    <button class="btn btn-danger w-100" @click="makeSale">Imprimir recibo</button>
+                                    <button class="btn btn-primary w-100" @click="makeSale">Realizar venta</button>
                                 </div>
                             </div>
                         </div>
@@ -224,7 +225,8 @@ export default {
             searching_product : true,
             payment_method    : null,
             clients           : [],
-            client_id         : 0
+            client_id         : 0,
+            ticket_data       : null
         }
     },
     watch: {
@@ -251,6 +253,8 @@ export default {
     },
     mounted(){
         this.getClients();
+        let _this = this;
+        $(document).on('click','.print-ticket',function(e){ _this.printTicket(); });
     },
     methods: {
         getClients(){ // Get all clients
@@ -365,7 +369,7 @@ export default {
         stringFormatCommas(value){ // Format string value to 999,999.00
             return stringFormatCommas(value);
         },
-        makeSale(){
+        makeSale(){ // Make sale and show tickets options
             let sale_valid = this.validationSale();
             let _this      = this;
             if(sale_valid){
@@ -392,8 +396,19 @@ export default {
                         }).then(function(response){
                             response = response.data;
                             if(response.ok){
+                                _this.ticket_data = response.ticket;
                                 Swal.fire({
-                                    title : 'ÉXITO',
+                                    title : 'Venta realizada',
+                                    html  : `
+                                        <div class="row m-0">
+                                            <div class="col-md-6">
+                                                <button class="btn btn-outline-primary print-ticket">Imprimir recibo</button>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <a href="/sales/download-ticket?folio=${_this.ticket_data.folio}" target="_blank" class="btn btn-outline-success download-ticket">Descargar recibo</a>
+                                            </div>
+                                        </div>
+                                    `,
                                     text  : response.message,
                                     icon  : 'success'
                                 });
@@ -410,7 +425,7 @@ export default {
                 });
             }
         },
-        validationSale(){
+        validationSale(){ // Validation of sale data
             if(this.products_selected.length == 0){
                 Swal.fire({
                     title : 'Cuidado',
@@ -437,7 +452,7 @@ export default {
             }
             return true;
         },
-        resetSaleData(){
+        resetSaleData(){ // Reset all sale data
             this.product_search    = null;
             this.products_found    = [];
             this.products_selected = [];
@@ -448,6 +463,24 @@ export default {
             this.client_id         = 0;
             $('#client_select').val(null);
             $('#client_select').trigger('change');
+            $('#ticket_content_data').empty();
+        },
+        printTicket(){ // Print ticket data
+            $('#ticket_content_data').empty();
+            axios.get(`/sales/get-ticket-view-data`,{
+                params : {
+                    "folio" : this.ticket_data.folio
+                }
+            }).then(function(response) {
+                $('#ticket_content_data').html(response.data);
+                $('#ticket_content_data').printThis({
+                    "importStyle" : true,
+                    "importCSS"   : true,
+                    afterPrint : function(){
+                        $('#ticket_content_data').empty();
+                    }
+                });
+            });
         }
     }
 }

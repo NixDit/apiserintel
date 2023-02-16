@@ -15,6 +15,9 @@
 		<!--begin::Global Javascript Bundle(used by all pages)-->
 		<script src="{{ asset('metronic/assets/plugins/global/plugins.bundle.js?v='.rand()) }}"></script>
 		<script src="{{ asset('metronic/assets/js/scripts.bundle.js?v='.rand()) }}"></script>
+		<!-- START: PLUGINS -->
+		<script src="{{ asset('js/plugins/printThis.js?v='.rand())}}"></script> <!-- printThis.js -->
+		<!-- END: PLUGINS -->
 		<!--end::Global Javascript Bundle-->
 		<!--begin::Vendors Javascript(used by this page)-->
 		<script src="{{ asset('metronic/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?v='.rand()) }}"></script>
