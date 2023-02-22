@@ -30,6 +30,58 @@ class ProductSeeder extends Seeder
         $line = Line::create(['name' => 'Fichas']);
 
         $brand->products()->create([
+            'name'                  => 'Recarga TAE',
+            'code'                  => '01',
+            'description'           => 'Recarga de Tiempo Aire',
+            'cost'                  => 0.00,
+            'retail_price'          => 1.00,
+            'wholesale_price'       => 1.00,
+            'special_price'         => 1.00,
+            'super_special_price'   => 1.00,
+            'category_id'           => $category->id,
+            'line_id'               => $line->id
+        ]);
+
+        $brand->products()->create([
+            'name'                  => 'Comisión de Recarga TAE',
+            'code'                  => '02',
+            'description'           => 'Comisión de recarga de Tiempo Aire',
+            'cost'                  => 0.00,
+            'retail_price'          => 1.00,
+            'wholesale_price'       => 1.00,
+            'special_price'         => 1.00,
+            'super_special_price'   => 1.00,
+            'category_id'           => $category->id,
+            'line_id'               => $line->id
+        ]);
+
+        $brand->products()->create([
+            'name'                  => 'Pago de Servicios',
+            'code'                  => '03',
+            'description'           => 'Pago de Servicios',
+            'cost'                  => 0.00,
+            'retail_price'          => 1.00,
+            'wholesale_price'       => 1.00,
+            'special_price'         => 1.00,
+            'super_special_price'   => 1.00,
+            'category_id'           => $category->id,
+            'line_id'               => $line->id
+        ]);
+
+        $brand->products()->create([
+            'name'                  => 'Comisión por pago de Servicios',
+            'code'                  => '04',
+            'description'           => 'Comisión por pago de Servicios',
+            'cost'                  => 0.00,
+            'retail_price'          => 1.00,
+            'wholesale_price'       => 1.00,
+            'special_price'         => 1.00,
+            'super_special_price'   => 1.00,
+            'category_id'           => $category->id,
+            'line_id'               => $line->id
+        ]);
+
+        $brand->products()->create([
             'name'                  => 'Abono a credito',
             'code'                  => 'Abono-Credito-Serintel',
             'description'           => 'Abono a credito por la cantidad especificada',

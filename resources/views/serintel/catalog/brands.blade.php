@@ -65,6 +65,7 @@
         </div>
     </div>
 </div>
+<div id="edit_brand_modal"></div>
 @include('layouts.includes.new_brand')
 @endsection
 @push('scripts')

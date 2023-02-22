@@ -46,8 +46,8 @@ var KTDatatablesButtons = function () {
                 className: 'text-center',
                 render: function (data, type, row) {
                     return `
-                        <a href="#" class="btn btn-icon btn-light-warning"><i class="bi bi-pencil fs-2 me-2"></i></i></a>
-                        <a href="#" class="btn btn-icon btn-light-danger"><i class="bi bi-trash fs-2 me-2"></i></i></a>
+                        <button type="button" data-id="${row.id}" class="btn btn-icon btn-light-warning update_category"><i class="bi bi-pencil "></i></button>
+                        <button type="button" data-id="${row.id}" data-name="${row.name}" class="btn btn-icon btn-light-danger delete_category"><i class="bi bi-trash fs-2 me-2"></i></button>
                     `;
                 }
             },
@@ -63,54 +63,61 @@ var KTDatatablesButtons = function () {
         });
     }
 
-    // Delete customer
-    var handleDeleteRows = () => {
-        // Select all delete buttons
+    // Delete
+    let deleteCategory = function () {
+        $(document).on('click','.delete_category',function(){
+            let id   = $(this).data('id');
+            let name = $(this).data('name');
+            Swal.fire({
+                text: `¿Estas seguro de querer eliminar la categoría ${name}?`,
+                icon: "warning",
+                showCancelButton: true,
+                buttonsStyling: false,
+                confirmButtonText: "Si, eliminar",
+                cancelButtonText: "No, cancelar",
+                customClass: {
+                    confirmButton: "btn fw-bold btn-danger",
+                    cancelButton: "btn fw-bold btn-active-primary"
+                }
+            }).then(function (result) {
+                if (result.value) {
+                    $.ajax({
+                        url         : '/categories/delete/'+ id,
+                        dataType    : 'json',
+                        contentType : false,
+                        processData : false,
+                        type        : 'GET',
+                    }).done(function(response){
+                        Swal.fire({
+                            title : response.title,
+                            text  : response.message,
+                            icon  : response.icon
+                        }).then( () => datatable.ajax.reload() );
+                    });
+                }
+            });
+        });
+    }
 
-        const deleteButtons = document.querySelectorAll('[data-kt-docs-table-filter="delete_row"]');
-
-        deleteButtons.forEach(d => {
-            // Delete button on click
-            d.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                // Select parent row
-                const parent = e.target.closest('tr');
-                const id = e.target.getAttribute('data-user-id');
-                // Get customer name
-                const productName = parent.querySelectorAll('td')[1].innerText;
-
-                // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
-                Swal.fire({
-                    text: "Estas seguro de querer eliminar el usuario " + productName + "?",
-                    icon: "warning",
-                    showCancelButton: true,
-                    buttonsStyling: false,
-                    confirmButtonText: "Si, eliminar!",
-                    cancelButtonText: "No, cancelar",
-                    customClass: {
-                        confirmButton: "btn fw-bold btn-danger",
-                        cancelButton: "btn fw-bold btn-active-primary"
-                    }
-                }).then(function (result) {
-                    if (result.value) {
-                        $.ajax({
-                            url: '/user/delete/'+ id,
-                            dataType: 'json',
-                            contentType: false,
-                            processData: false,
-                            type: 'GET',
-                        }).done(function(response){
-                            Swal.fire({
-                                title: response.title,
-                                text: response.message,
-                                icon: response.icon,
-                                timer: 2000
-                            }).then( () => location.reload() );
-                        });
-                    }
-                });
-            })
+    // UPDATE DIVISION
+    let updateCategory = function () {
+        $(document).on('click','.update_category',function(){
+            let id = $(this).data('id');
+            $.ajax({
+                url         : `/categories/${id}/edit`,
+                dataType    : 'json',
+                contentType : false,
+                processData : false,
+                type        : 'GET',
+            }).done(function(response){
+                if(!response.error){
+                    $('#edit_category_modal').empty();
+                    $('#edit_category_modal').append(response.render);
+                    $('#kt_modal_update_category').modal('show');
+                } else {
+                    // Colocar mensaje en caso de error
+                }
+            });
         });
     }
 
@@ -119,7 +126,8 @@ var KTDatatablesButtons = function () {
         init: function () {
             initDatatable();
             handleSearchDatatable();
-            handleDeleteRows();
+            deleteCategory();
+            updateCategory();
         }
     }
 }();

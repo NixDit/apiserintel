@@ -32,7 +32,7 @@
                 <div class="card-body pt-5">
                     <!--begin::Form-->
 
-                    <form id="kt_ecommerce_settings_general_form" class="form" action="{{  route('catalog.storeprovider')  }}" method="POST">
+                    <form id="kt_ecommerce_settings_general_form" class="form" action="{{  route('catalog.provider.store')  }}" method="POST">
                         @csrf
                         <!--begin::Row-->
                         <div class="row row-cols-1 row-cols-sm-2 rol-cols-md-1 row-cols-lg-2">
@@ -47,7 +47,7 @@
                                     </label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="text" class="form-control" name="name_provider" value="" required placeholder="Nombre del cliente"/>
+                                    <input type="text" class="form-control" name="name_provider" value="" required placeholder="Nombre del cliente" autocomplete="off"/>
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->
@@ -63,7 +63,7 @@
                                     </label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="text" class="form-control" name="last_name_provider" value="" />
+                                    <input type="text" class="form-control" name="last_name_provider" value="" autocomplete="off" />
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->
@@ -83,7 +83,7 @@
                                     </label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="email" class="form-control" name="email_provider" value="" />
+                                    <input type="email" class="form-control" name="email_provider" value="" autocomplete="off"/>
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->
@@ -99,7 +99,7 @@
                                     </label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="phone" class="form-control" name="phone_provider" value="" required/>
+                                    <input type="phone" class="form-control" name="phone_provider" value="" autocomplete="off" required/>
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->
@@ -119,7 +119,7 @@
                                     </label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="text" class="form-control" name="razon_provider" value="" required/>
+                                    <input type="text" class="form-control" name="razon_provider" value="" autocomplete="off" required/>
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->
@@ -135,7 +135,7 @@
                                     </label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="text" class="form-control" name="rfc_provider" value="" required/>
+                                    <input type="text" class="form-control" name="rfc_provider" value="" required autocomplete="off"/>
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->
@@ -155,7 +155,7 @@
                                     </label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="text" class="form-control" name="address_provider" value="" required/>
+                                    <input type="text" class="form-control" name="address_provider" value="" required autocomplete="off"/>
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->

@@ -58,6 +58,27 @@ class UserSeeder extends Seeder
         $second_employee->assignRole('employee');
         //END:: Create an employee
 
+        //BEGIN:: Create a client general
+        $client_general = User::create([
+            'name'      => 'Venta a Publico',
+            'last_name' => 'En General',
+            'email'     => 'clientegeneral@serintel.com',
+            'password'  => Hash::make('Cliente.2023'),
+        ]);
+
+        $client_general->assignRole('client');
+
+        $client_general_code = 'SC-' . (str_pad( $client_general->id, 10, '0', STR_PAD_LEFT));
+
+        $client_general->clientInformation()->create([
+            'business_name' => 'Venta a Publico en General',
+            'code'          => $client_general_code,
+            'phone'         => '5562316601',
+            'address'       => 'Calle 0',
+            'latlng'        => '18.4606981,-97.3925737'
+        ]);
+        //END:: Create a client
+
         //BEGIN:: Create a client
         $client = User::create([
             'name'      => 'Josmar Salvador',

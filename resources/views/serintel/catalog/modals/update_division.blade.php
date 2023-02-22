@@ -26,7 +26,7 @@
             <div class="modal-body pt-0 pb-15 px-5 px-xl-20">
                 <!--begin::Heading-->
                 <div class="mb-13 text-center">
-                    <h1 class="mb-3">Nueva Division</h1>
+                    <h1 class="mb-3">Editar Division o Línea</h1>
                     <div class="text-muted fw-semibold fs-5">Completa todos los datos para la nueva division
                     <a xhref="#" class="link-success fw-bold">Serintel</a>.</div>
                 </div>
@@ -34,9 +34,9 @@
                 <div class="card-body pt-5">
                     <!--begin::Form-->
 
-                    <form id="kt_ecommerce_settings_general_form" class="form" action="{{  route('catalog.division.update',[$data->division->id])  }}" xmethod="POST">
+                    <form id="kt_ecommerce_settings_general_form" class="form" action="{{  route('catalog.div.update',[$data->division->id])  }}" method="POST">
                         @csrf
-                        {{-- @method('PATCH') --}}
+                        @method('PATCH')
                         <!--begin::Row-->
                         <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
                             <!--begin::Col-->
@@ -46,11 +46,11 @@
                                     <!--begin::Label-->
                                     <label class="fs-6 fw-semibold form-label mt-3">
                                         <span class="required">Nombre</span>
-                                        <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Ingresa el nombre de la nueva division"></i>
+                                        <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Ingresa el nombre"></i>
                                     </label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="text" class="form-control" name="name_division" value="{{ $data->division->name ?? '' }}" required placeholder="Escriba el nombre de la nueva division"/>
+                                    <input type="text" class="form-control" name="name" value="{{ $data->division->name ?? '' }}" required placeholder="Escriba el nombre de la division" autocomplete="off"/>
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->

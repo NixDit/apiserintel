@@ -6,7 +6,7 @@ var KTDatatablesButtons = function () {
     var datatable;
     // Private functions
     var initDatatable = function () {
-        let url     = `${HOST_URL}/brands/get-brand-all`;
+        let url     = `${HOST_URL}/companyservice/get-cellphone-all`;
         let columns = [
             {   //ID
                 targets   : 0,
@@ -46,8 +46,8 @@ var KTDatatablesButtons = function () {
                 className: 'text-center',
                 render: function (data, type, row) {
                     return `
-                        <button type="button" data-id="${row.id}" class="btn btn-icon btn-light-warning update_brand"><i class="bi bi-pencil "></i></button>
-                        <button type="button" data-id="${row.id}" data-name="${row.name}" class="btn btn-icon btn-light-danger delete_brand"><i class="bi bi-trash fs-2 me-2"></i></button>
+                        <button type="button" data-id="${row.id}" class="btn btn-icon btn-light-warning update_service"><i class="bi bi-pencil "></i></button>
+                        <button type="button" data-id="${row.id}" data-name="${row.name}" class="btn btn-icon btn-light-danger delete_service"><i class="bi bi-trash fs-2 me-2"></i></button>
                     `;
                 }
             },
@@ -64,12 +64,12 @@ var KTDatatablesButtons = function () {
     }
 
     // Delete
-    let deleteBrand = function () {
-        $(document).on('click','.delete_brand',function(){
+    let deleteService = function () {
+        $(document).on('click','.delete_service',function(){
             let id   = $(this).data('id');
             let name = $(this).data('name');
             Swal.fire({
-                text: `¿Estas seguro de querer eliminar la marca ${name}?`,
+                text: `¿Estas seguro de querer eliminar la compañía ${name}?`,
                 icon: "warning",
                 showCancelButton: true,
                 buttonsStyling: false,
@@ -82,7 +82,7 @@ var KTDatatablesButtons = function () {
             }).then(function (result) {
                 if (result.value) {
                     $.ajax({
-                        url         : '/brands/delete/'+ id,
+                        url         : '/service/delete/'+ id,
                         dataType    : 'json',
                         contentType : false,
                         processData : false,
@@ -100,20 +100,20 @@ var KTDatatablesButtons = function () {
     }
 
     // UPDATE DIVISION
-    let updateBrand = function () {
-        $(document).on('click','.update_brand',function(){
+    let updateService = function () {
+        $(document).on('click','.update_service',function(){
             let id = $(this).data('id');
             $.ajax({
-                url         : `/brands/${id}/edit`,
+                url         : `/service/${id}/edit`,
                 dataType    : 'json',
                 contentType : false,
                 processData : false,
                 type        : 'GET',
             }).done(function(response){
                 if(!response.error){
-                    $('#edit_brand_modal').empty();
-                    $('#edit_brand_modal').append(response.render);
-                    $('#kt_modal_update_brand').modal('show');
+                    $('#edit_company_service_modal').empty();
+                    $('#edit_company_service_modal').append(response.render);
+                    $('#kt_modal_update_company_service').modal('show');
                 } else {
                     // Colocar mensaje en caso de error
                 }
@@ -126,8 +126,8 @@ var KTDatatablesButtons = function () {
         init: function () {
             initDatatable();
             handleSearchDatatable();
-            deleteBrand(); // Delete
-            updateBrand(); // Update
+            deleteService(); // Delete
+            updateService(); // Update
         }
     }
 }();

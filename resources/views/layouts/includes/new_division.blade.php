@@ -32,7 +32,7 @@
                 <div class="card-body pt-5">
                     <!--begin::Form-->
 
-                    <form id="kt_ecommerce_settings_general_form" class="form" action="{{  route('catalog.storedivision')  }}" method="POST">
+                    <form id="kt_ecommerce_settings_general_form" class="form" action="{{  route('catalog.div.store')  }}" method="POST">
                         @csrf
                         <!--begin::Row-->
                         <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
@@ -47,7 +47,7 @@
                                     </label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="text" class="form-control" name="name_division" value="" required placeholder="Escriba el nombre de la nueva division"/>
+                                    <input type="text" class="form-control" name="name_division" value="" required placeholder="Escriba el nombre de la nueva division" autocomplete="off"/>
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->

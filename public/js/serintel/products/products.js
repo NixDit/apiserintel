@@ -17,25 +17,25 @@ var KTDatatablesButtons = function () {
                     return `${row.id}`;
                 }
             },
-            {
-                //IMAGE
-                targets   : 1,
-                orderable: false,
-                render    : function (data, type, row) {
-                    var url = HOST_URL;
-                    if (row.image) {
-                        url += row.image;
-                    } else {
-                        url += '/metronic/assets/media/products/image.png';
-                    }
-                    var image = '<div class="d-flex align-items-center">\
-								<div class="symbol symbol-90 symbol-sm flex-shrink-0">\
-									<img class="" src="'+ url + '" alt="photo">\
-								</div>\
-							</div>';
-                    return image;
-                }
-            },
+            // {
+            //     //IMAGE
+            //     targets   : 1,
+            //     orderable: false,
+            //     render    : function (data, type, row) {
+            //         var url = HOST_URL;
+            //         if (row.image) {
+            //             url += row.image;
+            //         } else {
+            //             url += '/metronic/assets/media/products/image.png';
+            //         }
+            //         var image = '<div class="d-flex align-items-center">\
+			// 					<div class="symbol symbol-90 symbol-sm flex-shrink-0">\
+			// 						<img class="" src="'+ url + '" alt="photo">\
+			// 					</div>\
+			// 				</div>';
+            //         return image;
+            //     }
+            // },
             {
                 //NAME
                 targets   : 1,

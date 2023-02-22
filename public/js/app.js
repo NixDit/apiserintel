@@ -3201,7 +3201,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.prices-card{\r\n    max-height: 500px !important;\r\n    overflow: auto !important;\n}\n.menu-products-to-select{\r\n    max-height: 250px !important;\r\n    overflow: auto !important;\n}\n.menu-products-to-select .product-element{\r\n    cursor: pointer;\n}\n.menu-products-to-select .product-element:hover{\r\n    background-color: #e8fff3 !important;\n}\n.content-price-summary{\r\n    border-radius: 5px;\n}\r\n\r\n/* FIXED TABLE HEADER */\n.table-products-content{\r\n    max-height: 400px;\r\n    overflow: auto !important;\n}\n.table-products-content #table_products .table-products-head{\r\n    position: -webkit-sticky;\r\n    position: sticky;\r\n    top: 0;\r\n    z-index: 1;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.prices-card{\n    max-height: 500px !important;\n    overflow: auto !important;\n}\n.menu-products-to-select{\n    max-height: 250px !important;\n    overflow: auto !important;\n}\n.menu-products-to-select .product-element{\n    cursor: pointer;\n}\n.menu-products-to-select .product-element:hover{\n    background-color: #e8fff3 !important;\n}\n.content-price-summary{\n    border-radius: 5px;\n}\n\n/* FIXED TABLE HEADER */\n.table-products-content{\n    max-height: 400px;\n    overflow: auto !important;\n}\n.table-products-content #table_products .table-products-head{\n    position: sticky;\n    top: 0;\n    z-index: 1;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

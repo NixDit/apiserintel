@@ -836,7 +836,7 @@
                         <!--begin:Menu item-->
                         <div class="menu-item">
                             <!--begin:Menu link-->
-                            <a class="menu-link {{ setActive('catalog.brands') }}" href="{{ route('catalog.brands') }}">
+                            <a class="menu-link {{ setActive('catalog.brand.index') }}" href="{{ route('catalog.brand.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -848,7 +848,7 @@
                         <!--begin:Menu item-->
                         <div class="menu-item">
                             <!--begin:Menu link-->
-                            <a class="menu-link {{ setActive('catalog.categories') }}" href="{{ route('catalog.categories') }}">
+                            <a class="menu-link {{ setActive('catalog.categories.index') }}" href="{{ route('catalog.categories.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -860,7 +860,7 @@
                         <!--begin:Menu item-->
                         <div class="menu-item">
                             <!--begin:Menu link-->
-                            <a class="menu-link {{ setActive('catalog.divisiones') }}" href="{{ route('catalog.divisiones') }}">
+                            <a class="menu-link {{ setActive('catalog.div.index') }}" href="{{ route('catalog.div.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -872,11 +872,35 @@
                         <!--begin:Menu item-->
                         <div class="menu-item">
                             <!--begin:Menu link-->
-                            <a class="menu-link {{ setActive('catalog.providers') }}" href="{{ route('catalog.providers') }}">
+                            <a class="menu-link {{ setActive('catalog.provider.index') }}" href="{{ route('catalog.provider.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Proveedores</span>
+                            </a>
+                            <!--end:Menu link-->
+                        </div>
+                        <!--end:Menu item-->
+                        <!--begin:Menu item-->
+                        <div class="menu-item">
+                            <!--begin:Menu link-->
+                            <a class="menu-link {{ setActive('catalog.cellphone.index') }}" href="{{ route('catalog.cellphone.index') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Compañía de Recargas</span>
+                            </a>
+                            <!--end:Menu link-->
+                        </div>
+                        <!--end:Menu item-->
+                        <!--begin:Menu item-->
+                        <div class="menu-item">
+                            <!--begin:Menu link-->
+                            <a class="menu-link {{ setActive('catalog.service.index') }}" href="{{ route('catalog.service.index') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Compañía de Servicios</span>
                             </a>
                             <!--end:Menu link-->
                         </div>
