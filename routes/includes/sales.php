@@ -12,5 +12,5 @@ Route::group(['middleware' => ['role:superadmin|employee']], function () {
     Route::get('/sales/download-ticket',[SalesController::class,'downloadTicketSale'])->middleware(['auth'])->name('sales.download-ticket');
     Route::get('/sales/get-ticket-view-data',[SalesController::class,'getTicketViewData'])->middleware(['auth'])->name('sales.get-ticket-view-data');
     Route::resource('ventas', SalesController::class)->middleware(['auth'])->names('sales')->except(['destroy']);
-
+    Route::get('/obtener-detalles/{id}',[SalesController::class,'obtener_detalles'])->middleware(['auth'])->name('sales.obtener_detalles');
 });
