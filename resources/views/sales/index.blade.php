@@ -47,8 +47,68 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="detalles_del_producto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="detalles_del_producto" style="color:darkgray">Detalles de la Venta</h2>
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body productos_content">
+        <table class="table table-bordered table-striped text-center">
+            <thead style="color:darkcyan">
+                <tr>
+                    <th>
+                        Nombre del Producto 
+                    </th>
+                    <th>
+                        Subtotal 
+                    </th>
+                    <th>
+                        Cantidad Vendida
+                    </th>
+                    <th>
+                        Total
+                    </th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success " data-dismiss="modal">Cerrar Ventana</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
 @endsection
+@section('scripts')
 @push('scripts')
+    <script>
+        
+    $(function(){
+        $(function(){
+
+            $('#detalles_del_producto').on('click',function(){
+                $('#detalles_del_producto').modal('hide');
+                $('#detalles_del_producto').append();
+            });
+
+        });
+       
+
+    }());
+    </script>
     <script type="text/javascript" src="{{  URL::asset ('js/serintel/sales/sales.js?v='.rand())  }}"></script>
 @endpush
 

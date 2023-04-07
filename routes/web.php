@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Sale;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,3 +30,8 @@ require __DIR__.'/includes/product.php';
 require __DIR__.'/includes/user.php';
 
 require __DIR__.'/includes/catalog.php';
+
+
+
+
+

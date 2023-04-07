@@ -334,5 +334,11 @@ class SalesController extends Controller
         return $pdf_doc->download("Ticket-{$array[0]}-{$date}.pdf");
 
     }
+    /// funcion de detalles del ojo
+    public function obtener_detalles($id){
+        //dd($id);
+       $venta= Sale::find($id);
+        return $venta->products;
+    }
 
 }

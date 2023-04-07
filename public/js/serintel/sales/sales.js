@@ -109,7 +109,7 @@ var KTDatatablesButtons = function () {
                 className: 'text-center',
                 render: function (data, type, row) {
                     return `
-                        <a href="#" class="btn btn-icon btn-light-primary"><i class="bi bi-eye"></i></i></a>
+                        <a href="#" class="btn btn-icon btn-light-primary ojo" data-id="${row.id}" ><i class="bi bi-eye"></i></i></a>
                         <a href="#" class="btn btn-icon btn-light-info"><i class="bi bi-printer fs-2 me-2"></i></i></a>
                         <a href="#" class="btn btn-icon btn-light-warning"><i class="bi bi-pencil"></i></i></a>
                         <a href="#" class="btn btn-icon btn-light-danger"><i class="bi bi-trash fs-2 me-2"></i></i></a>
@@ -122,7 +122,7 @@ var KTDatatablesButtons = function () {
 
     // Search Datatable
     var handleSearchDatatable = function () {
-        $('#filter_client_name').on('keyup', function(event){ // Filter by client name
+        $('#filter_client_name').on('keyup', function(){ // Filter by client name
             var client_name = $(this).val();
             datatable.columns(1).search(client_name).draw();
         });
@@ -179,12 +179,50 @@ var KTDatatablesButtons = function () {
         });
     }
 
+    //detalles alert
+    function detallessale() {
+        $(document).on('click','.ojo',function(){
+            let id = $(this).data('id');
+            
+          $.ajax({
+                url         : `/obtener-detalles/${id}`,
+                dataType    : 'json',
+                contentType : false,
+                processData : false,
+               type        : 'GET',
+            }).done(function(response){
+               
+                    $('#detalles_del_producto .productos_content table tbody').empty();
+                    response.forEach(element => {
+                        var tr_element = `
+                            <tr>
+                                <td>${element.name}</td>
+                                <td>$${element.pivot.subtotal}</td>
+                                <td>${element.pivot.quantity}</td>
+                                <td>$${element.pivot.total}</td>
+                                
+                               
+                            <tr>
+                        `;
+                        $('#detalles_del_producto table tbody').append(tr_element);
+                    });
+                    $('#detalles_del_producto').modal('show');
+                
+                    // Colocar mensaje en caso de error
+                
+            });
+        });
+        
+    }
+    ///console.log(response)
+
     // Public methods
     return {
         init: function () {
             initDatatable();
             handleSearchDatatable();
             handleDeleteRows();
+            detallessale(); //info de las ventas 
         }
     }
 }();
