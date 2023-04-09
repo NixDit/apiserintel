@@ -8,7 +8,8 @@
         <script>
             window.Laravel = {!! json_encode([
                     'csrfToken' => csrf_token(),
-                    'baseUrl' 	=> url('/')
+                    'baseUrl' 	=> url('/'),
+					'user' 		=> Auth::user()
             ]) !!}
         </script>
         <script src="{{ asset('js/app.js?v='.rand())}}"></script>

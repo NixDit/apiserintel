@@ -52,8 +52,8 @@
             word-break: break-all;
         }
         .ticket {
-            width: 200px;
-            max-width: 200px;
+            width: 300px;
+            max-width: 300px;
         }
 
     </style>
@@ -92,7 +92,7 @@
                             <tbody>
                                 @forelse ($sale->products as $product)
                                     <tr>
-                                        <td style="word-break: break-all;max-width: 35px !important;width: 100px;">{{ $product->name }}</td>
+                                        <td style="word-break: break-all;max-width: 135px !important;width: 200px;">{{ $product->name }}</td>
                                         <td class="text-center">{{ $product->pivot->quantity }}</td>
                                         <td> {{ $product->retail_price == 0 ? 'N/A' : '$ ' . number_format($product->retail_price, 2, '.', ',') }}
                                         </td>

@@ -28,6 +28,10 @@
     top: 0;
     z-index: 1;
 }
+
+.small-alerts{
+    font-size: 9px;
+}
 </style>
 <template>
     <div class="container-fluid">
@@ -38,6 +42,12 @@
                 <div class="card card-custom">
                     <div class="card-header flex-wrap border-0 p-5">
                         <div class="card-body p-0">
+                            <div class="d-flex justify-content-end mb-1">
+                                <div class="form-check form-switch form-check-custom form-check-solid">
+                                    <input class="form-check-input h-20px w-30px" type="checkbox" v-model="scan_codes" id="flexSwitchDefault"/>
+                                    <label class="form-check-label" for="flexSwitchDefault">Escanear código</label>
+                                </div>
+                            </div>
                             <!-- Search product -->
                             <div class="form-group mb-5">
                                 <!-- Search -->
@@ -47,7 +57,7 @@
                                     <div v-if="searching_product">
                                         <p class="badge badge-info">Buscando...</p>
                                     </div>
-                                    <div class="menu-products-to-select" v-else>
+                                    <div class="menu-products-to-select" v-if="!searching_product && !scan_codes">
                                         <div v-if="products_found.length > 0" class="my-5 px-5">
                                             <div class="d-flex p-5 product-element" v-for="(product_f,index_p) in products_found" :key="index_p" @click="selectProduct(product_f)">
                                                 <!--begin::Symbol-->
@@ -70,7 +80,7 @@
                                                     <!--end::Title-->
                                                     <!--begin::Info-->
                                                     <div class="text-end py-lg-0 py-2">
-                                                        <span class="text-gray-800 fw-bolder fs-3">${{ product_f.cost }}</span>
+                                                        <span class="text-gray-800 fw-bolder fs-3">${{ product_f.retail_price }}</span>
                                                         <span class="text-gray-400 fs-7 fw-semibold d-block">Sales</span>
                                                     </div>
                                                     <!--end::Info-->
@@ -90,9 +100,9 @@
                                     <thead class="table-products-head bg-success text-white">
                                         <tr class="border-bottom-0 text-center">
                                             <th>Productos</th>
-                                            <th width="150px">Cantidad</th>
+                                            <th width="135px">Cantidad</th>
                                             <th width="150px">Total</th>
-                                            <th width="50px"></th>
+                                            <th width="125px"></th>
                                         </tr>
                                     </thead>
                                     <tbody v-if="products_selected.length > 0">
@@ -100,22 +110,31 @@
                                             <td>
                                                 <a role="button" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6 pe-0" @click="showProductDetails(product)">{{ product.product.name }}</a>
                                                 <span class="text-gray-400 fw-semibold fs-7 d-block ps-0">{{ product.product.code }}</span>
+                                                <div v-if="product.recharge_data.is_recharge">
+                                                    <small class="small-alerts"><strong>Teléfono:</strong> {{ product.recharge_data.phonenumber }}</small><br />
+                                                    <small class="small-alerts"><strong>Compañia:</strong> {{ product.recharge_data.company_data.name }}</small>
+                                                </div>
                                             </td>
                                             <td>
                                                 <span class="text-gray-800 fw-bold d-block fs-6 ps-0">
-                                                    <div class="input-group input-group-sm mb-5">
+                                                    <div class="input-group input-group-sm mb-5" v-if="!product.recharge_data.is_recharge">
                                                         <span class="input-group-text" style="cursor: pointer;" @click="substractQuantityProduct(index)">-</span>
                                                         <input type="text" class="form-control text-center onlyNumberValue" v-model="product.quantity" @input="checkQuantityProduct(index)"/>
                                                         <span class="input-group-text" style="cursor: pointer;" @click="addQuantityProduct(index)">+</span>
                                                     </div>
+                                                    <p v-else>1</p>
                                                 </span>
                                             </td>
                                             <td>
                                                 <span class="text-gray-800 fw-bold d-block fs-6">${{ stringFormatCommas(product.total) }}</span>
+                                                <small class="small-alerts" v-if="product.recharge_data.is_recharge">+$1 de comisión al total de ${{ stringFormatCommas(product.subtotal) }}</small>
                                             </td>
                                             <td>
-                                                <button class="btn btn-icon btn-danger" @click="removeProduct(index)">
+                                                <button class="btn btn-icon btn-danger" title="Eliminar" @click="removeProduct(index)">
                                                     <i class="fonticon-trash-bin"></i>
+                                                </button>
+                                                <button class="btn btn-icon btn-warning" title="Editar total" @click="editTotal(index)" v-if="is_superadmin">
+                                                    <i class="bi bi-pencil "></i>
                                                 </button>
                                             </td>
                                         </tr>
@@ -143,6 +162,7 @@
                                 <select class="form-select" data-control="select2" data-placeholder="Buscar cliente" id="client_select">
                                     <option></option>
                                 </select>
+                                <small class="small-alerts">Si no se selecciona un cliente, este guardará como cliente global</small>
                             </div>
                             <!-- Total data -->
                             <div class="bg-success p-2 content-price-summary">
@@ -211,10 +231,21 @@
                 </div>
             </div>
         </div>
+        <!-- MODALS -->
+        <modal-update-product
+            ref="modal_update_product"
+            @updateProduct="updateProduct"
+        ></modal-update-product> <!-- Update product data -->
+        <modal-add-recarga
+            ref="modal_add_recarga"
+            @addProduct="addProduct"
+        ></modal-add-recarga> <!-- Add recarga -->
     </div>
 </template>
 <script>
 import { stringFormatCommas } from '../../../utils/commonFunctions';
+import modalUpdateProduct from './components/modals/update_product.vue';
+import modalAddRecarga from './components/modals/recarga_info.vue';
 export default {
     data(){
         return {
@@ -223,11 +254,18 @@ export default {
             products_selected : [],
             timer_search      : null,
             searching_product : true,
-            payment_method    : null,
+            payment_method    : 1,
             clients           : [],
             client_id         : 0,
-            ticket_data       : null
+            ticket_data       : null,
+            actual_user       : window.Laravel.user,
+            is_superadmin     : window.Laravel.user.roles.some(r => r.name == 'superadmin'),
+            scan_codes        : false
         }
+    },
+    components: {
+        "modal-update-product" : modalUpdateProduct,
+        "modal-add-recarga"    : modalAddRecarga
     },
     watch: {
         "product_search" : function(newValue, oldValue){
@@ -241,6 +279,9 @@ export default {
                 $('#products_found_content').hide();
                 this.products_found = [];
             }
+        },
+        "scan_codes" : function(newValue, oldValue){
+            this.searchProduct();
         }
     },
     computed: {
@@ -271,8 +312,9 @@ export default {
         onChangeSelectData(){
             let _this = this;
             $('#client_select').on('select2:select', function (e) { // Set "id" value of selected option in client's select tag
-                var data        = e.params.data;
-                _this.client_id = data.id;
+                var data             = e.params.data;
+                _this.payment_method = null;
+                _this.client_id      = data.id;
             });
         },
         formatCodeClients(value){ // Covert code(SC-000001) of clients to int value
@@ -283,31 +325,57 @@ export default {
             this.searching_product = true;
             axios.get(`/product/search`,{
                 params: {
-                    search : this.product_search
+                    search    : this.product_search,
+                    scan_code : this.scan_codes
                 }
             }).then(function(response){
                 response = response.data;
                 if(!response.error){
                     _this.products_found = response.products;
+                    if(_this.scan_codes){
+                        if(_this.products_found.length > 0){
+                            _this.selectProduct(_this.products_found[0]);
+                        } else {
+                            _this.product_search = null;
+                            Swal.fire({
+                                title : 'Cuidado',
+                                text  : 'Ningún producto/servicio encontrado',
+                                icon  : 'warning'
+                            });
+                        }
+                    }
                 }
                 _this.searching_product = false;
             });
         },
         selectProduct(product){ // Set products to list of products selected
+            if(product.category_id == 3){ // If category product is "recarga"
+                this.openModalRecarga(product);
+                return false;
+            }
             let product_exists = this.existsProductSelected(product); // Verifica si el producto ya fue agregado, en caso que si le suma +1 en su cantidad
             if(!product_exists){
-                this.products_selected.push({
-                    "product" : {
-                        "id"   : product.id,
-                        "name" : product.name,
-                        "cost" : product.cost,
-                        "code" : product.code
-                    },
-                    "quantity" : 1,
-                    "subtotal" : product.cost,
-                    "total"    : product.cost * 1,
-                });
+                this.addProduct(product);
             }
+        },
+        addProduct(product){
+            this.products_selected.push({
+                "product" : {
+                    "id"           : product.id,
+                    "name"         : product.name,
+                    "retail_price" : product.retail_price,
+                    "code"         : product.code
+                },
+                "recharge_data" : {
+                    "is_recharge"  : (product.category_id == 3) ? true : false,
+                    "phonenumber"  : product.phonenumber,
+                    "company_id"   : product.company_id,
+                    "company_data" : product.company_data
+                },
+                "quantity"   : 1,
+                "subtotal"   : product.retail_price,
+                "total"      : (product.retail_price * 1) + (product.category_id == 3 ? 1 : 0), // If is "recarga" add +$1 commission
+            });
             this.resetProductsFound();
         },
         existsProductSelected(product){ // Check if the product to add exists, if exists in products selected add +1
@@ -318,6 +386,7 @@ export default {
                     if(product_index != -1){ // Index is found
                         this.addQuantityProduct(product_index);
                     }
+                    this.resetProductsFound();
                     return true;
                 }
             }
@@ -332,16 +401,16 @@ export default {
             let product_to_edit = this.products_selected[index];
             if(product_to_edit){
                 if(product_to_edit.quantity > 1){
-                    product_to_edit.quantity -= 1;
-                    product_to_edit.total     = product_to_edit.quantity * product_to_edit.product.cost;
+                    product_to_edit.quantity = Number(product_to_edit.quantity) - 1;
+                    product_to_edit.total    = product_to_edit.quantity * product_to_edit.product.retail_price;
                 }
             }
         },
         addQuantityProduct(index){ // Add +1 to the product quantity
             let product_to_edit = this.products_selected[index];
             if(product_to_edit){
-                product_to_edit.quantity += 1;
-                product_to_edit.total     = product_to_edit.quantity * product_to_edit.product.cost;
+                product_to_edit.quantity = Number(product_to_edit.quantity) + 1;
+                product_to_edit.total    = product_to_edit.quantity * product_to_edit.product.retail_price;
             }
         },
         checkQuantityProduct(index){ // Check quantity of product
@@ -354,9 +423,9 @@ export default {
                     quantity == ''
                 ){
                     product_to_check.quantity = 1;
-                    product_to_check.total    = product_to_check.cost;
+                    product_to_check.total    = product_to_check.retail_price;
                 } else {
-                    product_to_check.total = product_to_check.quantity * product_to_check.cost;
+                    product_to_check.total = product_to_check.quantity * product_to_check.retail_price;
                 }
             }
         },
@@ -434,14 +503,14 @@ export default {
                 })
                 return false;
             }
-            if(this.client_id == null  || this.client_id == 0 || this.client_id == ''){
-                Swal.fire({
-                    title : 'Cuidado',
-                    text  : "Seleccione un cliente",
-                    icon  : 'warning'
-                })
-                return false;
-            }
+            // if(this.client_id == null  || this.client_id == 0 || this.client_id == ''){
+            //     Swal.fire({
+            //         title : 'Cuidado',
+            //         text  : "Seleccione un cliente",
+            //         icon  : 'warning'
+            //     })
+            //     return false;
+            // }
             if(this.payment_method == null || this.payment_method == 0 || this.payment_method == ''){
                 Swal.fire({
                     title : 'Cuidado',
@@ -458,7 +527,7 @@ export default {
             this.products_selected = [];
             this.timer_search      = null;
             this.searching_product = true;
-            this.payment_method    = null;
+            this.payment_method    = 1;
             this.clients           = [];
             this.client_id         = 0;
             $('#client_select').val(null);
@@ -481,6 +550,17 @@ export default {
                     }
                 });
             });
+        },
+        editTotal(index){
+            let product = this.products_selected[index];
+            this.$refs.modal_update_product.setData(product,index);
+            this.$refs.modal_update_product.openModal();
+        },
+        updateProduct(data){
+            this.products_selected[data.index].total = Number(data.total);
+        },
+        openModalRecarga(product){
+            this.$refs.modal_add_recarga.openModal(product);
         }
     }
 }

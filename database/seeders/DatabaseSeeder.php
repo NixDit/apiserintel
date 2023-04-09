@@ -19,7 +19,9 @@ class DatabaseSeeder extends Seeder
             ProductSeeder::class,
             RouteSeeder::class,
             RoleSeeder2::class,
-            DivisionSeeder::class
+            DivisionSeeder::class,
+            ClientGlobalSeeder::class,
+            RecargasCategorySeeder::class
         ]);
     }
 }

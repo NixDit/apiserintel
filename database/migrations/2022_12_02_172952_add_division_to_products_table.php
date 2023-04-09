@@ -27,7 +27,7 @@ class AddDivisionToProductsTable extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('division');
+            $table->dropColumn('division_id');
         });
     }
 }

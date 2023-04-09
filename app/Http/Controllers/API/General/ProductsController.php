@@ -247,17 +247,22 @@ class ProductsController extends Controller
     }
 
     public function searchProduct(){
-        $error    = false;
-        $message  = null;
-        $request  = request();
-        $products = [];
+        $error     = false;
+        $message   = null;
+        $request   = request();
+        $products  = [];
+        $scan_code = $request->scan_code;
         try {
             $search = $request->search;
             if(!is_null($search) && $search != ''){
-                $products = Product::where('name','LIKE',"%{$search}%")
+                if($scan_code == 'true'){
+                    $products = Product::where('code',$search)->get();
+                } else {
+                    $products = Product::where('name','LIKE',"%{$search}%")
                                     ->orWhere('code','LIKE',"%{$search}%")
                                     ->orWhere('description','LIKE',"%{$search}%")
                                     ->get();
+                }
             }
         } catch (\Throwable $th) {
             $error   = false;

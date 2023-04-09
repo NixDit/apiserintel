@@ -15,7 +15,10 @@ class ProductSale extends Pivot
         'product_id',
         'quantity',
         'subtotal',
-        'total'
+        'total',
+        'is_recharge',
+        'phone',
+        'company_id'
     ];
 
 }

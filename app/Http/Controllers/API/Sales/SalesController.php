@@ -49,7 +49,7 @@ class SalesController extends Controller
 
                 $sale = Sale::create([
                     'employee_id'   => $employee_id,
-                    'client_id'     => $request->client_id,
+                    'client_id'     => ($request->client_id > 0) ? $request->client_id : User::where(['email' => 'clienteglobal@gmail.com'])->first()->id,
                     'subtotal'      => $request->subtotal,
                     'total'         => $request->total,
                     'type'          => $request->type,
@@ -65,7 +65,6 @@ class SalesController extends Controller
                                             // no se pueden guardar mas de 2 productos con el mismo id en la tabla
 
                 foreach ($products as $key => $product) {
-
                     if( isset($product["credit_id"]) ) {
 
                         $saleWithCredit = Sale::find($product["credit_id"]);
@@ -108,13 +107,26 @@ class SalesController extends Controller
 
 
                     } else {
-                        $product_for_sale = ProductSale::create([
-                            'product_id'    => $product["product"]["id"],
-                            'sale_id'       => $sale->id,
-                            'quantity'      => $product["quantity"],
-                            'subtotal'      => $product["subtotal"],
-                            'total'         => $product["total"]
-                        ]);
+                        if(isset($product["recharge_data"])){
+                            $product_for_sale = ProductSale::create([
+                                'product_id'    => $product["product"]["id"],
+                                'sale_id'       => $sale->id,
+                                'quantity'      => $product["quantity"],
+                                'subtotal'      => $product["subtotal"],
+                                'total'         => $product["total"],
+                                'is_recharge'   => $product["recharge_data"]["is_recharge"],
+                                'phone'         => isset($product["recharge_data"]["phonenumber"]) ? $product["recharge_data"]["phonenumber"] : null,
+                                'company_id'    => isset($product["recharge_data"]["company_id"]) ? $product["recharge_data"]["company_id"] : null
+                            ]);
+                        } else {
+                            $product_for_sale = ProductSale::create([
+                                'product_id'    => $product["product"]["id"],
+                                'sale_id'       => $sale->id,
+                                'quantity'      => $product["quantity"],
+                                'subtotal'      => $product["subtotal"],
+                                'total'         => $product["total"]
+                            ]);
+                        }
                     }
 
 
