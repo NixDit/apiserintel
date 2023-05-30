@@ -14,5 +14,5 @@ Route::group(['middleware' => ['role:superadmin|employee']], function () {
 
     Route::get('/clientes/perfil/{id}', [ClientController::class, 'viewPerfil'])->middleware(['auth'])->name('clients.getPerfilClient'); //TO: VER PERFIL DEL USUARIO
     Route::resource('clientes', ClientController::class)->middleware(['auth'])->names('clients')->except(['destroy']);
-
+    
 });

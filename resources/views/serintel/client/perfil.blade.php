@@ -60,7 +60,7 @@
                                             <path d="M12.0624 13.0453C13.7193 13.0453 15.0624 11.7022 15.0624 10.0453C15.0624 8.38849 13.7193 7.04535 12.0624 7.04535C10.4056 7.04535 9.06241 8.38849 9.06241 10.0453C9.06241 11.7022 10.4056 13.0453 12.0624 13.0453Z" fill="currentColor" />
                                         </svg>
                                     </span>
-                                    <!--end::Svg Icon-->Direccion</a>
+                                    <!--end::Svg Icon-->{{ $user->clientInformation->address }}</a>
                                     <a href="javascript:;" class="d-flex align-items-center text-gray-400 text-hover-primary mb-2">
                                     <!--begin::Svg Icon | path: icons/duotune/communication/com011.svg-->
                                     <span class="svg-icon svg-icon-4 me-1">
@@ -171,8 +171,10 @@
             <!--begin::Content-->
             <div id="kt_account_settings_profile_details" class="collapse show">
                 <!--begin::Form-->
-                <form id="kt_account_profile_details_form" class="form">
-                    <!--begin::Card body-->
+                <form action="{{route('clients.update',[$user->id])}}" method="POST" id="kt_account_profile_details_form" class="form">
+                  @csrf
+                  @method('PATCH')  
+                <!--begin::Card body-->
                     <div class="card-body border-top p-9">
                         <!--begin::Input group-->
                         {{-- <div class="row mb-6">
@@ -273,30 +275,29 @@
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
-                                <input type="text" name="website" class="form-control form-control-lg form-control-solid" placeholder="Company website" value="Falta Direccion" />
+                                <input type="text" name="website" class="form-control form-control-lg form-control-solid" placeholder="Company website" value="{{$user->clientInformation->address}}" />
                             </div>
                             <!--end::Col-->
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
                         <div class="row mb-6">
-                            <!--begin::Label-->
+                            <!--Puse como comentario lo de la longitud y latitud-->
+                            <!--begin::Label
                             <label class="col-lg-4 col-form-label fw-semibold fs-6">Latitud y Longitud</label>
-                            <!--end::Label-->
-                            <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
                                 <input type="text" name="website" class="form-control form-control-lg form-control-solid" placeholder="Company website" value="18.4585225,-97.3904625" />
                                 <div class="form-text">Ejemplo de latitud y longitud: <b>18.4585225,-97.3904625</b></div>
                             </div>
-                            <!--end::Col-->
+                            end::Col-->
                         </div>
                         <!--end::Input group-->
                     </div>
                     <!--end::Card body-->
                     <!--begin::Actions-->
                     <div class="card-footer d-flex justify-content-end py-6 px-9">
-                        <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button>
-                        <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Save Changes</button>
+                        <button type="reset" class="btn btn-danger btn-active-light-primary me-2">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Guardar Cambios</button>
                     </div>
                     <!--end::Actions-->
                 </form>
@@ -328,7 +329,7 @@
                                 <th class="min-w-175px ps-9">N°</th>
                                 <th class="min-w-250px px-0">Folio</th>
                                 <th class="min-w-100px">Fecha</th>
-                                <th class="min-w-100px">Status</th>
+                                <th class="min-w-100px">Estatus</th>
                                 <th class="w-100px">Acciones</th>
                             </tr>
                         </thead>

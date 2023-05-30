@@ -61,15 +61,15 @@ var KTDatatablesButtons = function () {
                 targets: 6,
                 orderable: false,
                 render: function (data, type, row) {
-                    return `${row.phone}`;
+                    return `${row.customer.phone}`;
                 }
             },
             {
-                //PHONE
+                //DIRECCION
                 targets: 7,
                 orderable: false,
                 render: function (data, type, row) {
-                    return `${row.address}`;
+                    return `${row.customer.address}`;
                 }
             },
             {

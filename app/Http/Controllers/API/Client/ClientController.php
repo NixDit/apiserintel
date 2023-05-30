@@ -118,4 +118,13 @@ class ClientController extends Controller
             'data'      => $data
         ]);
     }
+    public function update($id, Request  $request){
+        
+        $user= User::find($id);
+        $user->update([
+            'name'=>$request->fname,
+            'last_name'=>$request->lname
+        ]);
+        return back();
+    }
 }
