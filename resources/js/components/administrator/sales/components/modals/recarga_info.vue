@@ -31,6 +31,12 @@
                                 <option v-for="(companie,index_c) in companies" :key="index_c" :value="companie.id">{{ companie.name }}</option>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label class="fs-6 fw-semibold form-label mt-3">
+                                <span class="required">Cantidad</span>
+                            </label>
+                            <input type="number" class="form-control" v-model="quantity" placeholder="20" autocomplete="off"/>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light-primary font-weight-bold" data-bs-dismiss="modal">Cancelar</button>
@@ -48,7 +54,8 @@ export default {
             product_data : null,
             companies    : [],
             companie_id  : null,
-            phonenumber  : null
+            phonenumber  : null,
+            quantity     : 20
         }
     },
     methods: {
@@ -74,6 +81,7 @@ export default {
                 this.product_data.phonenumber  = this.phonenumber;
                 this.product_data.company_id   = this.companie_id;
                 this.product_data.company_data = this.searchCompany(this.companie_id);
+                this.product_data.retail_price = this.quantity;
                 this.$emit("addProduct",this.product_data);
                 $('#modal_data_info').modal('hide');
             }
@@ -92,6 +100,14 @@ export default {
                     icon  : 'warning',
                     title : 'Cuidado',
                     text  : 'Seleccione una compañia'
+                })
+                return false;
+            }
+            if(this.quantity == null || this.quantity == '' || this.quantity <= 0){
+                Swal.fire({
+                    icon  : 'warning',
+                    title : 'Cuidado',
+                    text  : 'Ingresa una cantidad válida'
                 })
                 return false;
             }
