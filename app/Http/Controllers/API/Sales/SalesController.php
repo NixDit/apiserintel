@@ -49,7 +49,7 @@ class SalesController extends Controller
 
                 $sale = Sale::create([
                     'employee_id'   => $employee_id,
-                    'client_id'     => ($request->client_id > 0) ? $request->client_id : User::where(['email' => 'clienteglobal@gmail.com'])->first()->id,
+                    'client_id'     => ($request->client_id > 0) ? $request->client_id : User::where(['email' => 'clientegeneral@serintel.com'])->first()->id,
                     'subtotal'      => $request->subtotal,
                     'total'         => $request->total,
                     'type'          => $request->type,

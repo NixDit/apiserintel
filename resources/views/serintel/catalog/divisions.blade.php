@@ -65,7 +65,7 @@
         </div>
     </div>
 </div>
-
+<div id="edit_division_modal"></div>
 @include('layouts.includes.new_division')
 @endsection
 @push('scripts')
