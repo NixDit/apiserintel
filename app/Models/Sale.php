@@ -43,7 +43,7 @@ class Sale extends Model
     }
 
     public function products() {
-        return $this->belongsToMany('App\Models\Product')->using('App\Models\ProductSale')->withPivot(['quantity', 'subtotal', 'total']);
+        return $this->belongsToMany('App\Models\Product')->using('App\Models\ProductSale')->withPivot(['quantity', 'subtotal', 'total','is_recharge','phone','company_id','is_service','no_service','company_service_id']);
     }
 
     public function credit() {

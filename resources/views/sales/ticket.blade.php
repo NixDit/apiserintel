@@ -92,7 +92,23 @@
                             <tbody>
                                 @forelse ($sale->products as $product)
                                     <tr>
-                                        <td style="word-break: break-all;max-width: 135px !important;width: 200px;">{{ $product->name }}</td>
+                                        <td style="word-break: break-all;max-width: 135px !important;width: 200px;">
+                                            <span>{{ $product->name }}</span><br />
+                                            {{-- Recharge --}}
+                                            @if ($product->pivot->is_recharge == 1)
+                                            <div>
+                                                <small>Numero: {{ $product->pivot->phone }}</small><br />
+                                                <small>Compañia: {{ $product->pivot->company_recharge->name }}</small>
+                                            </div>
+                                            @endif
+                                            {{-- Service --}}
+                                            @if ($product->pivot->is_service == 1)
+                                            <div>
+                                                <small>Nº servicio: {{ $product->pivot->no_service }}</small><br />
+                                                <small>Compañia: {{ $product->pivot->campany_service->name }}</small>
+                                            </div>
+                                            @endif
+                                        </td>
                                         <td class="text-center">{{ $product->pivot->quantity }}</td>
                                         <td> {{ $product->retail_price == 0 ? 'N/A' : '$ ' . number_format($product->retail_price, 2, '.', ',') }}
                                         </td>

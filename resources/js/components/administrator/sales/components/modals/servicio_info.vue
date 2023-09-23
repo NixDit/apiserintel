@@ -1,5 +1,5 @@
 <template lang="">
-    <div class="modal fade" id="modal_data_info" aria-hidden="true">
+    <div class="modal fade" id="modal_data_servicio_info" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered mw-600px">
             <div class="modal-content rounded">
                 <div class="modal-header justify-content-end border-0 pb-0">
@@ -14,14 +14,14 @@
                 </div>
                 <div class="modal-body pt-0 pb-15 px-5 px-xl-20">
                     <div class="mb-13 text-center">
-                        <h1 class="mb-3">Información para la recarga</h1>
+                        <h1 class="mb-3">Pago de servicio</h1>
                     </div>
                     <div class="card-body pt-5">
                         <div class="form-group">
                             <label class="fs-6 fw-semibold form-label mt-3">
-                                <span class="required">Teléfono</span>
+                                <span class="required">Nº Servicio</span>
                             </label>
-                            <input type="tel" class="form-control" v-model="phonenumber" placeholder="0000000000" maxlength="10" autocomplete="off"/>
+                            <input type="tel" class="form-control" v-model="folio" placeholder="0000000000" autocomplete="off"/>
                         </div>
                         <div class="form-group">
                             <label class="fs-6 fw-semibold form-label mt-3">
@@ -54,7 +54,7 @@ export default {
             product_data : null,
             companies    : [],
             companie_id  : null,
-            phonenumber  : null,
+            folio        : null,
             quantity     : 20
         }
     },
@@ -63,36 +63,36 @@ export default {
             this.product_data = product;
             this.resetData();
             this.getCompanies();
-            $('#modal_data_info').modal('show');
+            $('#modal_data_servicio_info').modal('show');
         },
         resetData(){
-            this.phonenumber = null;
+            this.folio       = null;
             this.companie_id = 0;
-            this.quantity    = 20;
+            this.quantity    = 0;
         },
         getCompanies(){ // Get all clients
             let _this = this;
-            axios.get(`/companycellphone/get-cellphone-all`).then(function(response){
+            axios.get(`/companyservice/get-cellphone-all`).then(function(response){
                 _this.companies = response.data;
             });
         },
         addRecarga(){
             let data_is_valid = this.validateData();
             if(data_is_valid){
-                this.product_data.phonenumber  = this.phonenumber;
+                this.product_data.folio        = this.folio;
                 this.product_data.company_id   = this.companie_id;
                 this.product_data.company_data = this.searchCompany(this.companie_id);
                 this.product_data.retail_price = this.quantity;
                 this.$emit("addProduct",this.product_data);
-                $('#modal_data_info').modal('hide');
+                $('#modal_data_servicio_info').modal('hide');
             }
         },
         validateData(){
-            if(this.phonenumber == null || this.phonenumber == ''){
+            if(this.folio == null || this.folio == ''){
                 Swal.fire({
                     icon  : 'warning',
                     title : 'Cuidado',
-                    text  : 'Escriba un número de teléfono'
+                    text  : 'Escriba un Nº de servicio'
                 })
                 return false;
             }

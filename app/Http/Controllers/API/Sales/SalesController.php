@@ -107,16 +107,19 @@ class SalesController extends Controller
 
 
                     } else {
-                        if(isset($product["recharge_data"])){
+                        if(isset($product["recharge_data"]) || isset($product["service_data"])){
                             $product_for_sale = ProductSale::create([
                                 'product_id'    => $product["product"]["id"],
                                 'sale_id'       => $sale->id,
                                 'quantity'      => $product["quantity"],
                                 'subtotal'      => $product["subtotal"],
                                 'total'         => $product["total"],
-                                'is_recharge'   => $product["recharge_data"]["is_recharge"],
+                                'is_recharge'   => isset($product["recharge_data"]["is_recharge"]) ? $product["recharge_data"]["is_recharge"] : null,
                                 'phone'         => isset($product["recharge_data"]["phonenumber"]) ? $product["recharge_data"]["phonenumber"] : null,
-                                'company_id'    => isset($product["recharge_data"]["company_id"]) ? $product["recharge_data"]["company_id"] : null
+                                'company_id'    => isset($product["recharge_data"]["company_id"]) ? $product["recharge_data"]["company_id"] : null,
+                                'is_service'    => isset($product["service_data"]["is_service"]) ? $product["service_data"]["is_service"] : null,
+                                'no_service'    => isset($product["service_data"]["folio"]) ? $product["service_data"]["folio"] : null,
+                                'company_service_id' => isset($product["service_data"]["company_id"]) ? $product["service_data"]["company_id"] : null
                             ]);
                         } else {
                             $product_for_sale = ProductSale::create([

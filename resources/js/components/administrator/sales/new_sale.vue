@@ -114,10 +114,14 @@
                                                     <small class="small-alerts"><strong>Teléfono:</strong> {{ product.recharge_data.phonenumber }}</small><br />
                                                     <small class="small-alerts"><strong>Compañia:</strong> {{ product.recharge_data.company_data.name }}</small>
                                                 </div>
+                                                <div v-if="product.service_data.is_service">
+                                                    <small class="small-alerts"><strong>Nº servicio:</strong> {{ product.service_data.folio }}</small><br />
+                                                    <small class="small-alerts"><strong>Compañia:</strong> {{ product.service_data.company_data.name }}</small>
+                                                </div>
                                             </td>
                                             <td>
                                                 <span class="text-gray-800 fw-bold d-block fs-6 ps-0">
-                                                    <div class="input-group input-group-sm mb-5" v-if="!product.recharge_data.is_recharge">
+                                                    <div class="input-group input-group-sm mb-5" v-if="!product.recharge_data.is_recharge && !product.service_data.is_recharge">
                                                         <span class="input-group-text" style="cursor: pointer;" @click="substractQuantityProduct(index)">-</span>
                                                         <input type="text" class="form-control text-center onlyNumberValue" v-model="product.quantity" @input="checkQuantityProduct(index)"/>
                                                         <span class="input-group-text" style="cursor: pointer;" @click="addQuantityProduct(index)">+</span>
@@ -127,7 +131,6 @@
                                             </td>
                                             <td>
                                                 <span class="text-gray-800 fw-bold d-block fs-6">${{ stringFormatCommas(product.total) }}</span>
-                                                <small class="small-alerts" v-if="product.recharge_data.is_recharge">+$1 de comisión al total de ${{ stringFormatCommas(product.subtotal) }}</small>
                                             </td>
                                             <td>
                                                 <button class="btn btn-icon btn-danger" title="Eliminar" @click="removeProduct(index)">
@@ -240,12 +243,17 @@
             ref="modal_add_recarga"
             @addProduct="addProduct"
         ></modal-add-recarga> <!-- Add recarga -->
+        <modal-add-servicio
+            ref="modal_add_servicio"
+            @addProduct="addProduct"
+        ></modal-add-servicio> <!-- Add servicio -->
     </div>
 </template>
 <script>
 import { stringFormatCommas } from '../../../utils/commonFunctions';
 import modalUpdateProduct from './components/modals/update_product.vue';
 import modalAddRecarga from './components/modals/recarga_info.vue';
+import modalAddServicio from './components/modals/servicio_info.vue';
 export default {
     data(){
         return {
@@ -265,7 +273,8 @@ export default {
     },
     components: {
         "modal-update-product" : modalUpdateProduct,
-        "modal-add-recarga"    : modalAddRecarga
+        "modal-add-recarga"    : modalAddRecarga,
+        "modal-add-servicio"   : modalAddServicio
     },
     watch: {
         "product_search" : function(newValue, oldValue){
@@ -353,6 +362,10 @@ export default {
                 this.openModalRecarga(product);
                 return false;
             }
+            if(product.category_id == 2){ // If category product is "servicio"
+                this.openModalServicio(product);
+                return false;
+            }
             let product_exists = this.existsProductSelected(product); // Verifica si el producto ya fue agregado, en caso que si le suma +1 en su cantidad
             if(!product_exists){
                 this.addProduct(product);
@@ -372,9 +385,15 @@ export default {
                     "company_id"   : product.company_id,
                     "company_data" : product.company_data
                 },
+                "service_data" : {
+                    "is_service"   : (product.category_id == 2) ? true : false,
+                    "folio"        : product.folio,
+                    "company_id"   : product.company_id,
+                    "company_data" : product.company_data
+                },
                 "quantity"   : 1,
                 "subtotal"   : product.retail_price,
-                "total"      : (product.retail_price * 1) + (product.category_id == 3 ? 1 : 0), // If is "recarga" add +$1 commission
+                "total"      : (product.retail_price * 1), // If is "recarga" add +$1 commission
             });
             this.resetProductsFound();
         },
@@ -561,6 +580,9 @@ export default {
         },
         openModalRecarga(product){
             this.$refs.modal_add_recarga.openModal(product);
+        },
+        openModalServicio(product){
+            this.$refs.modal_add_servicio.openModal(product);
         }
     }
 }
