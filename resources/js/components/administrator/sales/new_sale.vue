@@ -194,7 +194,7 @@
                                 </div>
                             </div>
                             <!-- Payment method -->
-                            <div class="row mt-5">
+                            <div class="row mt-5 text-center">
                                 <p class="col-md-12 text-center">Método de pago</p>
                                 <div class="col-md-6">
                                     <label :class="['form-check-image', {'active' : payment_method == 1}]">

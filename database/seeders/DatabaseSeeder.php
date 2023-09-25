@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder2::class,
             DivisionSeeder::class,
             ClientGlobalSeeder::class,
-            RecargasCategorySeeder::class
+            // RecargasCategorySeeder::class
         ]);
     }
 }

@@ -21,13 +21,23 @@ class ProductSeeder extends Seeder
         $brand = Brand::create([
             'name' => 'Telcel',
         ]);
-
         $brand->image()->create([
             'path' => '/brands/telcel.png'
         ]);
-
         $category = Category::create(['name' => 'Productos']);
         $line = Line::create(['name' => 'Fichas']);
+
+
+        $second_brand = Brand::create([
+            'name' => 'Serintel',
+        ]);
+        $second_brand->image()->create([
+            'path' => '/brands/serintel.jpg'
+        ]);
+        $second_category = Category::create(['name' => 'Servicios']);
+        $second_line = Line::create(['name' => 'Linea generica']);
+
+        $third_category = Category::create(['name' => 'Recargas']);
 
         $brand->products()->create([
             'name'                  => 'Recarga TAE',
@@ -38,7 +48,7 @@ class ProductSeeder extends Seeder
             'wholesale_price'       => 1.00,
             'special_price'         => 1.00,
             'super_special_price'   => 1.00,
-            'category_id'           => $category->id,
+            'category_id'           => $third_category->id,
             'line_id'               => $line->id
         ]);
 
@@ -64,7 +74,7 @@ class ProductSeeder extends Seeder
             'wholesale_price'       => 1.00,
             'special_price'         => 1.00,
             'super_special_price'   => 1.00,
-            'category_id'           => $category->id,
+            'category_id'           => $second_brand->id,
             'line_id'               => $line->id
         ]);
 
@@ -198,16 +208,7 @@ class ProductSeeder extends Seeder
         ]);
 
 
-        $second_brand = Brand::create([
-            'name' => 'Serintel',
-        ]);
 
-        $second_brand->image()->create([
-            'path' => '/brands/serintel.jpg'
-        ]);
-
-        $second_category = Category::create(['name' => 'Servicios']);
-        $second_line = Line::create(['name' => 'Linea generica']);
 
         $second_brand->products()->create([
             'name'                  => 'Reparacion pantalla de celular',
