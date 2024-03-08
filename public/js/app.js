@@ -3833,7 +3833,7 @@ var staticRenderFns = [function () {
     staticClass: "form-check-wrapper"
   }, [_c("img", {
     attrs: {
-      src: "/metronic/assets/media/stock/600x400/img-1.jpg"
+      src: "/metronic/assets/media/stock/600x400/efectivo.jpg"
     }
   })]);
 }, function () {
@@ -3844,7 +3844,7 @@ var staticRenderFns = [function () {
     staticClass: "form-check-wrapper"
   }, [_c("img", {
     attrs: {
-      src: "/metronic/assets/media/stock/600x400/img-2.jpg"
+      src: "/metronic/assets/media/stock/600x400/tarjeta.jpg"
     }
   })]);
 }];

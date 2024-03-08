@@ -199,7 +199,7 @@
                                 <div class="col-md-6">
                                     <label :class="['form-check-image', {'active' : payment_method == 1}]">
                                         <div class="form-check-wrapper">
-                                            <img src="/metronic/assets/media/stock/600x400/img-1.jpg"/>
+                                            <img src="/metronic/assets/media/stock/600x400/efectivo.jpg"/>
                                         </div>
                                         <div class="form-check form-check-custom form-check-solid">
                                             <input class="form-check-input" type="radio" checked value="1" v-model="payment_method"/>
@@ -212,7 +212,7 @@
                                 <div class="col-md-6">
                                     <label :class="['form-check-image', {'active' : payment_method == 2}]">
                                         <div class="form-check-wrapper">
-                                            <img src="/metronic/assets/media/stock/600x400/img-2.jpg"/>
+                                            <img src="/metronic/assets/media/stock/600x400/tarjeta.jpg"/>
                                         </div>
                                         <div class="form-check form-check-custom form-check-solid me-10">
                                             <input class="form-check-input" type="radio" value="2" v-model="payment_method"/>
